@@ -26,11 +26,11 @@ wezterm.on("format-tab-title", tabs.format_tab_title)
 -- window settings
 config.window_close_confirmation = "NeverPrompt"
 
--- config.window_background_image = os.getenv("HOME") .. "/.wezterm/background-tinted.jpg"
+-- config.window_background_image = wezterm.config_dir .. "/background-tinted.jpg"
 -- config.window_background_image_hsb = {
 -- 	brightness = 0.2,
 -- }
-config.window_background_image = os.getenv("HOME") .. "/.wezterm/background.jpg"
+config.window_background_image = wezterm.config_dir .. "/background.jpg"
 config.window_background_image_hsb = {
 	brightness = 0.02,
 }
