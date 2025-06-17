@@ -58,6 +58,10 @@ if [ -z "$all_scripts" ]; then
 fi
 
 choice=$(printf "%s" "$all_scripts" | fzf --prompt="Select a script to run: " --delimiter='\t' --with-nth=1)
+if [ -z "$choice" ]; then
+	echo "ERROR: No script selected."
+	exit 1
+fi
 
 pkg_info="${choice%%$'\t'*}"     # before tab(delimiter)
 pkg_json_path="${choice#*$'\t'}" # after tab (delimiter)
