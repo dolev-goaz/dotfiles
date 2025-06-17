@@ -51,6 +51,9 @@ return {
 		if ensure_installed("stylua", installed_packages) then
 			table.insert(sources, null_ls.builtins.formatting.stylua)
 		end
+		if ensure_installed("shfmt", installed_packages) then
+			table.insert(sources, null_ls.builtins.formatting.shfmt)
+		end
 		null_ls.setup({ sources = sources })
 		require("utils.format")
 

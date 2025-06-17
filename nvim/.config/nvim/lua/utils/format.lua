@@ -11,6 +11,8 @@ local null_ls_file_types = {
 	"css",
 	"scss",
 	"html",
+	-- bash
+	"sh",
 
 	-- stylua
 	"lua",
@@ -42,7 +44,8 @@ end
 -- Formatting
 vim.keymap.set("n", "<leader>cf", M.format_document, { desc = "[c]ode [f]ormat" })
 vim.api.nvim_create_autocmd("BufWritePre", {
-	pattern = { "*.ts", "*.js", "*.vue", "*.json", "*.css", "*.scss", "*.html", "*.lua" },
+	-- pattern = { "*.ts", "*.js", "*.vue", "*.json", "*.css", "*.scss", "*.html", "*.lua", "*.sh" },
+	pattern = { "*" },
 	callback = function()
 		if autoformat_enabled then
 			M.format_document()
