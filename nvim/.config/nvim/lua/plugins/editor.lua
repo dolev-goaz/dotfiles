@@ -25,7 +25,16 @@ return {
 		event = "BufReadPre",
 		config = function()
 			require("colorizer").setup({
-				filetypes = { "vue", "html", "css", "javascript", "javascriptreact", "typescript", "typescriptreact" },
+				filetypes = {
+					"vue",
+					"html",
+					"css",
+					"javascript",
+					"javascriptreact",
+					"typescript",
+					"typescriptreact",
+					"lua",
+				},
 				user_default_options = {
 					css = true,
 					mode = "virtualtext",
