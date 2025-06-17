@@ -139,9 +139,8 @@ Splitter State=\x00\x00\x00\xff\x00\x00\x00\x01\x00\x00\x00\x02\x00\x00\x00\x8c\
 
 [General]
 ColorSchemeHash=98139d0bac64c4e9f97721675584832c7c7a0bf0
-
-[Terminal]
 TerminalApplication=wezterm
+TerminalService=org.wezfurlong.wezterm.desktop
 WEZTERM_CONFIG_FILE=$HOME/.config/wezterm/init.lua
 
 [KDE]
