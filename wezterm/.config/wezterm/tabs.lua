@@ -31,16 +31,17 @@ local DENO_ICON = "" -- U+E628
 local LAMBDA_ICON = "ﬦ" -- U+FB26
 
 function M.format_tab_title(tab, tabs, panes, config, hover, max_width)
-	local edge_background = "#121212"
-	local background = "#4E4E4E"
-	local foreground = "#1C1B19"
+	local colorscheme = config.color_schemes[config.color_scheme].tab_bar
+	local edge_background = colorscheme.background
+	local background = colorscheme.inactive_tab.bg_color
+	local foreground = colorscheme.inactive_tab.fg_color
 
 	if tab.is_active then
-		background = "#FBB829"
-		foreground = "#1C1B19"
+		background = colorscheme.active_tab.bg_color
+		foreground = colorscheme.active_tab.fg_color
 	elseif hover then
-		background = "#FF8700"
-		foreground = "#1C1B19"
+		background = colorscheme.inactive_tab_hover.bg_color
+		foreground = colorscheme.inactive_tab_hover.fg_color
 	end
 
 	local edge_foreground = background
