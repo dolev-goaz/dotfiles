@@ -43,6 +43,13 @@ find_monorepo_root_relative_to() {
 	return 0
 }
 all_scripts=""
+
+# Get all package.json files under the current directory, ordered by their depth
+# (Ordered so that the root package.json will be shown first)
+package_files=$(find . -type f -name package.json -not -path "*/node_modules/*" |
+	awk '{ print gsub(/\//,"/"), $0 }' | sort -n | cut -d' ' -f2-)
+
+# Extract scripts from each package.json file
 while IFS= read -r package_file; do
 	pkg_name=$(jq -r '.name // empty' "$package_file") # get package name
 	if [ -z "$pkg_name" ]; then
@@ -50,14 +57,14 @@ while IFS= read -r package_file; do
 	fi
 	pkg_scripts=$(jq -r --arg pkg "$pkg_name" --arg fpath "$package_file" '.scripts // {} | keys[] | "\($pkg) - \(.)\t\($fpath)"' "$package_file")
 	all_scripts+="$pkg_scripts"$'\n'
-done < <(find . -type d -name node_modules -prune -o -type f -name package.json -print) # read all package.json files
+done <<<"$package_files"
 
 if [ -z "$all_scripts" ]; then
 	echo "ERROR: No package.json scripts were found."
 	exit 1
 fi
 
-choice=$(printf "%s" "$all_scripts" | fzf --prompt="Select a script to run: " --delimiter='\t' --with-nth=1)
+choice=$(printf "%s" "$all_scripts" | fzf --prompt="Select a script to run: " --delimiter='\t' --with-nth=1 --no-sort)
 if [ -z "$choice" ]; then
 	echo "ERROR: No script selected."
 	exit 1
