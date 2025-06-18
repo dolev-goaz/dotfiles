@@ -1,0 +1,33 @@
+# $XDG_CONFIG_HOME/k9s/views.yaml
+# Reference: https://k9scli.io/topics/columns/
+views:
+  # Alters the pod view column layout. Uses GVR as key
+  v1/pods:
+    # Overrides default sort column
+    sortColumn: NAME:asc
+    columns:
+      # Shown fields
+      - NAME
+      - AGE
+      - STATUS
+      - READY
+      - RESTARTS
+      - CPU
+      - IP
+      # Hidden fields
+      - MEM|H
+      - PF|H
+      - NODE|H
+      - "%MEM/R|H"
+      - "%MEM/L|H"
+      - "%CPU/R|H"
+      - "%CPU/L|H"
+
+  # Alters the service view column layout
+  # v1/services:
+  #   columns:
+  #     - AGE
+  #     - NAMESPACE
+  #     - NAME
+  #     - TYPE
+  #     - CLUSTER-IP
