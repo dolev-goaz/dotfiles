@@ -1,0 +1,11 @@
+prompt = Run:
+mode=drun
+width=350px
+height=390px
+
+## Images
+allow_markup=true
+allow_images=true
+image_size=32
+
+term = wezterm
