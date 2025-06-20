@@ -6,7 +6,14 @@
   "height": 30,
   "modules-left": ["hyprland/window"],
   "modules-center": ["hyprland/workspaces"],
-  "modules-right": ["pulseaudio", "network", "temperature", "battery", "clock"],
+  "modules-right": [
+    "hyprland/language",
+    "pulseaudio",
+    "network",
+    "temperature",
+    "battery",
+    "clock",
+  ],
   "hyprland/window": {
     "format": "{}",
     "max-length": 35,
@@ -28,6 +35,11 @@
     "persistent-workspaces": {
       "*": 4,
     },
+  },
+  "hyprland/language": {
+    "format": " [{}]",
+    "format-he": "he",
+    "format-en": "en",
   },
   "clock": {
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",

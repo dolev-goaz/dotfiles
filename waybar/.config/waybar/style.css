@@ -68,8 +68,13 @@ button:hover {
 #memory,
 #temperature,
 #network,
+#language,
 #pulseaudio {
   padding: 0 10px;
+}
+
+#language {
+  color: @lavender;
 }
 
 #pulseaudio {
