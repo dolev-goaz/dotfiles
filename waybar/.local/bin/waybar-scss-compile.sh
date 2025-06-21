@@ -24,6 +24,11 @@ for k in "${!REPLACEMENTS[@]}"; do
 done
 
 sass "$TMP" "$OUT"
+EXIT_CODE=$?
+if [ $EXIT_CODE -ne 0 ]; then
+	echo "Sass compilation failed with exit code $EXIT_CODE"
+	exit $EXIT_CODE
+fi
 
 # 5. Replace -- with @ in the final CSS to make it GTK-compatible again
 sed -i -E 's/\--PLACEHOLDER_VARIABLE_([a-zA-Z0-9_-]+)/@\1/g' "$OUT"
