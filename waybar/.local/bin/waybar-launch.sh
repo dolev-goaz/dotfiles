@@ -2,6 +2,8 @@
 killall waybar
 
 # ----- debugging -----
-# export GTK_DEBUG=interactive
+if [ "$1" = "-d" ]; then
+	export GTK_DEBUG=interactive
+fi
 
 waybar &
