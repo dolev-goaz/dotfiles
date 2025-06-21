@@ -101,6 +101,14 @@
     // requires `pavucontrol` to be installed
     "on-click": "pavucontrol",
   },
+  "bluetooth": {
+    "format": " {status}",
+    "format-disabled": "",
+    "format-off": "",
+    "interval": 30,
+    "on-click": "blueman-manager",
+    "format-no-controller": "",
+  },
   "group/power": {
     "orientation": "inherit",
     "drawer": {

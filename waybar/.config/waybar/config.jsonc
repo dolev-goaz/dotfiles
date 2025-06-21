@@ -12,6 +12,7 @@
     "pulseaudio",
     "network",
     "temperature",
+    "bluetooth",
     "battery",
     "custom/notification",
     "clock",
