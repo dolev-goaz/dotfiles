@@ -40,8 +40,9 @@ button:hover {
 
 /* ================ modules ================ */
 
-/* ============= modules-right ============= */
 $spacing: 15px;
+
+/* ============= modules-right ============= */
 
 .modules-right {
   border-radius: 15px;
@@ -177,19 +178,34 @@ label:focus {
 }
 /* ============ modules-left ============== */
 .modules-left {
-  padding: 0 20px;
+  padding: 0 10px;
+  & > widget > * {
+    padding: 0 10px;
+  }
+  & > widget:not(:first-child) > * {
+    margin-left: $spacing;
+  }
 }
 
 #taskbar {
-  background-color: @base;
-  padding: 0px;
-  border-radius: 15px;
+  @extend %bordered-component;
+  padding: 0 10px;
   font-weight: normal;
   font-style: normal;
   opacity: 0.8;
-  // border: 3px solid white;
+  &.empty {
+    background: transparent;
+    border: 0;
+  }
+  & > button {
+    padding: 0;
+    &:not(:first-child) {
+      margin-left: 10px;
+    }
+  }
 }
 
 #window {
+  @extend %bordered-component;
   color: @rosewater;
 }
