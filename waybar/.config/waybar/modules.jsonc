@@ -119,7 +119,7 @@
     "modules": [
       "custom/power", // First element is the "group leader" and won't ever be hidden
       "custom/quit",
-      // "custom/lock",
+      "custom/lock",
       "custom/reboot",
     ],
   },
@@ -128,11 +128,11 @@
     "tooltip": false,
     "on-click": "hyprctl dispatch exit",
   },
-  // "custom/lock": {
-  //   "format": "󰍁",
-  //   "tooltip": false,
-  //   "on-click": "swaylock",
-  // },
+  "custom/lock": {
+    "format": "󰍁",
+    "tooltip": false,
+    "on-click": "hyprlock",
+  },
   "custom/reboot": {
     "format": "󰜉",
     "tooltip": false,
