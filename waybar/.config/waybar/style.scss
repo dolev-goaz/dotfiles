@@ -1,4 +1,5 @@
 @import "macchiato.css";
+
 * {
   /* NOTE: requires this font */
   font-family: "JetBrainsMono Nerd Font", Roboto, Helvetica, Arial, sans-serif;
@@ -35,21 +36,21 @@ button:hover {
   padding: 0 5px;
   background-color: transparent;
   color: #ffffff;
-}
-#workspaces button:hover {
-  background: rgba(0, 0, 0, 0.2);
-  font-weight: bold;
-}
-#workspaces button.focused {
-  background-color: @lavender;
-  box-shadow: inset 0 -3px #ffffff;
-}
-#workspaces button.active {
-  color: @lavender;
-  box-shadow: inset 0 -2px @lavender;
-}
-#workspaces button.urgent {
-  background-color: #eb4d4b;
+  &:hover {
+    background: rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+  }
+  &.focused {
+    background-color: @lavender;
+    box-shadow: inset 0 -3px #ffffff;
+  }
+  &.active {
+    color: @lavender;
+    box-shadow: inset 0 -2px @lavender;
+  }
+  &.urgent {
+    background-color: #eb4d4b;
+  }
 }
 
 #mode {
@@ -128,6 +129,7 @@ button:hover {
     color: #000000;
   }
 }
+
 /* Using steps() instead of linear as a timing function to limit cpu usage */
 #battery.critical:not(.charging) {
   background-color: #f53c3c;
@@ -146,5 +148,3 @@ label:focus {
 #pulseaudio.muted {
   color: @text;
 }
-
-/*# sourceMappingURL=style.css.map */
