@@ -62,14 +62,16 @@ button:hover {
   padding: 0 10px;
 }
 
-/* header of drawer groups */
-.modules-right > widget > box > :not(.drawer) > label {
-  padding: 0 10px;
-}
-
-/* drawer groups */
-.modules-right > widget > box > .drawer .not-power > label {
-  padding: 0 10px;
+/* ----- drawer groups ----- */
+.modules-right > widget > box {
+  & > :not(.drawer) > label {
+    /* header */
+    padding: 0 10px;
+  }
+  & > .drawer > box > widget > label {
+    /* body */
+    padding: 0 10px;
+  }
 }
 
 #language {
