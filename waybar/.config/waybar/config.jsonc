@@ -14,8 +14,8 @@
     "temperature",
     "bluetooth",
     "battery",
-    "custom/notification",
     "group/power",
+    "custom/notification",
     "clock",
   ],
 }

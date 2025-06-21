@@ -93,10 +93,12 @@ $spacing: 15px;
 }
 
 #language {
+  @extend %bordered-component;
   color: @lavender;
 }
 
 #pulseaudio {
+  @extend %bordered-component;
   color: @maroon;
   &.muted {
     color: @text;
@@ -104,10 +106,12 @@ $spacing: 15px;
 }
 
 #network {
+  @extend %bordered-component;
   color: @yellow;
 }
 
 #temperature {
+  @extend %bordered-component;
   color: @sky;
 }
 
