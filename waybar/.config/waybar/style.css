@@ -27,10 +27,34 @@ button:hover {
   box-shadow: inset 0 -3px #ffffff;
 }
 
+#clock, #custom-notification, #power {
+  border-radius: 17px;
+  background-color: @surface1;
+}
+
+#clock, #custom-notification, #power {
+  border: 3px solid @lavender;
+}
+
+/* ================ modules ================ */
+/* ============= modules-right ============= */
+.modules-right {
+  border-radius: 15px;
+  padding: 0 10px;
+}
+.modules-right > widget > label {
+  padding: 0 10px;
+}
+.modules-right > widget:not(:first-child) > label {
+  margin-left: 15px;
+}
+
 /* ----- drawer groups ----- */
+.modules-right > widget > box {
+  margin-left: 15px;
+}
 .modules-right > widget > box > :not(.drawer) > label, .modules-right > widget > box > .drawer > box > widget > label {
   padding: 0 10px;
-  margin: 3px 0;
   border-radius: 50%;
 }
 .modules-right > widget > box > :not(.drawer) > label:hover, .modules-right > widget > box > .drawer > box > widget > label:hover {
@@ -40,18 +64,21 @@ button:hover {
   /* header */
 }
 .modules-right > widget > box > .drawer > box > widget > label {
+  margin-right: 5px;
   /* body */
 }
 
-/* ================ modules ================ */
-/* ============= modules-right ============= */
-.modules-right {
-  background-color: @base;
-  border-radius: 15px;
-  padding: 0 10px;
+#custom-notification.none {
+  padding-right: 12px;
 }
-.modules-right > widget > label {
-  padding: 0 10px;
+#custom-notification.notification {
+  padding-left: 12px;
+}
+#custom-notification.dnd-notification {
+  padding-right: 12px;
+}
+#custom-notification.dnd-none {
+  padding-right: 17px;
 }
 
 #language {

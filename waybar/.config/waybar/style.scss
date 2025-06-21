@@ -28,12 +28,38 @@ button:hover {
   box-shadow: inset 0 -3px #ffffff;
 }
 
+%component {
+  border-radius: 17px;
+  background-color: @surface1;
+}
+
+%bordered-component {
+  @extend %component;
+  border: 3px solid @lavender;
+}
+
+/* ================ modules ================ */
+
+/* ============= modules-right ============= */
+$spacing: 15px;
+
+.modules-right {
+  border-radius: 15px;
+  padding: 0 10px;
+  & > widget > label {
+    padding: 0 10px;
+  }
+  & > widget:not(:first-child) > label {
+    margin-left: $spacing;
+  }
+}
+
 /* ----- drawer groups ----- */
 .modules-right > widget > box {
+  margin-left: $spacing;
   & > :not(.drawer) > label,
   & > .drawer > box > widget > label {
     padding: 0 10px;
-    margin: 3px 0;
     &:hover {
       background-color: @surface2;
     }
@@ -43,19 +69,26 @@ button:hover {
     /* header */
   }
   & > .drawer > box > widget > label {
+    margin-right: 5px;
     /* body */
   }
 }
-
-/* ================ modules ================ */
-
-/* ============= modules-right ============= */
-.modules-right {
-  background-color: @base;
-  border-radius: 15px;
-  padding: 0 10px;
-  & > widget > label {
-    padding: 0 10px;
+#power {
+  @extend %bordered-component;
+}
+#custom-notification {
+  @extend %bordered-component;
+  &.none {
+    padding-right: 12px;
+  }
+  &.notification {
+    padding-left: 12px;
+  }
+  &.dnd-notification {
+    padding-right: 12px;
+  }
+  &.dnd-none {
+    padding-right: 17px;
   }
 }
 
@@ -102,6 +135,7 @@ button:hover {
 }
 
 #clock {
+  @extend %bordered-component;
   color: @flamingo;
 }
 
