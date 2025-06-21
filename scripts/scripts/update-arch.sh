@@ -16,5 +16,5 @@ yay -Sua --noconfirm
 #
 # echo "==> Upgrading AUR packages..."
 # sleep 1
-#
-# echo "==> Update complete."
+
+echo "==> Update complete."
