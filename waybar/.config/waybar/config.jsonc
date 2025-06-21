@@ -14,5 +14,6 @@
     "temperature",
     "battery",
     "clock",
+    "custom/notification",
   ],
 }
