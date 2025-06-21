@@ -125,22 +125,22 @@
   },
   "custom/quit": {
     "format": "󰗼",
-    "tooltip": false,
+    "tooltip-format": "Exit hyprland",
     "on-click": "~/.local/bin/waybar-verify-action.sh 'Exit Hyprland' 'hyprctl dispatch exit'",
   },
   "custom/lock": {
     "format": "󰍁",
-    "tooltip": false,
+    "tooltip-format": "Lock screen",
     "on-click": "hyprlock",
   },
   "custom/reboot": {
     "format": "󰜉",
-    "tooltip": false,
+    "tooltip-format": "Reboot",
     "on-click": "~/.local/bin/waybar-verify-action.sh 'Reboot' 'reboot'",
   },
   "custom/power": {
     "format": "󰐥",
-    "tooltip": false,
+    "tooltip-format": "Shutdown",
     "on-click": "~/.local/bin/waybar-verify-action.sh 'Shutdown' 'shutdown now'",
   },
 }
