@@ -62,13 +62,18 @@ button:hover {
 }
 
 /* ----- drawer groups ----- */
+.modules-right > widget > box > :not(.drawer) > label, .modules-right > widget > box > .drawer > box > widget > label {
+  padding: 0 10px;
+  border-radius: 50%;
+}
+.modules-right > widget > box > :not(.drawer) > label:hover, .modules-right > widget > box > .drawer > box > widget > label:hover {
+  background-color: @surface2;
+}
 .modules-right > widget > box > :not(.drawer) > label {
   /* header */
-  padding: 0 10px;
 }
 .modules-right > widget > box > .drawer > box > widget > label {
   /* body */
-  padding: 0 10px;
 }
 
 #language {

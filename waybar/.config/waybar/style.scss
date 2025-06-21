@@ -64,13 +64,19 @@ button:hover {
 
 /* ----- drawer groups ----- */
 .modules-right > widget > box {
+  & > :not(.drawer) > label,
+  & > .drawer > box > widget > label {
+    padding: 0 10px;
+    &:hover {
+      background-color: @surface2;
+    }
+    border-radius: 50%;
+  }
   & > :not(.drawer) > label {
     /* header */
-    padding: 0 10px;
   }
   & > .drawer > box > widget > label {
     /* body */
-    padding: 0 10px;
   }
 }
 
