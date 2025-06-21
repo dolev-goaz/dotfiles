@@ -10,14 +10,14 @@
       "inhibited-notification": "<span rise='8pt'><span foreground='red'><sup></sup></span></span>",
       "inhibited-none": "",
       "dnd-inhibited-notification": "<span rise='8pt'><span foreground='red'><sup></sup></span></span>",
-      "dnd-inhibited-none": ""
+      "dnd-inhibited-none": "",
     },
     "return-type": "json",
     "exec-if": "which swaync-client",
     "exec": "swaync-client -swb",
     "on-click": "swaync-client -t -sw",
     "on-click-right": "swaync-client -d -sw",
-    "escape": true
+    "escape": true,
   },
   "hyprland/window": {
     "format": "{}",
@@ -25,11 +25,11 @@
     "rewrite": {
       "^(.*) - Chromium$": "$1",
       "^(.*) - Mozilla Firefox$": "$1",
-      "^$": "Desktop"
+      "^$": "Desktop",
     },
     "separate-outputs": true,
     "icon": true,
-    "icon-size": 20
+    "icon-size": 20,
   },
   "hyprland/workspaces": {
     "format": "{icon}",
@@ -39,42 +39,42 @@
     "all-outputs": true,
     "sort-by-number": true,
     "persistent-workspaces": {
-      "*": 4
-    }
+      "*": 4,
+    },
   },
   "hyprland/language": {
     "format": " [{}]",
     "format-he": "he",
-    "format-en": "en"
+    "format-en": "en",
   },
   "clock": {
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
     "format-alt": "{:%d-%m-%Y %H:%M:%S}",
-    "interval": 1
+    "interval": 1,
   },
   "cpu": {
     "format": "  {usage}%",
-    "tooltip": false
+    "tooltip": false,
   },
   "memory": {
-    "format": "{}%  "
+    "format": "{}%  ",
   },
   "temperature": {
     "critical-threshold": 80,
     "format": "{icon} {temperatureC}°C",
-    "format-icons": ["", "", ""]
+    "format-icons": ["", "", ""],
   },
   "battery": {
     "states": {
       "warning": 30,
-      "critical": 15
+      "critical": 15,
     },
     "format": "{icon}  {capacity}%",
     "format-full": "{icon}  {capacity}%",
     "format-charging": "  {capacity}%",
     "format-plugged": "  {capacity}%",
     "format-alt": "{time} {icon}",
-    "format-icons": ["", "", "", "", ""]
+    "format-icons": ["", "", "", "", ""],
   },
   "network": {
     "format-wifi": "  {signalStrength}%",
@@ -82,7 +82,7 @@
     "tooltip-format": "{ifname} via {gwaddr} ",
     "format-linked": "{ifname} (No IP) ",
     "format-disconnected": " ⚠ ",
-    "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    "format-alt": "{ifname}: {ipaddr}/{cidr}",
   },
   "pulseaudio": {
     "format": "{icon}  {volume}%",
@@ -96,8 +96,9 @@
       "phone": "",
       "portable": "",
       "car": "",
-      "default": ["", "", ""]
+      "default": ["", "", ""],
     },
-    "on-click": "blueman-tray"
-  }
+    // requires `pavucontrol` to be installed
+    "on-click": "pavucontrol",
+  },
 }
