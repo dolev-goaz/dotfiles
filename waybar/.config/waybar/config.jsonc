@@ -8,6 +8,7 @@
   "modules-left": ["wlr/taskbar", "hyprland/window"],
   "modules-center": ["hyprland/workspaces"],
   "modules-right": [
+    "custom/updates",
     "hyprland/language",
     "pulseaudio",
     "network",

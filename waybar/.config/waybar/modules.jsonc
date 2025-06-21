@@ -158,4 +158,13 @@
     "tooltip-format": "Shutdown",
     "on-click": "~/.local/bin/waybar-verify-action.sh 'Shutdown' 'shutdown now'",
   },
+  "custom/updates": {
+    "format": "󰚰 {}",
+    "escape": true,
+    "return-type": "json",
+    "exec": "~/.local/bin/waybar-get-updates.sh",
+    "interval": 1800,
+    // "on-click": "~/.config/ml4w/settings/installupdates.sh",
+    // "on-click-right": "~/.config/ml4w/settings/software.sh",
+  },
 }

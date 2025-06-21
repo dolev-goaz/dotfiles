@@ -27,12 +27,12 @@ button:hover {
   box-shadow: inset 0 -3px #ffffff;
 }
 
-#window, #taskbar, .modules-center, #clock, #temperature, #network, #pulseaudio, #language, #custom-notification, #power {
+#window, #taskbar, .modules-center, #clock, #temperature, #network, #pulseaudio, #language, #custom-updates, #custom-notification, #power {
   border-radius: 17px;
   background-color: @surface1;
 }
 
-#window, #taskbar, .modules-center, #clock, #temperature, #network, #pulseaudio, #language, #custom-notification, #power {
+#window, #taskbar, .modules-center, #clock, #temperature, #network, #pulseaudio, #language, #custom-updates, #custom-notification, #power {
   border: 3px solid @lavender;
 }
 
@@ -81,6 +81,19 @@ button:hover {
 }
 #custom-notification.dnd-none {
   padding-right: 17px;
+}
+
+#custom-updates.ok {
+  background-color: #a6e3a1;
+  color: #22543d;
+}
+#custom-updates.warning {
+  background-color: #f9e2af;
+  color: #7c5c20;
+}
+#custom-updates.critical {
+  background-color: #f38ba8;
+  color: #721728;
 }
 
 #language {

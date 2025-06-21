@@ -95,6 +95,22 @@ $spacing: 15px;
   }
 }
 
+#custom-updates {
+  @extend %bordered-component;
+  &.ok {
+    background-color: #a6e3a1;
+    color: #22543d;
+  }
+  &.warning {
+    background-color: #f9e2af;
+    color: #7c5c20;
+  }
+  &.critical {
+    background-color: #f38ba8;
+    color: #721728;
+  }
+}
+
 #language {
   @extend %bordered-component;
   color: @lavender;
