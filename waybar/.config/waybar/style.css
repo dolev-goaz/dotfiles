@@ -62,7 +62,17 @@ button:hover {
   box-shadow: inset 0 -3px #ffffff;
 }
 
-.modules-right > widget > * {
+.modules-right > widget > label {
+  padding: 0 10px;
+}
+
+/* header of drawer groups */
+.modules-right > widget > box > :not(.drawer) > label {
+  padding: 0 10px;
+}
+
+/* drawer groups */
+.modules-right > widget > box > .drawer .not-power > label {
   padding: 0 10px;
 }
 

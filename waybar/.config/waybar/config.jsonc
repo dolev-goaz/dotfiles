@@ -13,7 +13,8 @@
     "network",
     "temperature",
     "battery",
-    "clock",
     "custom/notification",
+    "clock",
+    "group/power",
   ],
 }
