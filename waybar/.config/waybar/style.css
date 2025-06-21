@@ -73,9 +73,11 @@ button:hover {
 }
 #custom-notification.notification {
   padding-left: 12px;
+  padding-right: 13px;
 }
 #custom-notification.dnd-notification {
-  padding-right: 12px;
+  padding-right: 13px;
+  padding-left: 9px;
 }
 #custom-notification.dnd-none {
   padding-right: 17px;
