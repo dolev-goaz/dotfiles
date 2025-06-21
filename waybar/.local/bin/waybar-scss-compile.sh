@@ -6,13 +6,22 @@ OUT=~/.config/waybar/style.css
 cp "$SCSS" "$TMP"
 
 # 2. Extract @import, @keyframes and @extend temporarily
-sed -i -E 's/@import/__IMPORT_PLACEHOLDER__/g; s/@keyframes/__KEYFRAMES_PLACEHOLDER__/g; s/@extend/__EXTEND_PLACEHOLDER__/g' "$TMP"
+declare -A REPLACEMENTS=(
+	["@import"]="__IMPORT_PLACEHOLDER__"
+	["@keyframes"]="__KEYFRAMES_PLACEHOLDER__"
+	["@extend"]="__EXTEND_PLACEHOLDER__"
+)
+for k in "${!REPLACEMENTS[@]}"; do
+	sed -i -E "s/$k/${REPLACEMENTS[$k]}/g" "$TMP"
+done
 
 # 3. Replace @var with --var
 sed -i -E 's/@([a-zA-Z0-9_-]+)/--PLACEHOLDER_VARIABLE_\1/g' "$TMP"
 
 # 4. Restore placeholders
-sed -i -E 's/__IMPORT_PLACEHOLDER__/@import/g; s/__KEYFRAMES_PLACEHOLDER__/@keyframes/g; s/__EXTEND_PLACEHOLDER__/@extend/g' "$TMP"
+for k in "${!REPLACEMENTS[@]}"; do
+	sed -i -E "s/${REPLACEMENTS[$k]}/$k/g" "$TMP"
+done
 
 sass "$TMP" "$OUT"
 
