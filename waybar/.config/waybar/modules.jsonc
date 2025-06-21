@@ -126,7 +126,7 @@
   "custom/quit": {
     "format": "󰗼",
     "tooltip": false,
-    "on-click": "hyprctl dispatch exit",
+    "on-click": "~/.local/bin/waybar-verify-action.sh 'Exit Hyprland' 'hyprctl dispatch exit'",
   },
   "custom/lock": {
     "format": "󰍁",
@@ -136,11 +136,11 @@
   "custom/reboot": {
     "format": "󰜉",
     "tooltip": false,
-    "on-click": "reboot",
+    "on-click": "~/.local/bin/waybar-verify-action.sh 'Reboot' 'reboot'",
   },
   "custom/power": {
     "format": "󰐥",
     "tooltip": false,
-    "on-click": "shutdown now",
+    "on-click": "~/.local/bin/waybar-verify-action.sh 'Shutdown' 'shutdown now'",
   },
 }
