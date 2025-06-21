@@ -126,7 +126,7 @@
   "custom/quit": {
     "format": "󰗼",
     "tooltip-format": "Exit hyprland",
-    "on-click": "~/.local/bin/waybar-verify-action.sh 'Exit Hyprland' 'hyprctl dispatch exit'",
+    "on-click": "hyprctl dispatch exit",
   },
   "custom/lock": {
     "format": "󰍁",
