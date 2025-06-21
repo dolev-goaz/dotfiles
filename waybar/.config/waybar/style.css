@@ -1,4 +1,5 @@
 @import "macchiato.css";
+/* ================ presets ================ */
 * {
   /* NOTE: requires this font */
   font-family: "JetBrainsMono Nerd Font", Roboto, Helvetica, Arial, sans-serif;
@@ -26,11 +27,94 @@ button:hover {
   box-shadow: inset 0 -3px #ffffff;
 }
 
-/* you can set a style on hover for any module like this */
-#pulseaudio:hover {
+/* ----- drawer groups ----- */
+.modules-right > widget > box > :not(.drawer) > label, .modules-right > widget > box > .drawer > box > widget > label {
+  padding: 0 10px;
+  margin: 3px 0;
+  border-radius: 50%;
+}
+.modules-right > widget > box > :not(.drawer) > label:hover, .modules-right > widget > box > .drawer > box > widget > label:hover {
   background-color: @surface2;
 }
+.modules-right > widget > box > :not(.drawer) > label {
+  /* header */
+}
+.modules-right > widget > box > .drawer > box > widget > label {
+  /* body */
+}
 
+/* ================ modules ================ */
+/* ============= modules-right ============= */
+.modules-right {
+  background-color: @base;
+  border-radius: 15px;
+  padding: 0 10px;
+}
+.modules-right > widget > label {
+  padding: 0 10px;
+}
+
+#language {
+  color: @lavender;
+}
+
+#pulseaudio {
+  color: @maroon;
+}
+#pulseaudio.muted {
+  color: @text;
+}
+
+#network {
+  color: @yellow;
+}
+
+#temperature {
+  color: @sky;
+}
+
+@keyframes blink {
+  to {
+    color: #000000;
+  }
+}
+#battery {
+  color: @green;
+}
+#battery.charging, #battery.plugged {
+  color: @sapphire;
+}
+#battery.critical:not(.charging) {
+  background-color: #f53c3c;
+  color: #ffffff;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  /* Using steps() instead of linear as a timing function to limit cpu usage */
+  animation-timing-function: steps(12);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#clock {
+  color: @flamingo;
+}
+
+label:focus {
+  background-color: #000000;
+}
+
+/* ============ modules-center ============= */
+.modules-center {
+  background-color: @base;
+  border-radius: 15px;
+  padding: 0 20px;
+}
+
+.modules-center {
+  padding: 0 10px;
+}
+
+/* ---- workspaces ---- */
 #workspaces button {
   padding: 0 5px;
   background-color: transparent;
@@ -52,104 +136,22 @@ button:hover {
   background-color: #eb4d4b;
 }
 
-#mode {
-  background-color: #64727d;
-  box-shadow: inset 0 -3px #ffffff;
-}
-
-.modules-right > widget > label {
-  padding: 0 10px;
-}
-
-/* ----- drawer groups ----- */
-.modules-right > widget > box > :not(.drawer) > label, .modules-right > widget > box > .drawer > box > widget > label {
-  padding: 0 10px;
-  border-radius: 50%;
-}
-.modules-right > widget > box > :not(.drawer) > label:hover, .modules-right > widget > box > .drawer > box > widget > label:hover {
-  background-color: @surface2;
-}
-.modules-right > widget > box > :not(.drawer) > label {
-  /* header */
-}
-.modules-right > widget > box > .drawer > box > widget > label {
-  /* body */
-}
-
-#language {
-  color: @lavender;
-}
-
-#pulseaudio {
-  color: @maroon;
-}
-
-#network {
-  color: @yellow;
-}
-
-#temperature {
-  color: @sky;
-}
-
-#battery {
-  color: @green;
-}
-
-#clock {
-  color: @flamingo;
-}
-
-#window {
-  color: @rosewater;
-}
-
-.modules-right,
-.modules-left,
-.modules-center {
-  background-color: @base;
-  border-radius: 15px;
-}
-
-.modules-right {
-  padding: 0 10px;
-}
-
+/* ============ modules-left ============== */
 .modules-left {
   padding: 0 20px;
 }
 
-.modules-center {
-  padding: 0 10px;
+#taskbar {
+  background-color: @base;
+  padding: 0px;
+  border-radius: 15px;
+  font-weight: normal;
+  font-style: normal;
+  opacity: 0.8;
 }
 
-#battery.charging,
-#battery.plugged {
-  color: @sapphire;
-}
-
-@keyframes blink {
-  to {
-    color: #000000;
-  }
-}
-/* Using steps() instead of linear as a timing function to limit cpu usage */
-#battery.critical:not(.charging) {
-  background-color: #f53c3c;
-  color: #ffffff;
-  animation-name: blink;
-  animation-duration: 0.5s;
-  animation-timing-function: steps(12);
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-}
-
-label:focus {
-  background-color: #000000;
-}
-
-#pulseaudio.muted {
-  color: @text;
+#window {
+  color: @rosewater;
 }
 
 /*# sourceMappingURL=style.css.map */
