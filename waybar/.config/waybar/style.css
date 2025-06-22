@@ -35,6 +35,9 @@ button:hover {
 #window, #taskbar, .modules-center, #clock, #temperature, #network, #pulseaudio, #language, #custom-updates, #custom-notification, #custom-clipboard, #power {
   border: 3px solid @lavender;
 }
+#window:hover, #taskbar:hover, .modules-center:hover, #clock:hover, #temperature:hover, #network:hover, #pulseaudio:hover, #language:hover, #custom-updates:hover, #custom-notification:hover, #custom-clipboard:hover, #power:hover {
+  background-color: @overlay0;
+}
 
 /* ================ modules ================ */
 /* ============= modules-right ============= */

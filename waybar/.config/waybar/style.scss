@@ -36,6 +36,9 @@ button:hover {
 %bordered-component {
   @extend %component;
   border: 3px solid @lavender;
+  &:hover {
+    background-color: @overlay0;
+  }
 }
 
 /* ================ modules ================ */
