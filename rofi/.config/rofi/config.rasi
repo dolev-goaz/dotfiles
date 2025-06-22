@@ -1,4 +1,5 @@
 configuration {
+    font: "JetBrainsMono Nerd Font 12";
     sorting: true;
     sort-method: "levenshtein";
     use-history: true;
