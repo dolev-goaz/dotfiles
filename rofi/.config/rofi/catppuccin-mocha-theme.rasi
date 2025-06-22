@@ -1,0 +1,152 @@
+@import "catppuccin-mocha"
+
+* {
+    selected-active-foreground:  @background;
+    lightfg:                     @text;
+    separatorcolor:              @foreground;
+    urgent-foreground:           @red;
+    lightbg:                     @mantle;
+    background-color:            transparent;
+    border-color:                @foreground;
+    normal-background:           @background;
+    selected-urgent-background:  @red;
+    spacing:                     2;
+    alternate-normal-foreground: @foreground;
+    urgent-background:           @background;
+    selected-normal-foreground:  @lightbg;
+    active-foreground:           @blue;
+    background:                  @base;
+    selected-active-background:  @blue;
+    active-background:           @background;
+    selected-normal-background:  @lavender;
+    foreground:                  @text;
+    selected-urgent-foreground:  @background;
+    normal-foreground:           @foreground;
+    alternate-urgent-foreground: @red;
+    alternate-active-foreground: @blue;
+}
+window {
+    padding:          12px;
+    background-color: @background;
+    border-radius: 18px;
+    width: 400px;
+}
+prompt {
+    text-color: @subtext0;
+}
+textbox-prompt-colon {
+    margin:     0px 0.3000em 0.0000em 0.0000em ;
+    expand:     false;
+    str:        ":";
+    text-color: @subtext0;
+}
+entry {
+    text-color:        @normal-foreground;
+    cursor:            text;
+    spacing:           0;
+    placeholder-color: Gray;
+    placeholder:       "Type to filter";
+}
+inputbar {
+    spacing:    0px ;
+    text-color: @normal-foreground;
+    children:   [ "prompt", "textbox-prompt-colon", "entry" ];
+    padding: 10px 20px;
+    background-color: @surface0;
+    color: @text;
+    border-radius: 25px;
+    margin: 0px 0px 12px 0px;
+}
+element {
+    padding: 1px ;
+    cursor:  pointer;
+    spacing: 20px ;
+    border:  0;
+    children: [
+        "element-icon",
+        "element-text"
+    ];
+    padding: 5px 0;
+}
+element normal.normal {
+    background-color: @normal-background;
+    text-color:       @normal-foreground;
+}
+element normal.urgent {
+    background-color: @urgent-background;
+    text-color:       @urgent-foreground;
+}
+element normal.active {
+    background-color: @active-background;
+    text-color:       @active-foreground;
+}
+element selected {
+    border-radius: 16px;
+}
+element selected.normal {
+    background-color: @selected-normal-background;
+    text-color:       @selected-normal-foreground;
+}
+element selected.urgent {
+    background-color: @selected-urgent-background;
+    text-color:       @selected-urgent-foreground;
+}
+element selected.active {
+    background-color: @selected-active-background;
+    text-color:       @selected-active-foreground;
+}
+element alternate.normal {
+    text-color:       @alternate-normal-foreground;
+}
+element alternate.urgent {
+    text-color:       @alternate-urgent-foreground;
+}
+element alternate.active {
+    text-color:       @alternate-active-foreground;
+}
+element-text {
+    vertical-align: 0.5;
+    background-color: transparent;
+    cursor:           inherit;
+    highlight:        inherit;
+    text-color:       inherit;
+}
+element-icon {
+    background-color: @background;
+    border-radius: 50%;
+    padding: 5px;
+    /* size:             1.0000em ; */
+    size: 1.5em;
+    cursor:           inherit;
+    text-color:       inherit;
+    margin:           0 0 0 15px;
+}
+message {
+    padding:      1px ;
+    border-color: @separatorcolor;
+    border:       2px dash 0px 0px ;
+}
+textbox {
+    text-color: @foreground;
+}
+listview {
+    padding: 0;
+    scrollbar:    false;
+    border-color: @separatorcolor;
+    spacing:      2px ;
+    fixed-height: 0;
+    lines: 7;
+}
+sidebar {
+    border-color: @separatorcolor;
+    border:       2px dash 0px 0px ;
+}
+button {
+    cursor:     pointer;
+    spacing:    0;
+    text-color: @normal-foreground;
+}
+button selected {
+    background-color: @selected-normal-background;
+    text-color:       @selected-normal-foreground;
+}

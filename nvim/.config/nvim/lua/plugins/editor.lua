@@ -3,6 +3,11 @@ vim.filetype.add({
 		[".env%..+"] = "sh",
 	},
 })
+vim.filetype.add({
+	extension = {
+		rasi = "css",
+	},
+})
 return {
 	{
 		"lukas-reineke/indent-blankline.nvim",

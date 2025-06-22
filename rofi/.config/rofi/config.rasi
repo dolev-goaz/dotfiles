@@ -1,0 +1,12 @@
+configuration {
+    sorting: true;
+    sort-method: "levenshtein";
+    use-history: true;
+    modes: [ combi, drun ];
+    combi-modes: [ window, drun, run ];
+    display-drun: " Run";
+}
+
+@theme "catppuccin-mocha-theme.rasi"
+ 
+/* Insert theme modifications after this */
