@@ -15,6 +15,7 @@
     "temperature",
     "bluetooth",
     "battery",
+    "custom/clipboard",
     "custom/notification",
     "group/power",
     "clock",

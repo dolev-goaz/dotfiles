@@ -77,6 +77,12 @@ $spacing: 15px;
 #power {
   @extend %bordered-component;
 }
+
+#custom-clipboard {
+  @extend %bordered-component;
+  padding-right: 12px;
+}
+
 #custom-notification {
   @extend %bordered-component;
   &.none {
