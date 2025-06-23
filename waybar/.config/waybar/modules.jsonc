@@ -14,7 +14,7 @@
     },
   },
   "custom/notification": {
-    "tooltip-format": " Left Click: Notifications\nRight Click: Do not disturb",
+    "tooltip-format": "Left Click : Notifications\nRight Click: Do not disturb",
     "format": "{icon}",
     "format-icons": {
       "notification": "<span rise='8pt'><span foreground='red' letter_spacing='-7168'><sup></sup></span></span>",
@@ -114,7 +114,9 @@
       "default": ["", "", ""],
     },
     // requires `pavucontrol` to be installed
-    "on-click": "pavucontrol --tab=3",
+    "on-click": "~/.local/bin/toggle-mute.sh",
+    "on-click-right": "pavucontrol --tab=3",
+    "tooltip-format": "Left Click : Toggle mute\nRight Click: Open audio control",
   },
   "bluetooth": {
     "format": " {status}",

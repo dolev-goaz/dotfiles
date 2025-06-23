@@ -112,6 +112,7 @@ button:hover {
 }
 #pulseaudio.muted {
   color: @text;
+  padding-right: 14px;
 }
 
 #network {
