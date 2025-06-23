@@ -30,10 +30,10 @@ config.window_close_confirmation = "NeverPrompt"
 -- config.window_background_image_hsb = {
 -- 	brightness = 0.2,
 -- }
-config.window_background_image = wezterm.config_dir .. "/background.jpg"
-config.window_background_image_hsb = {
-	brightness = 0.02,
-}
+-- config.window_background_image = wezterm.config_dir .. "/background.jpg"
+-- config.window_background_image_hsb = {
+-- 	brightness = 0.02,
+-- }
 
 -- config.window_background_opacity = 1
 -- NOTE: only works on nightly build
