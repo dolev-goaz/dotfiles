@@ -114,7 +114,7 @@
       "default": ["", "", ""],
     },
     // requires `pavucontrol` to be installed
-    "on-click": "pavucontrol",
+    "on-click": "pavucontrol --tab=3",
   },
   "bluetooth": {
     "format": " {status}",
