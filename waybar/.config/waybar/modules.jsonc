@@ -60,6 +60,7 @@
     "format": " [{}]",
     "format-he": "he",
     "format-en": "en",
+    "on-click": "~/.local/bin/waybar-toggle-language.sh",
   },
   "clock": {
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
