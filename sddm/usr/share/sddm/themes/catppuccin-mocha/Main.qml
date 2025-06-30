@@ -29,6 +29,11 @@ Item {
     mipmap: true
     clip: true
   }
+  Rectangle {
+    anchors.fill: parent
+    color: "#30000000" // semi-transparent black (50% dim)
+    z: 2
+  }
   Item {
     id: mainPanel
     z: 3
