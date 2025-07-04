@@ -192,10 +192,18 @@ label:focus {
   background-color: transparent;
   color: #ffffff;
   &.visible {
-    color: @lavender;
+    $clr: @overlay0;
+    color: $clr;
     box-shadow:
-      inset 0 -2px @lavender,
-      inset 0 2px @lavender;
+      inset 0 -2px $clr,
+      inset 0 2px $clr;
+  }
+  &.active {
+    $clr: @lavender;
+    color: $clr;
+    box-shadow:
+      inset 0 -2px $clr,
+      inset 0 2px $clr;
   }
   &:hover {
     background: rgba(0, 0, 0, 0.2);
