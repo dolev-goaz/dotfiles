@@ -191,7 +191,7 @@ label:focus {
   padding: 0 5px;
   background-color: transparent;
   color: #ffffff;
-  &.active {
+  &.visible {
     color: @lavender;
     box-shadow:
       inset 0 -2px @lavender,

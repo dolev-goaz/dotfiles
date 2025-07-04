@@ -50,10 +50,11 @@
     "on-click": "activate",
     "disable-scroll": false,
     "on-click": "activate",
-    "all-outputs": true,
+    "all-outputs": false,
     "sort-by-number": true,
     "persistent-workspaces": {
-      "*": 4,
+      "DP-3": [1, 3, 5, 7, 9],
+      "DP-2": [2, 4, 6, 8, 10],
     },
   },
   "hyprland/language": {

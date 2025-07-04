@@ -166,7 +166,7 @@ label:focus {
   background-color: transparent;
   color: #ffffff;
 }
-#workspaces button.active {
+#workspaces button.visible {
   color: @lavender;
   box-shadow: inset 0 -2px @lavender, inset 0 2px @lavender;
 }
