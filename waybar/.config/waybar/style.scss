@@ -77,6 +77,17 @@ $spacing: 15px;
     /* body */
   }
 }
+
+#hardware {
+  @extend %bordered-component;
+  & > :not(.drawer) > label {
+    padding-right: 11px;
+  }
+  label {
+    border-radius: 100rem;
+  }
+}
+
 #power {
   @extend %bordered-component;
 }
@@ -137,11 +148,6 @@ $spacing: 15px;
 #network {
   @extend %bordered-component;
   color: @yellow;
-}
-
-#temperature {
-  @extend %bordered-component;
-  color: @sky;
 }
 
 @keyframes blink {
