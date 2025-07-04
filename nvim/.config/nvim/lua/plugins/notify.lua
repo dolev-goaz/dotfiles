@@ -74,6 +74,12 @@ return {
 					},
 					view = "mini",
 				},
+				{
+					filter = {
+						min_height = 8,
+					},
+					view = "popup",
+				},
 			},
 		})
 		-- Custom print message
