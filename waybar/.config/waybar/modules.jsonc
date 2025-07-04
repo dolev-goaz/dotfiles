@@ -64,8 +64,26 @@
     "on-click": "~/.local/bin/waybar-toggle-language.sh",
   },
   "clock": {
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>\nRight Click: Toggle mode",
+    "calendar": {
+      "mode": "month",
+      "mode-mon-col": 3,
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#ffead3'><b>{}</b></span>",
+        "days": "<span color='#ecc6d9'><b>{}</b></span>",
+        "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b><u>{}</u></b></span>",
+      },
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down",
+    },
     "format-alt": "{:%d-%m-%Y %H:%M:%S}",
+    "format": "{:%d - %a - %H:%M}",
     "interval": 1,
   },
   "cpu": {
