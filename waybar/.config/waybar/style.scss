@@ -45,21 +45,9 @@ button:hover {
 
 $spacing: 15px;
 
-/* ============= modules-right ============= */
-
-.modules-right {
-  border-radius: 15px;
-  padding: 0 10px;
-  & > widget > label {
-    padding: 0 10px;
-  }
-  & > widget:not(:first-child) > label {
-    margin-left: $spacing;
-  }
-}
-
 /* ----- drawer groups ----- */
-.modules-right > widget > box {
+.modules-right > widget > box,
+.modules-left > widget > box {
   margin-left: $spacing;
   & > :not(.drawer) > label,
   & > .drawer > box > widget > label {
@@ -78,10 +66,25 @@ $spacing: 15px;
   }
 }
 
+/* ============= modules-right ============= */
+.modules-right {
+  border-radius: 15px;
+  padding: 0 10px;
+  & > widget > label {
+    padding: 0 10px;
+  }
+  & > widget:not(:first-child) > label {
+    margin-left: $spacing;
+  }
+}
 #hardware {
   @extend %bordered-component;
+  padding: 0 0;
   & > :not(.drawer) > label {
     padding-right: 11px;
+  }
+  & > :not(.drawer) {
+    padding: 0 10px;
   }
   label {
     border-radius: 100rem;
@@ -129,11 +132,6 @@ $spacing: 15px;
     background-color: #f38ba8;
     color: #721728;
   }
-}
-
-#language {
-  @extend %bordered-component;
-  color: @lavender;
 }
 
 #pulseaudio {
@@ -247,7 +245,7 @@ label:focus {
   }
 }
 
-#window {
+#language {
   @extend %bordered-component;
-  color: @rosewater;
+  color: @lavender;
 }
