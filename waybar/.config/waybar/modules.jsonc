@@ -200,7 +200,7 @@
     "on-click": "~/.local/bin/waybar-verify-action.sh 'Shutdown' && shutdown now",
   },
   "custom/updates": {
-    "format": "󰚰 {}",
+    "format": "{} <span letter_spacing='-15360'><big>󰁞</big></span>",
     "escape": true,
     "return-type": "json",
     "exec": "~/.local/bin/waybar-get-updates.sh",
