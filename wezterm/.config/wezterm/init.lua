@@ -21,6 +21,7 @@ config.enable_tab_bar = true
 config.hide_tab_bar_if_only_one_tab = true
 config.show_tab_index_in_tab_bar = false
 config.use_fancy_tab_bar = false
+config.warn_about_missing_glyphs = false
 wezterm.on("format-tab-title", tabs.format_tab_title)
 
 -- window settings
