@@ -21,4 +21,4 @@ else
 	css_class="ok"
 fi
 
-printf '{"text": "%s", "alt": "%s", "tooltip": "%s updates. %s from pacman. %s from AUR", "class": "%s"}' "$total" "$total" "$total" "$official" "$aur" "$css_class"
+printf '{"text": "%s", "alt": "%s", "tooltip": "%s updates\\n  %s from pacman\\n  %s from AUR", "class": "%s"}' "$total" "$total" "$total" "$official" "$aur" "$css_class"
