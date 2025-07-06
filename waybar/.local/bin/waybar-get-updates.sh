@@ -8,8 +8,8 @@ official=$(echo "$updates" | jq .official)
 aur=$(echo "$updates" | jq .aur)
 total=$(echo "$updates" | jq .total)
 
-if [ "$total" -eq 0 ] then
-    exit 0
+if [ "$total" -eq 0 ]; then
+	exit 0
 fi
 
 css_class="ok"
