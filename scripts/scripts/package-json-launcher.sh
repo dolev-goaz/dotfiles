@@ -76,17 +76,27 @@ pkg_json_path="${choice#*$'\t'}" # after tab (delimiter)
 pkg_name="${pkg_info%% - *}"   # before first dash
 script_name="${pkg_info#* - }" # after first dash
 
+read -p "query: " query
+
 root_package_json=$(find_monorepo_root_relative_to "$pkg_json_path")
 if [ -z "$root_package_json" ]; then
 	echo "Running script from path '$pkg_json_path' in package '$pkg_name': $script_name"
 	cd "$(dirname "$pkg_json_path")"
-	npm run "$script_name"
+	if [ -n "$query" ]; then
+		npm run "$script_name" -- $query
+	else
+		npm run "$script_name"
+	fi
 	cd -
 	exit 0
 fi
 
 echo "Running script from monorepo root '$root_package_json' in package '$pkg_name': $script_name"
 cd "$(dirname "$root_package_json")"
-npm run --workspace="$pkg_name" "$script_name"
+if [ -n "$query" ]; then
+	npm run --workspace="$pkg_name" "$script_name" -- $query
+else
+	npm run --workspace="$pkg_name" "$script_name"
+fi
 cd -
 exit 0
