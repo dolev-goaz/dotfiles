@@ -110,6 +110,7 @@
     "format-plugged": " {capacity}%",
     "format-alt": "{time} {icon}",
     "format-icons": ["", "", "", "", ""],
+    "interval": 5,
   },
   "network": {
     "format-wifi": "  {signalStrength}%",
