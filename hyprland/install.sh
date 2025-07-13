@@ -6,7 +6,8 @@ sudo pacman -S --needed \
 
 yay -S --needed \
 	clipse \
-	clipse-gui
+	clipse-gui \
+    ferdium
 
 # For hyprpm
 sudo pacman -S --needed \
