@@ -4,7 +4,7 @@ local M = {}
 local custom_scheme = wezterm.color.get_builtin_schemes()["Catppuccin Mocha"]
 
 ---- tabbar
-local tabbar_bg = "#121212"
+local tabbar_bg = custom_scheme.background
 local tab_fg = "#1C1B19"
 local accent_primary = "#89b4fa"
 custom_scheme.tab_bar.background = tabbar_bg
