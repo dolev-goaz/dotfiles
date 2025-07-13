@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Portainer
+Comment=Manage Docker containers via Portainer
+Exec=xdg-open https://localhost:9443
+Icon=/home/dolev/.local/share/icons/docker-icon.png
+Terminal=false
+Type=Application
+Categories=Development;System;
+
