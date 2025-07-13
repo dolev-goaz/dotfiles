@@ -4,4 +4,5 @@ sudo pacman -S --needed \
 	yad \
 	libnotify \
 	ttf-jetbrains-mono-nerd \
-	sass
+	sass \
+    blueman
