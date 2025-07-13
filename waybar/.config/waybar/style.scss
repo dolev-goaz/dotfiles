@@ -91,6 +91,14 @@ $spacing: 15px;
   }
 }
 
+#battery {
+  @extend %bordered-component;
+}
+
+#bluetooth {
+  @extend %bordered-component;
+}
+
 #power {
   @extend %bordered-component;
 }
