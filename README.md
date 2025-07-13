@@ -4,7 +4,7 @@ sudo pacman -Syu qt6-svg qt6-declarative qt5-quickcontrols2
 chmod o+x /home/dolev
 chmod o+x /home/dolev/.dotfiles
 chmod o+x /home/dolev/.dotfiles/sddm
-chmod o+r /home/dolev/dotfiles/sddm/etc/sddm.conf
+chmod o+r /home/dolev/.dotfiles/sddm/etc/sddm.conf
 
 chmod o+x /home/dolev/.dotfiles/sddm/usr
 chmod o+x /home/dolev/.dotfiles/sddm/usr/share
