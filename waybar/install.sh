@@ -5,4 +5,5 @@ sudo pacman -S --needed \
 	libnotify \
 	ttf-jetbrains-mono-nerd \
 	sass \
-    blueman
+    blueman \
+    network-manager-applet
