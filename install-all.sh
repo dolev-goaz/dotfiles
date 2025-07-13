@@ -1,5 +1,7 @@
 chmod +x ./generate-stow-local-ignore.sh
 
+sudo pacman -S stow --needed 
+
 for package_dir in */; do
 	if [ -f "$package_dir/install.sh" ]; then
 		chmod +x "$package_dir/install.sh"
