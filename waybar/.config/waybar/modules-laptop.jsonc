@@ -1,0 +1,14 @@
+{
+  "include": ["~/.config/waybar/base-modules.jsonc"],
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "on-click": "activate",
+    "disable-scroll": false,
+    "on-click": "activate",
+    "all-outputs": false,
+    "sort-by-number": true,
+    "persistent-workspaces": {
+      "eDP-1": [1, 2, 3, 4, 5],
+    },
+  },
+}
