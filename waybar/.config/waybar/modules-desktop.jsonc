@@ -12,4 +12,9 @@
       "DP-2": [2, 4, 6, 8, 10],
     },
   },
+  "custom/tablet-config": {
+    "format": "󰏬",
+    "on-click": "otd-gui",
+    "tooltip-format": "Open Tablet Config",
+  },
 }

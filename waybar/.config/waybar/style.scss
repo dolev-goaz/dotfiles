@@ -254,3 +254,9 @@ label:focus {
   @extend %bordered-component;
   color: @lavender;
 }
+
+#custom-tablet-config {
+  @extend %bordered-component;
+  padding-right: 12px;
+  color: @lavender;
+}
