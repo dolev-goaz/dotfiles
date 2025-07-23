@@ -167,7 +167,13 @@
       "custom/quit",
       "custom/lock",
       "custom/reboot",
+      "custom/sleep",
     ],
+  },
+  "custom/sleep": {
+    "format": "󰤄",
+    "tooltip-format": "Sleep",
+    "on-click": "systemctl suspend",
   },
   "custom/quit": {
     "format": "󰗼",
