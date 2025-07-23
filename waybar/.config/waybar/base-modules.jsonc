@@ -203,4 +203,8 @@
     "tooltip-format": "Clipboard content",
     "on-click": "clipse-gui",
   },
+  "tray": {
+    "icon-size": 21,
+    "spacing": 10,
+  },
 }

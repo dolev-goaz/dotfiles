@@ -232,6 +232,10 @@ label:focus {
   }
 }
 
+#tray {
+  @extend %bordered-component;
+}
+
 #taskbar {
   @extend %bordered-component;
   padding: 0 10px;

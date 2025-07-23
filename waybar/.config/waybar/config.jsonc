@@ -6,8 +6,8 @@
   "height": 30,
   "include": ["~/.config/waybar/modules-desktop.jsonc"],
   "modules-left": [
+    "tray",
     "hyprland/language",
-    "network",
     "custom/tablet-config",
     "group/hardware",
   ],
