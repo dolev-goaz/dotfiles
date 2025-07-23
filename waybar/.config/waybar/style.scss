@@ -196,6 +196,18 @@ label:focus {
 
 /* ---- workspaces ---- */
 
+@keyframes workspace-urgent-blink {
+  0% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: @overlay0;
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
 #workspaces button {
   padding: 0 5px;
   background-color: transparent;
@@ -218,7 +230,12 @@ label:focus {
     background: rgba(0, 0, 0, 0.2);
   }
   &.urgent {
-    background-color: #eb4d4b;
+    animation-name: workspace-urgent-blink;
+    animation-duration: 1s;
+    /* Using steps() instead of linear as a timing function to limit cpu usage */
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
   }
 }
 /* ============ modules-left ============== */
