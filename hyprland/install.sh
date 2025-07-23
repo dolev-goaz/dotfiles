@@ -18,10 +18,3 @@ sudo pacman -S --needed \
 	pkgconf \
 	git \
 	gcc
-
-# Hyprspace- https://github.com/KZDKM/Hyprspace
-if ! hyprpm list | grep -q -i "Hyprspace"; then
-	hyprpm update
-	hyprpm add https://github.com/KZDKM/Hyprspace
-	hyprpm enable Hyprspace
-fi
