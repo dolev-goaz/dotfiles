@@ -49,9 +49,19 @@ return {
 						any = {
 							{ find = "Your branch" },
 							{ find = "On branch" },
+							{ find = "Enumerating " },
 						},
 					},
 					view = "popup",
+				},
+				{
+					filter = {
+						event = "msg_show",
+						any = {
+							{ find = "^Saved working directory" },
+						},
+					},
+					view = "notify",
 				},
 				{
 					filter = {
