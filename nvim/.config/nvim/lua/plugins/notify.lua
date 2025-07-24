@@ -53,6 +53,7 @@ return {
 							{ find = "^Counting objects:" },
 							{ find = "^Compressing objects:" },
 							{ find = "^Writing objects: " },
+							{ find = "^remote: " },
 						},
 					},
 					view = "popup",
