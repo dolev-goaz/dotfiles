@@ -1,5 +1,4 @@
 import Quickshell
-import Quickshell.Io
 import QtQuick
 
 Scope {
@@ -12,6 +11,8 @@ Scope {
         PanelWindow {
             required property var modelData
             screen: modelData
+            color: "transparent"
+            implicitHeight: 30
 
             anchors {
                 top: true
@@ -19,15 +20,22 @@ Scope {
                 right: true
             }
             margins {
-                left: 0
-                right: 0
+                left: 10
+                right: 10
                 top: 10
             }
-
-            implicitHeight: 30
-
-            ClockWidget {
-                anchors.centerIn: parent
+            Rectangle {
+                id: bar
+                anchors.fill: parent
+                color: "#1a1a1a"
+                radius: 15
+                border.color: "#555555"
+                border.width: 2
+                // add padding
+                Workspaces {}
+                ClockWidget {
+                    anchors.centerIn: parent
+                }
             }
         }
     }
