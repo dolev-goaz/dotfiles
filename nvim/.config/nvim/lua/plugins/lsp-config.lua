@@ -64,6 +64,11 @@ return {
 			-- vue lsp
 			lspconfig["volar"].setup({ capabilities = blink_capabilities, on_attach = on_attach })
 
+			-- qml lsp
+			require("lspconfig").qmlls.setup({
+				cmd = { "qmlls", "-I", "/usr/lib/qt6/qml" },
+			})
+
 			-- keymaps
 			local function lsp_hover()
 				vim.lsp.buf.hover({
