@@ -56,7 +56,10 @@ return {
 				{
 					filter = {
 						event = "msg_show",
-						find = "^fatal:",
+						any = {
+							{ find = "^fatal:" },
+							{ find = "error: failed to push some refs" },
+						},
 					},
 					-- --- @type NoiceNotifyOptions -- remove first two -- for autocomplete
 					opts = {
@@ -70,6 +73,7 @@ return {
 						any = {
 							{ find = "Toggling hidden files" },
 							{ find = "^Restored session:" },
+							{ find = "[LSP]" },
 						},
 					},
 					view = "mini",
