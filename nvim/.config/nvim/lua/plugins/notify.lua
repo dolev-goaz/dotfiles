@@ -49,7 +49,10 @@ return {
 						any = {
 							{ find = "Your branch" },
 							{ find = "On branch" },
-							{ find = "Enumerating " },
+							{ find = "^Enumerating objects:" },
+							{ find = "^Counting objects:" },
+							{ find = "^Compressing objects:" },
+							{ find = "^Writing objects: " },
 						},
 					},
 					view = "popup",
