@@ -1,5 +1,6 @@
 import Quickshell
 import QtQuick
+import "./workspaces"
 
 Scope {
     id: root
@@ -9,7 +10,8 @@ Scope {
         model: Quickshell.screens
 
         PanelWindow {
-            required property var modelData
+            id: mainWindow
+            required property ShellScreen modelData
             screen: modelData
             color: "transparent"
             implicitHeight: 30
@@ -33,7 +35,7 @@ Scope {
                 border.width: 2
                 // add padding
                 Workspaces {
-                    monitor: modelData.name
+                    monitor: mainWindow.modelData
                 }
                 ClockWidget {
                     anchors.centerIn: parent
