@@ -32,7 +32,9 @@ Scope {
                 border.color: "#555555"
                 border.width: 2
                 // add padding
-                Workspaces {}
+                Workspaces {
+                    monitor: modelData.name
+                }
                 ClockWidget {
                     anchors.centerIn: parent
                 }

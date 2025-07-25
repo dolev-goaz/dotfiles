@@ -4,6 +4,7 @@ import Quickshell.Io
 
 Row {
     id: workspacesRow
+    property string monitor
     anchors {
         left: parent.left
         verticalCenter: parent.verticalCenter
@@ -44,7 +45,7 @@ Row {
     Repeater {
         model: Hyprland.workspaces
         Rectangle {
-            visible: modelData.id >= 0 // filter special workspaces
+            visible: modelData.id >= 0 && modelData.monitor.name === workspacesRow.monitor // filter special workspaces
             width: 32
             height: 24
             radius: 15
