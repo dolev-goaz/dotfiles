@@ -1,6 +1,7 @@
 pragma ComponentBehavior: Bound
 import Quickshell
 import QtQuick
+import "../common/drawer"
 
 Rectangle {
     id: root
@@ -29,6 +30,7 @@ Rectangle {
         onDrawerExpandedChanged: {
             root.expanded = expanded;
         }
+        menuComponent: PowerMenu {}
         anchor.item: root
         anchor.rect.y: root.height - 5 // 0 is the gap
         anchor.rect.x: (root.width - width) / 2

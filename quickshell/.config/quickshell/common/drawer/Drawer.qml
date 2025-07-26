@@ -4,6 +4,7 @@ import Quickshell
 PopupWindow {
     id: popupWindow
     property bool expanded: false
+    property Component menuComponent
     signal drawerExpandedChanged(bool expanded)
 
     visible: expanded || popupContent.opacity > 0
@@ -15,7 +16,8 @@ PopupWindow {
         width: 36
         color: "#222"
         radius: 8
-        implicitHeight: contentColumn.implicitHeight + 24
+        property real dynamicContentHeight: contentLoader.item ? contentLoader.item.implicitHeight : 0
+        implicitHeight: dynamicContentHeight + 24
 
         // Animate position and opacity for drawer effect
         property real closedY: -height  // hidden above
@@ -37,12 +39,14 @@ PopupWindow {
             }
         }
 
-        PowerMenu {
-            id: contentColumn
+        Loader {
+            id: contentLoader
+            anchors.fill: parent
+            sourceComponent: popupWindow.menuComponent
         }
+
         HoverHandler {
             onHoveredChanged: {
-                // popupWindow.expanded = hovered;
                 popupWindow.drawerExpandedChanged(hovered);
             }
         }
