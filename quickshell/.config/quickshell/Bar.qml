@@ -1,6 +1,7 @@
 import Quickshell
 import QtQuick
 import "./workspaces"
+import "./power-controls"
 
 Scope {
     id: root
@@ -39,6 +40,14 @@ Scope {
                 }
                 ClockWidget {
                     anchors.centerIn: parent
+                }
+                Power {
+                    width: 40
+                    anchors {
+                        right: parent.right
+                        top: parent.top
+                        bottom: parent.bottom
+                    }
                 }
             }
         }
