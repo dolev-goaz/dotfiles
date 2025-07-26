@@ -27,7 +27,7 @@ Rectangle {
 
     Drawer {
         expanded: root.expanded
-        onDrawerExpandedChanged: {
+        onDrawerExpandedChanged: function (expanded) {
             root.expanded = expanded;
         }
         menuComponent: PowerMenu {}
