@@ -53,17 +53,11 @@ Scope {
                     }
 
                     Power {
+                        Layout.fillHeight: true
                         implicitWidth: 40
-                        anchors {
-                            top: parent.top
-                            bottom: parent.bottom
-                        }
                     }
                     SysTray {
-                        anchors {
-                            top: parent.top
-                            bottom: parent.bottom
-                        }
+                        Layout.fillHeight: true
                     }
                 }
             }
