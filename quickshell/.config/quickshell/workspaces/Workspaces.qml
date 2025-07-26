@@ -16,17 +16,11 @@ Row {
         id: processOpenChats
         command: ["/bin/sh", "-c", "~/.local/bin/toggle-chats.sh"] // -c to allow expanding the ~
     }
-    Repeater {
-        model: Hyprland.workspaces
-        WorkspaceTab {
-            required property HyprlandWorkspace modelData
-
-            visible: modelData.name == "special:chats"
-            text: "💬"
-            active: false
-            onWorkspaceClick: {
-                processOpenChats.running = true;
-            }
+    WorkspaceTab {
+        text: "💬"
+        active: false
+        onWorkspaceClick: {
+            processOpenChats.running = true;
         }
     }
     // repeated for 'normal' workspaces
