@@ -38,7 +38,7 @@ MouseArea {
 
     IconImage {
         id: trayIcon
-        // source: root.item.icon
+        // TODO: figure out how to set icon theme
         source: root.item.icon
         anchors.centerIn: parent
         width: parent.width
