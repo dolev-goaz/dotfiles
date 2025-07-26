@@ -2,6 +2,8 @@ import Quickshell
 import QtQuick
 import "./workspaces"
 import "./power-controls"
+import "./system-tray"
+import QtQuick.Layouts
 
 Scope {
     id: root
@@ -41,12 +43,27 @@ Scope {
                 ClockWidget {
                     anchors.centerIn: parent
                 }
-                Power {
-                    width: 40
+                RowLayout {
+                    layoutDirection: Qt.RightToLeft
+
                     anchors {
                         right: parent.right
                         top: parent.top
                         bottom: parent.bottom
+                    }
+
+                    Power {
+                        implicitWidth: 40
+                        anchors {
+                            top: parent.top
+                            bottom: parent.bottom
+                        }
+                    }
+                    SysTray {
+                        anchors {
+                            top: parent.top
+                            bottom: parent.bottom
+                        }
                     }
                 }
             }
