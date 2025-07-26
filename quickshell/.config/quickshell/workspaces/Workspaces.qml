@@ -25,11 +25,9 @@ Row {
     }
     // repeated for 'normal' workspaces
     Repeater {
-        model: Hyprland.workspaces
+        model: Hyprland.workspaces.values.filter(ws => ws.monitor.name === workspacesRow.monitor.name && ws.id >= 0)
         WorkspaceTab {
             required property HyprlandWorkspace modelData
-
-            visible: modelData.id >= 0 && modelData.monitor.name === workspacesRow.monitor.name
             text: modelData.id
             active: modelData.focused
             onWorkspaceClick: modelData.activate()
