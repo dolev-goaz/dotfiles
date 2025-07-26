@@ -24,50 +24,13 @@ Rectangle {
         }
     }
 
-    PopupWindow {
-        id: popupWindow
-        visible: root.expanded || popupContent.opacity > 0
+    Drawer {
+        expanded: root.expanded
+        onDrawerExpandedChanged: {
+            root.expanded = expanded;
+        }
         anchor.item: root
         anchor.rect.y: root.height - 5 // 0 is the gap
         anchor.rect.x: (root.width - width) / 2
-        implicitHeight: popupContent.implicitHeight
-        implicitWidth: popupContent.width
-        color: "transparent"
-        Rectangle {
-            id: popupContent
-            width: 36
-            color: "#222"
-            radius: 8
-            implicitHeight: contentColumn.implicitHeight + 24
-
-            // Animate position and opacity for drawer effect
-            property real closedY: -height  // hidden above
-            property real openY: 0           // fully visible
-            property real animationDuration: 150
-
-            y: root.expanded ? openY : closedY
-            opacity: root.expanded ? 1 : 0
-
-            Behavior on y {
-                NumberAnimation {
-                    duration: popupContent.animationDuration
-                    easing.type: Easing.OutQuad
-                }
-            }
-            Behavior on opacity {
-                NumberAnimation {
-                    duration: popupContent.animationDuration
-                }
-            }
-
-            PowerMenu {
-                id: contentColumn
-            }
-            HoverHandler {
-                onHoveredChanged: {
-                    root.expanded = hovered;
-                }
-            }
-        }
     }
 }
