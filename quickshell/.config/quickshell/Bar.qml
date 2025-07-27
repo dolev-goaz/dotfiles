@@ -3,6 +3,7 @@ import QtQuick
 import "./workspaces"
 import "./power-controls"
 import "./system-tray"
+import "./clock"
 import QtQuick.Layouts
 
 Scope {
