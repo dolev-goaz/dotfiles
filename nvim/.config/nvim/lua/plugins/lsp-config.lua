@@ -35,6 +35,7 @@ return {
 
 			-- typescript+vue lsp
 			-- reference: https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#vue-support
+			-- https://github.com/vuejs/language-tools/wiki/Neovim
 			local vue_language_server_path = vim.fn.stdpath("data")
 				.. "/mason/packages/vue-language-server/node_modules/@vue/language-server"
 			local tsserver_filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" }
@@ -56,6 +57,10 @@ return {
 				},
 				filetypes = tsserver_filetypes,
 			})
+			-- vue component highlighting
+			vim.cmd([[
+              highlight link @lsp.type.component @type
+            ]])
 
 			-- qml lsp
 			vim.lsp.config("qmlls", {
