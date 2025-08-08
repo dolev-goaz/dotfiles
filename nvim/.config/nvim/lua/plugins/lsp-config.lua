@@ -8,8 +8,9 @@ return {
 			require("mason-lspconfig").setup({
 				ensure_installed = {
 					"lua_ls",
-					"ts_ls",
+					"vtsls",
 					"vue_ls",
+					"qmlls",
 				},
 				automatic_enable = false, -- prevent duplicate lsp setup
 			})
@@ -30,43 +31,55 @@ return {
 			},
 		},
 		config = function()
-			local lspconfig = require("lspconfig")
-			local blink_capabilities = require("blink.cmp").get_lsp_capabilities()
-			local on_attach = require("nvim-navic").attach
 			local telescope = require("telescope.builtin")
 
-			-- lua lsp
-			local lua_language_server_path = vim.fn.stdpath("data") .. "/mason/bin/lua-language-server"
-			lspconfig["lua_ls"].setup({
-				cmd = { lua_language_server_path },
-				capabilities = blink_capabilities,
-				on_attach = on_attach,
-			})
-
 			-- typescript+vue lsp
+			-- reference: https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#vue-support
 			local vue_language_server_path = vim.fn.stdpath("data")
 				.. "/mason/packages/vue-language-server/node_modules/@vue/language-server"
-			lspconfig["ts_ls"].setup({
-				capabilities = blink_capabilities,
-				on_attach = on_attach,
-				init_options = {
-					plugins = {
-						{
-							name = "@vue/typescript-plugin",
-							location = vue_language_server_path,
-							languages = { "vue" },
+			local tsserver_filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" }
+			local vue_plugin = {
+				name = "@vue/typescript-plugin",
+				location = vue_language_server_path,
+				languages = { "vue" },
+				configNamespace = "typescript",
+			}
+			vim.lsp.config("vtsls", {
+				settings = {
+					vtsls = {
+						tsserver = {
+							globalPlugins = {
+								vue_plugin,
+							},
 						},
 					},
 				},
-				filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+				filetypes = tsserver_filetypes,
 			})
 
-			-- vue lsp
-			lspconfig["volar"].setup({ capabilities = blink_capabilities, on_attach = on_attach })
-
 			-- qml lsp
-			require("lspconfig").qmlls.setup({
+			vim.lsp.config("qmlls", {
 				cmd = { "qmlls", "-I", "/usr/lib/qt6/qml" },
+				filetypes = { "qml", "qmljs" },
+			})
+
+			vim.lsp.config("*", {
+				capabilities = require("blink.cmp").get_lsp_capabilities(),
+				on_attach = function(client, bufnr)
+					local filetype = vim.api.nvim_get_option_value("filetype", { buf = bufnr })
+					if filetype == "vue" and client.name ~= "vue_ls" then
+						-- only attach to vue_ls for vue files
+						return
+					end
+					require("nvim-navic").attach(client, bufnr)
+				end,
+			})
+
+			vim.lsp.enable({
+				"lua_ls",
+				"vtsls",
+				"vue_ls",
+				"qml_ls",
 			})
 
 			-- keymaps
