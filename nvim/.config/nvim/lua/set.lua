@@ -104,3 +104,10 @@ vim.api.nvim_set_keymap(
 	":lua ToggleHebrewEnglish()<CR>",
 	{ noremap = true, silent = true, desc = "Toggle Hebrew/English" }
 )
+
+local langmap_normal = [[אt,בc,גd,דs,הv,וu,זz,חj,טy,יh,כf,לk,מn,נb,סx,עg,פp,צm,קe,רr,שa,ת>]]
+local langmap_final = [[ךl,םo,ןi]] .. "," .. [[ף\\;]] .. "," .. [[ץ.]]
+local langmap_special = [[/q,\\'w]] .. "," .. "][,[]" .. "," .. "./" .. "," .. [[\\,\\']]
+local langmap = langmap_normal .. "," .. langmap_final .. "," .. langmap_special
+
+vim.cmd("set langmap=" .. langmap)
