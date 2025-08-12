@@ -1,4 +1,5 @@
 require("set")
+require("language")
 require("clipboard")
 require("floating-terminal")
 
