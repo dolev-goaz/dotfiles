@@ -211,4 +211,28 @@ ls.add_snippets("tex", {
 		t({ "", "", "" }), -- two newlines for spacing
 		t({ "\\end{document}" }),
 	}),
+	s("english", {
+		t("\\begin{english}"),
+		t({ "", "" }),
+		i(1, "Actual content goes here..."),
+		t({ "", "" }),
+		t("\\end{english}"),
+	}),
+	s("english_inline", {
+		t("\\textenglish{"),
+		i(1, "Inline English text here"),
+		t("}"),
+	}),
+	s("hebrew", {
+		t("\\begin{hebrew}"),
+		t({ "", "" }),
+		i(1, "תוכן כאן"),
+		t({ "", "" }),
+		t("\\end{hebrew}"),
+	}),
+	s("hebrew_inline", {
+		t("\\texthebrew{"),
+		i(1, "טקסט בעברית כאן"),
+		t("}"),
+	}),
 })
