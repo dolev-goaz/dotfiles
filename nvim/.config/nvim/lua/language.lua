@@ -17,6 +17,8 @@ vim.api.nvim_set_keymap(
 	{ noremap = true, silent = true, desc = "Toggle Hebrew/English" }
 )
 
+------------------------- Language Mapping --------------------------
+
 local langmap_normal = [[אt,בc,גd,דs,הv,וu,זz,חj,טy,יh,כf,לk,מn,נb,סx,עg,פp,צm,קe,רr,שa,ת>]]
 local langmap_final = [[ךl,םo,ןi]] .. "," .. [[ף\\;]] .. "," .. [[ץ.]]
 local langmap_special = [[\\'w]] .. "," .. "][,[]" .. "," .. [[\\,\\']] -- .. "," .. [[/q]] .. "," .. "./"
@@ -44,11 +46,13 @@ local function set_layout_id(layout_id)
 end
 
 local default_layout_id = get_layout_id("us") -- default to US layout
-local last_layout_id = default_layout_id
+local buffer_layouts = {}
 -- on enter insert mode
 vim.api.nvim_create_autocmd("InsertEnter", {
 	pattern = "*",
 	callback = function()
+		local bufnr = vim.api.nvim_get_current_buf()
+		local last_layout_id = buffer_layouts[bufnr] or default_layout_id
 		set_layout_id(last_layout_id) -- restore the last used layout
 	end,
 })
@@ -57,7 +61,8 @@ vim.api.nvim_create_autocmd("InsertEnter", {
 vim.api.nvim_create_autocmd("InsertLeave", {
 	pattern = "*",
 	callback = function()
-		last_layout_id = get_current_layout_id()
+		local bufnr = vim.api.nvim_get_current_buf()
+		buffer_layouts[bufnr] = get_current_layout_id()
 		set_layout_id(default_layout_id)
 	end,
 })
