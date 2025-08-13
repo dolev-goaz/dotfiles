@@ -16,6 +16,9 @@ local null_ls_file_types = {
 
 	-- stylua
 	"lua",
+
+	-- latex
+	"tex",
 }
 function M.format_document()
 	vim.lsp.buf.format({

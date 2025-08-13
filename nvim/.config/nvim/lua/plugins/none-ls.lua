@@ -1,8 +1,14 @@
-local function ensure_installed(package_name, installed_packages_names)
-	for _, value in pairs(installed_packages_names) do
+local function check_installed(package_name, installed_packages)
+	for _, value in pairs(installed_packages) do
 		if value == package_name then
 			return true
 		end
+	end
+	return false
+end
+local function ensure_installed(package_name, installed_packages_names)
+	if check_installed(package_name, installed_packages_names) then
+		return true
 	end
 	vim.notify(
 		string.format("Package %s is not installed. Please install it using Mason.", package_name),
@@ -15,6 +21,7 @@ return {
 	"nvimtools/none-ls.nvim",
 	event = "VeryLazy",
 	dependencies = {
+		-- could ensure install with https://github.com/jay-babu/mason-null-ls.nvim
 		"nvimtools/none-ls-extras.nvim",
 		{
 			"esmuellert/nvim-eslint",
@@ -45,15 +52,23 @@ return {
 		-- 	table.insert(sources, require("none-ls.diagnostics.eslint_d"))
 		-- 	table.insert(sources, require("none-ls.code_actions.eslint_d"))
 		-- end
+
+		-- NOTE: the modules that are no longer supported by null-ls moved to null-ls-extras.nvim
+		-- To access them, you need to require 'none-ls' instead of 'null-ls'
+		-- source: https://github.com/nvimtools/none-ls.nvim/discussions/81
 		if ensure_installed("prettier", installed_packages) then
 			table.insert(sources, null_ls.builtins.formatting.prettier)
 		end
 		if ensure_installed("stylua", installed_packages) then
 			table.insert(sources, null_ls.builtins.formatting.stylua)
 		end
-		if ensure_installed("shfmt", installed_packages) then
+		if check_installed("shfmt", installed_packages) then
 			table.insert(sources, null_ls.builtins.formatting.shfmt)
 		end
+		if check_installed("latexindent", installed_packages) then
+			table.insert(sources, require("none-ls.formatting.latexindent"))
+		end
+
 		null_ls.setup({ sources = sources })
 		require("utils.format")
 
