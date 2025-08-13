@@ -27,9 +27,123 @@ local postfix = require("luasnip.extras.postfix").postfix
 local types = require("luasnip.util.types")
 local parse = require("luasnip.util.parser").parse_snippet
 local ms = ls.multi_snippet
-local k = require("luasnip.nodes.key_indexer").new_key
+local k = require("luasnip.nodes.key_indexer").new_key(
+	-- make this into a snippet
+	[[
+       \documentclass[12pt,a4paper]{article}
+
+% === Encoding & Language ===
+\usepackage{fontspec}         % Font selection for XeLaTeX or LuaLaTeX
+\usepackage{polyglossia}      % Language support
+\setmainlanguage{hebrew}     % Set main language
+\setotherlanguage{english}    % Set other language
+% === Fonts ===
+\newfontfamily\hebrewfont[Script=Hebrew]{David CLM} % Set Hebrew font
+
+% === Math ===
+\usepackage{amsmath, amssymb, amsthm} % Math symbols & theorems
+
+% === Graphics & Figures ===
+\usepackage{graphicx}         % Include images
+\usepackage{float}            % Improved figure/table placement
+
+% === Tables ===
+\usepackage{booktabs}         % Nicer tables
+\usepackage{array}            % More column types
+
+% === Lists ===
+\usepackage{enumitem}         % Customizable lists
+
+% === Math Shortcuts ===
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+
+% === Theorem Environments ===
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{definition}{Definition}[section]
+
+% === Margins ===
+\usepackage[margin=1in]{geometry} % Page layout
+
+% ============ actual content ============
+
+\begin{document}
+\title{המסמך הראשון שלי}
+\author{דולב גואז}
+\date{\today}
+\maketitle
+
+\begin{english}
+Actual content goes here...
+\end{english}
+
+\end{document}
+
+       ]]
+)
 
 ls.add_snippets("tex", {
+	s("scaffold_full_he", {
+		t({
+			"\\documentclass[12pt,a4paper,titlepage]{article}",
+			"",
+			"% === Encoding & Language ===",
+			"\\usepackage{fontspec}         % Font selection for XeLaTeX or LuaLaTeX",
+			"\\usepackage{polyglossia}      % Language support",
+			"\\setmainlanguage{hebrew}     % Set main language",
+			"\\setotherlanguage{english}    % Set other language",
+			"% === Fonts ===",
+			"\\newfontfamily\\hebrewfont[Script=Hebrew]{David CLM} % Set Hebrew font",
+			"",
+			"% === Math ===",
+			"\\usepackage{amsmath, amssymb, amsthm} % Math symbols & theorems",
+			"",
+			"% === Graphics & Figures ===",
+			"\\usepackage{graphicx}         % Include images",
+			"\\usepackage{float}            % Improved figure/table placement",
+			"",
+			"% === Tables ===",
+			"\\usepackage{booktabs}         % Nicer tables",
+			"\\usepackage{array}            % More column types",
+			"",
+			"% === Lists ===",
+			"\\usepackage{enumitem}         % Customizable lists",
+			"",
+			"% === Math Shortcuts ===",
+			"\\newcommand{\\R}{\\mathbb{R}}   % Example: shortcut for real numbers",
+			"\\newcommand{\\N}{\\mathbb{N}}",
+			"\\newcommand{\\Z}{\\mathbb{Z}}",
+			"\\newcommand{\\C}{\\mathbb{C}}",
+			"\\newcommand{\\Q}{\\mathbb{Q}}",
+			"",
+			"% === Theorem Environments ===",
+			"\\newtheorem{theorem}{Theorem}[section]",
+			"\\newtheorem{definition}{Definition}[section]",
+			"",
+			"% === Margins ===",
+			"\\usepackage[margin=1in]{geometry} % Page layout",
+		}),
+		t({ "", "% ============ actual content ============", "" }),
+		t({ "", "\\begin{document}" }),
+		-- \title{input here}
+		t({ "", "\\title{" }),
+		i(1, "המסמך הראשון שלי"),
+		t("}"),
+		-- author
+		t({ "", "\\author{" }),
+		i(2, "יוצר"),
+		t("}"),
+		-- date
+		t({ "", "\\date{\\today}" }),
+		t({ "", "\\maketitle" }),
+		t({ "", "", "" }), -- two newlines for spacing
+		i(3, "תוכן כאן"),
+		t({ "", "", "" }), -- two newlines for spacing
+		t({ "\\end{document}" }),
+	}),
 	-- NOTE: for now only works with english
 	s("scaffold_full", {
 		t({
