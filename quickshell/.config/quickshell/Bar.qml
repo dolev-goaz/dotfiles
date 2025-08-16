@@ -1,8 +1,8 @@
 import Quickshell
 import QtQuick
 import "./workspaces"
-import "./power-controls"
-import "./system-tray"
+import "./power_controls"
+import "./system_tray"
 import "./clock"
 import QtQuick.Layouts
 
