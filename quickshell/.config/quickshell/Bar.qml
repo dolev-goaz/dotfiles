@@ -4,6 +4,7 @@ import "./workspaces"
 import "./power_controls"
 import "./system_tray"
 import "./clock"
+import "./clipboard"
 import QtQuick.Layouts
 
 Scope {
@@ -43,19 +44,23 @@ Scope {
                 }
                 RowLayout {
                     layoutDirection: Qt.RightToLeft
+                    spacing: 20
 
                     anchors {
                         right: parent.right
                         top: parent.top
                         bottom: parent.bottom
                     }
-
                     Power {
                         Layout.fillHeight: true
                         implicitWidth: 40
                     }
                     SysTray {
                         Layout.fillHeight: true
+                    }
+                    ClipboardHistory {
+                        Layout.fillHeight: true
+                        implicitWidth: 40
                     }
                 }
             }
