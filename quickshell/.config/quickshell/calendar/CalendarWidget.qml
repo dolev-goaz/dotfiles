@@ -65,14 +65,14 @@ Item {
                     onClicked: {
                         root.monthShift--;
                     }
-                    buttonText: "<"
+                    buttonText: ""
                 }
                 CalendarHeaderButton {
                     forceCircle: true
                     onClicked: {
                         root.monthShift++;
                     }
-                    buttonText: ">"
+                    buttonText: ""
                 }
             }
 

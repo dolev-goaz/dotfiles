@@ -17,7 +17,12 @@ Button {
 
     background: Rectangle {
         anchors.fill: parent
-        color: "#f5a97f"
+        property color currentColor: "#f5a97f"
+        color: root.pressed
+            ? Qt.darker(currentColor, 1.3)
+            : root.hovered
+                ? Qt.darker(currentColor, 1.15)
+                : currentColor
         radius: 8
     }
 
@@ -26,6 +31,7 @@ Button {
         text: root.buttonText
         horizontalAlignment: Text.AlignHCenter
         font.pixelSize: 19
+        font.family: "JetBrainsMono Nerd Font"
         color: "#363a4f"
         font.weight: Font.DemiBold
     }
