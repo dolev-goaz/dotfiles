@@ -18,7 +18,11 @@ Button {
     implicitWidth: 38
     implicitHeight: 38
     background: Rectangle {
-        property color currentColor: (root.isToday === 1) ? root.todayBackgroundColor : (root.isToday === 0) ? root.baseBackgroundColor : root.otherMonthBackgroundColor
+        property color currentColor: (root.isToday === 1)
+                                        ? root.todayBackgroundColor
+                                        : (root.isToday === 0)
+                                            ? root.baseBackgroundColor
+                                            : root.otherMonthBackgroundColor
         color: root.pressed
             ? Qt.darker(currentColor, 1.3)
             : root.hovered
