@@ -33,11 +33,8 @@ Scope {
             Rectangle {
                 id: bar
                 anchors.fill: parent
-                color: "#1a1a1a"
+                color: "transparent"
                 radius: 15
-                border.color: "#555555"
-                border.width: 2
-                // add padding
                 Workspaces {
                     monitor: mainWindow.modelData
                 }

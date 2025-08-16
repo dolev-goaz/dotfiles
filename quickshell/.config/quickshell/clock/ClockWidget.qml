@@ -7,18 +7,23 @@ import "../calendar"
 Rectangle {
     id: root
     property bool expanded: false
-    color: "transparent"
+    color: "#494d64"
+    border.width: 3
+    border.color: "#b7bdf8"
+    radius: 17
 
     Text {
         id: clockText
         anchors.centerIn: parent
-        property string format: root.expanded ? "dddd, MMMM d yyyy hh:mm:ss AP" : "d - ddd - hh:mm"
+        property string format: root.expanded ? "dd-MM-yyyy HH:mm:ss" : "d - ddd - hh:mm"
         text: Qt.formatDateTime(Time.time, format)
-        color: "#ffffff"
+        font.family: "JetBrainsMono Nerd Font"
+        color: "#f0c6c6"
+        font.pixelSize: 16
     }
 
     width: clockText.paintedWidth + 20
-    height: clockText.paintedHeight + 10
+    height: parent.height
 
     MouseArea {
         anchors.fill: parent
@@ -37,7 +42,7 @@ Rectangle {
             anchor.rect.x: (root.width - width) / 2
             implicitWidth: calendarWidget.width + 20 // +20 padding
             implicitHeight: calendarWidget.height + 20 // +20 padding
-            // Rectangle {}
+            color: "transparent"
             CalendarWidget {
                 id: calendarWidget
                 anchors.fill: parent

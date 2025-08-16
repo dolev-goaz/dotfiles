@@ -8,8 +8,8 @@ Rectangle {
     width: 32
     height: 24
     radius: 15
-    color: root.active ? "#4caf50" : "#333333"
-    border.color: "#555555"
+    color: root.active ? "#8087a2" : "#494d64"
+    border.color: "#b7bdf8"
     border.width: 2
     MouseArea {
         anchors.fill: parent

@@ -6,7 +6,10 @@ import "../common/drawer"
 Rectangle {
     id: root
     property bool expanded: false
-    color: "transparent"
+    color: "#494d64"
+    border.width: 3
+    border.color: "#b7bdf8"
+    radius: 17
     Text {
         text: "\uf011"
         font.family: "JetBrainsMono Nerd Font" // Change if you use a different Nerd Font

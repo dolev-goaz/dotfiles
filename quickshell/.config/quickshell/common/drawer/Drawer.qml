@@ -5,6 +5,7 @@ PopupWindow {
     id: popupWindow
     property bool expanded: false
     property Component menuComponent
+    property color backgroundColor: "#494d64"
     signal drawerExpandedChanged(bool expanded)
 
     visible: expanded || popupContent.opacity > 0
@@ -14,7 +15,9 @@ PopupWindow {
     Rectangle {
         id: popupContent
         width: 36
-        color: "#222"
+        color: popupWindow.backgroundColor
+        border.width: 2
+        border.color: "#b7bdf8"
         radius: 8
         property real dynamicContentHeight: contentLoader.item ? contentLoader.item.implicitHeight : 0
         implicitHeight: dynamicContentHeight + 24

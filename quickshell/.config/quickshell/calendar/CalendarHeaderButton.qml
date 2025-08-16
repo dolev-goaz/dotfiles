@@ -5,7 +5,6 @@ import "../common/widgets"
 Button {
     id: root
     property string buttonText: ""
-    property string tooltipText: ""
     property bool forceCircle: false
 
     implicitHeight: 30
@@ -16,17 +15,18 @@ Button {
         }
     }
 
-    background.anchors.fill: root
+    background: Rectangle {
+        anchors.fill: parent
+        color: "#f5a97f"
+        radius: 8
+    }
+
 
     contentItem: StyledText {
         text: root.buttonText
         horizontalAlignment: Text.AlignHCenter
         font.pixelSize: 19
-        color: "#CFC3CD"
+        color: "#363a4f"
+        font.weight: Font.DemiBold
     }
-
-    // StyledToolTip {
-    //     content: tooltipText
-    //     extraVisibleCondition: tooltipText.length > 0
-    // }
 }
