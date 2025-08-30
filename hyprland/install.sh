@@ -22,3 +22,7 @@ sudo pacman -S --needed \
 	pkgconf \
 	git \
 	gcc
+
+cd ~/.dotfiles
+stow hyprland
+hyprctl reload

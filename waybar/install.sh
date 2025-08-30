@@ -7,3 +7,6 @@ sudo pacman -S --needed \
 	sass \
     blueman \
     network-manager-applet
+
+cd ~/.dotfiles
+stow waybar

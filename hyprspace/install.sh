@@ -23,3 +23,6 @@ if [ -e "$HOME/.config/hypr/plugins/Hyprspace/Hyprspace.so" ]; then
 fi
 make all
 hyprctl plugin load ~/.config/hypr/plugins/Hyprspace/Hyprspace.so
+
+cd ~/.dotfiles
+stow hyprspace

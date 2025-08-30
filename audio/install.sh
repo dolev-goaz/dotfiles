@@ -3,3 +3,6 @@ sudo pacman -S --needed \
 	pipewire \
 	pipewire-pulse \
 	pulseaudio-qt
+
+cd ~/.dotfiles
+stow audio

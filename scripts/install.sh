@@ -9,3 +9,6 @@ for script in ./scripts/*; do
         chmod +x "$script"
     fi
 done
+
+cd ~/.dotfiles
+stow scripts

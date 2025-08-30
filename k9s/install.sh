@@ -21,3 +21,6 @@ sudo systemctl enable --now awsvpnclient
 # kubectl
 sudo pacman -S --needed \
 	kubectl
+
+cd ~/.dotfiles
+stow k9s

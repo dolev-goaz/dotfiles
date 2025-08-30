@@ -3,3 +3,6 @@ yay -S --needed \
 
 sudo pacman -S --needed \
 	ttf-firacode-nerd
+
+cd ~/.dotfiles
+stow wezterm

@@ -5,3 +5,6 @@ sudo pacman -S --needed \
 
 yay -S --needed \
 	nvm
+
+cd ~/.dotfiles
+stow zsh

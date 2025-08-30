@@ -4,3 +4,6 @@ sudo pacman -S --needed \
 
 yay -S --needed \
 	rofi-emoji-git
+
+cd ~/.dotfiles
+stow rofi
