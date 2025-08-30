@@ -3,7 +3,10 @@ sudo pacman -S --needed \
 	hyprshot \
 	hyprpicker \
 	thunar \
-	swaync
+	swaync \
+	xdg-desktop-portal-hyprland
+
+# xdg-desktop-portal-hyprland is needed for screen sharing in browsers and other apps
 
 yay -S --needed \
 	clipse \
