@@ -2,7 +2,7 @@ stowing sddm-
 source: https://github.com/catppuccin/sddm?tab=readme-ov-file
 
 ```bash
-sudo pacman -Syu qt6-svg qt6-declarative qt5-quickcontrols2
+sudo pacman -Syu qt6-svg qt6-declarative qt5-quickcontrols2 --needed
 chmod o+x /home/dolev
 chmod o+x /home/dolev/.dotfiles
 chmod o+x /home/dolev/.dotfiles/sddm
