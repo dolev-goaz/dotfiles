@@ -33,7 +33,7 @@ end
 
 M.buttons = {
 	M.button("p", "  Find Project", "<cmd>lua require('telescope').extensions.project.project()<cr>"),
-	M.button("s", "   Find Session", ":SessionSearch<CR>"),
+	M.button("s", "   Find Session", ":AutoSession search<CR>"),
 	M.button("e", "  New File", ":ene <BAR> startinsert<CR>"),
 	M.button("f", "  Find Files", ":Telescope find_files<CR>"),
 	M.button("r", "󰦛  Recent Files", "<cmd>Telescope oldfiles<CR>"),
