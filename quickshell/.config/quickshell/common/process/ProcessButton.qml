@@ -30,6 +30,7 @@ Rectangle {
 
     Process {
         id: processRunner
+        // TODO: maybe always prefix ["/bin/sh", "-c"]
         command: root.command
     }
 
