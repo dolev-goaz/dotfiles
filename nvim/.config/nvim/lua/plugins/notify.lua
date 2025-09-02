@@ -10,7 +10,7 @@ return {
 					max_width = 60,
 					stages = "fade_in_slide_out",
 					render = "wrapped-default",
-					background_colour = "FloatShadow",
+					background_colour = "#000000",
 					timeout = 3000,
 					on_open = function(win)
 						vim.api.nvim_win_set_config(win, {
