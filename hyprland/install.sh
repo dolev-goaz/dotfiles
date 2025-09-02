@@ -2,7 +2,6 @@ sudo pacman -S --needed \
 	hyprland \
 	hyprshot \
 	hyprpicker \
-	thunar \
 	swaync \
 	xdg-desktop-portal-hyprland
 
