@@ -34,14 +34,10 @@ PanelWindow {
         command: ["/bin/sh", "-c", "ls " + basePath + " 2>/dev/null"]
         stdout: StdioCollector {
             onStreamFinished: {
-                images = this.text.trim().split("\n").map((fileName) => basePath + fileName)
+                images = this.text.trim().split("\n")
+                                        .filter((fileName) => !fileName.startsWith("active"))
+                                        .map((fileName) => basePath + fileName);
             }
-        }
-    }
-    Process {
-        id: setWallpaperProcess
-        onExited: {
-            wallpaperPicker.wallpaperSelected()
         }
     }
 
@@ -74,9 +70,10 @@ PanelWindow {
                     onEntered: wallpaper.hovered = true
                     onExited: wallpaper.hovered = false
                     onClicked: {
-                        setWallpaperProcess.exec({
+                        Quickshell.execDetached({
                             command: ["/bin/sh", "/home/dolev/scripts/set-wallpaper.sh", wallpaper.modelData]
                         })
+                        wallpaperPicker.wallpaperSelected()
                     }
                 }
 
