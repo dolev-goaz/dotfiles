@@ -54,13 +54,35 @@ PanelWindow {
 
             model: images
             orientation: Qt.Horizontal
-            spacing: 10
+            spacing: 15
             delegate: Image {
+                id: wallpaper
                 required property string modelData
                 source: modelData
-                width: 300
                 fillMode: Image.PreserveAspectCrop
-                height: container.height
+                anchors.verticalCenter: parent.verticalCenter
+
+                property bool hovered: false
+                MouseArea {
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    onEntered: wallpaper.hovered = true
+                    onExited: wallpaper.hovered = false
+                    onClicked: {
+                        // TODO: actual set wallpaper logic
+                        console.log("Setting wallpaper to " + wallpaper.modelData)
+                    }
+                }
+
+                Behavior on height {
+                    NumberAnimation { duration: 150; easing.type: Easing.InOutQuad }
+                }
+                Behavior on width {
+                    NumberAnimation { duration: 150; easing.type: Easing.InOutQuad }
+                }
+
+                height: hovered ? container.height : container.height - 20
+                width: hovered ? 400: 300
             }
         }
     }
