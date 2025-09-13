@@ -16,6 +16,7 @@ PanelWindow {
         right: 20
         bottom: 20
     }
+    signal wallpaperSelected
     color: "transparent"
     implicitHeight: 200
     exclusiveZone: 0
@@ -39,6 +40,9 @@ PanelWindow {
     }
     Process {
         id: setWallpaperProcess
+        onExited: {
+            wallpaperPicker.wallpaperSelected()
+        }
     }
 
     Rectangle {

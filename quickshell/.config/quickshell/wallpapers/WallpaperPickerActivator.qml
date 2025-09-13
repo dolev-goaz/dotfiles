@@ -30,7 +30,11 @@ Rectangle {
 
     LazyLoader {
         active: root.isPickerVisible
-        component: WallpaperPicker {}
+        component: WallpaperPicker {
+            onWallpaperSelected: {
+                root.isPickerVisible = false;
+            }
+        }
     }
 
 }
