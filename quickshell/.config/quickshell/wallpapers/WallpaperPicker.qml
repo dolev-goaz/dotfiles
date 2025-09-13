@@ -35,7 +35,6 @@ PanelWindow {
         stdout: StdioCollector {
             onStreamFinished: {
                 images = this.text.trim().split("\n")
-                                        .filter((fileName) => !fileName.startsWith("active"))
                                         .map((fileName) => basePath + fileName);
             }
         }
