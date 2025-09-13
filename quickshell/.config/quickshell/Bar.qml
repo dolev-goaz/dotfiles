@@ -5,6 +5,7 @@ import "./power_controls"
 import "./system_tray"
 import "./clock"
 import "./clipboard"
+import "./wallpapers"
 import QtQuick.Layouts
 
 Scope {
@@ -59,6 +60,10 @@ Scope {
                         Layout.fillHeight: true
                     }
                     ClipboardHistory {
+                        Layout.fillHeight: true
+                        implicitWidth: 40
+                    }
+                    WallpaperPickerActivator {
                         Layout.fillHeight: true
                         implicitWidth: 40
                     }
