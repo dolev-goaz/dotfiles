@@ -1,5 +1,6 @@
 yay -S --needed \
-	swww
+	swww \
+	imagemagick
 
 cd ~/.dotfiles
 stow swww
