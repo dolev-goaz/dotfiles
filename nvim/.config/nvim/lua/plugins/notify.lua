@@ -87,7 +87,7 @@ return {
 						any = {
 							{ find = "Toggling hidden files" },
 							{ find = "^Restored session:" },
-							{ find = "[LSP]" },
+							{ find = "%[LSP%]" }, -- escape square brackets
 						},
 					},
 					view = "mini",
