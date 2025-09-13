@@ -25,9 +25,10 @@ PanelWindow {
         color: "#333"
         radius: 10
     }
-    property list<string> images: []
     property string basePath: "/home/dolev/Pictures/Wallpapers/"
+    property list<string> images: []
     Process {
+        running: true
         id: fetchImagesProcess
         command: ["/bin/sh", "-c", "ls " + basePath + " 2>/dev/null"]
         stdout: StdioCollector {
@@ -36,8 +37,8 @@ PanelWindow {
             }
         }
     }
-    Component.onCompleted: {
-        fetchImagesProcess.running = true
+    Process {
+        id: setWallpaperProcess
     }
 
     Rectangle {
@@ -69,8 +70,9 @@ PanelWindow {
                     onEntered: wallpaper.hovered = true
                     onExited: wallpaper.hovered = false
                     onClicked: {
-                        // TODO: actual set wallpaper logic
-                        console.log("Setting wallpaper to " + wallpaper.modelData)
+                        setWallpaperProcess.exec({
+                            command: ["/bin/sh", "/home/dolev/scripts/set-wallpaper.sh", wallpaper.modelData]
+                        })
                     }
                 }
 
