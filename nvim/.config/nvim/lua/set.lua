@@ -7,6 +7,9 @@ vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
 ---- backup ----
 vim.opt.swapfile = false
 vim.opt.backup = false
