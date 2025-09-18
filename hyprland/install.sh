@@ -2,7 +2,6 @@ sudo pacman -S --needed \
 	hyprland \
 	hyprshot \
 	hyprpicker \
-	swaync \
 	xdg-desktop-portal-hyprland
 
 # xdg-desktop-portal-hyprland is needed for screen sharing in browsers and other apps
