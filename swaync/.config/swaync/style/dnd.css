@@ -1,0 +1,29 @@
+.widget-dnd {
+  font-size: 1.1rem;
+}
+.widget-dnd > switch {
+  font-size: initial;
+  border-radius: 4px;
+  background: @base;
+}
+.widget-dnd > switch:checked {
+  background: @insensitive_base_color;
+}
+.widget-dnd > switch slider {
+  background: @base;
+  /* background: @theme_bg_color; */
+  border-radius: 12px;
+}
+
+/* Toggles */
+.toggle:checked {
+  background: @surface1;
+}
+.toggle:checked:hover {
+  background: @surface2;
+  /* background: alpha(@theme_selected_bg_color, 0.75); */
+}
+
+.right.overlay-indicator {
+  all: unset;
+}

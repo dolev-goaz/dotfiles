@@ -1,0 +1,25 @@
+scale {
+  padding: 0px;
+  margin: 0px 10px 0px 10px;
+}
+
+scale trough {
+  border-radius: 4px;
+  background: @surface0;
+  /* background: alpha(currentColor, 0.1); */
+}
+
+scale highlight {
+  border-radius: 5px;
+  min-height: 10px;
+  margin-right: -5px;
+}
+
+scale slider {
+  margin: -10px;
+  min-width: 10px;
+  min-height: 10px;
+  background: transparent;
+  box-shadow: none;
+  padding: 0px;
+}

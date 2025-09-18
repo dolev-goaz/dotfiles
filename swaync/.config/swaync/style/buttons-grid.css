@@ -1,0 +1,27 @@
+/* Buttons grid */
+.widget-buttons-grid {
+  background-color: @mantle;
+  background: alpha(currentColor, 0.05);
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0px;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild {
+  background: inherit;
+  min-height: 50px;
+  min-width: 85px;
+  padding: 0px;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button {
+  background: transparent;
+  border-radius: 4px;
+  margin: 0px;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button:hover {
+  background: @mantle;
+}
