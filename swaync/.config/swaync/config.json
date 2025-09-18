@@ -45,12 +45,8 @@
     "buttons-grid": {
       "actions": [
         {
-          "label": " ",
-          "command": "amixer set Master toggle"
-        },
-        {
-          "label": "",
-          "command": "amixer set Capture toggle"
+          "label": "󰏬",
+          "command": "otd-gui"
         },
         {
           "label": "󰏘",
