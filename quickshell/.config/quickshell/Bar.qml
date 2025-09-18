@@ -6,6 +6,7 @@ import "./system_tray"
 import "./clock"
 import "./clipboard"
 import "./wallpapers"
+import "./system_update"
 import QtQuick.Layouts
 
 Scope {
@@ -66,6 +67,9 @@ Scope {
                     WallpaperPickerActivator {
                         Layout.fillHeight: true
                         implicitWidth: 40
+                    }
+                    SystemUpdater {
+                        Layout.fillHeight: true
                     }
                 }
             }
