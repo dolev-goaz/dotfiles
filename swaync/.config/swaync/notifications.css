@@ -1,0 +1,132 @@
+@import "colors.css";
+.notification {
+  border: none;
+  box-shadow: none;
+  border-radius: 4px;
+  background: inherit;
+}
+
+.notification button {
+  background: transparent;
+  border-radius: 0px;
+  border: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+.notification button:hover {
+  /* background: @surface0; */
+  background: @insensitive_bg_color;
+}
+
+.notification-content {
+  min-height: 64px;
+  margin: 10px;
+  padding: 0px;
+  border-radius: 0px;
+}
+
+.notification-default-action,
+.notification-action {
+  background: transparent;
+  border: none;
+}
+
+.notification-default-action {
+  border-radius: 4px;
+}
+
+/* When alternative actions are visible */
+.notification-default-action:not(:only-child) {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.notification-action {
+  border-radius: 0px;
+  padding: 2px;
+  color: @text;
+  /* color: @theme_text_color; */
+}
+
+/* Notification header */
+.summary {
+  color: @text;
+  font-size: 16px;
+  padding: 0px;
+}
+
+.time {
+  color: @subtext0;
+  font-size: 12px;
+  text-shadow: none;
+  margin: 0px 0px 0px 0px;
+  padding: 2px 0px;
+}
+
+.body {
+  font-size: 14px;
+  font-weight: 500;
+  color: @subtext1;
+  text-shadow: none;
+  margin: 0px 0px 0px 0px;
+}
+
+.body-image {
+  border-radius: 4px;
+}
+
+/* The "Notifications" and "Do Not Disturb" text widget */
+.top-action-title {
+  color: @text;
+  text-shadow: none;
+}
+.control-center-list-placeholder,
+.notification-group-icon,
+.notification-group {
+  color: @text;
+}
+
+.notification-group > box {
+  all: unset;
+  background: @mantle;
+  /* background: alpha(currentColor, 0.072); */
+  padding: 8px;
+  margin: 0px;
+  /* margin: 0px -5px; */
+  border: none;
+  border-radius: 4px;
+  box-shadow: none;
+}
+
+/* actual notification */
+.notification-row {
+  outline: none;
+  transition: all 1s ease;
+  background: @base;
+  border: 1px solid @crust;
+  margin: 10px 5px 0px 5px;
+  border-radius: 8px;
+  /* box-shadow: 0px 0px 4px black; */
+  /* background: alpha(currentColor, 0.05); */
+}
+
+.notification-row:focus,
+.notification-row:hover {
+  box-shadow: none;
+}
+
+.control-center-list > row,
+.control-center-list > row:focus,
+.control-center-list > row:hover {
+  background: transparent;
+  border: none;
+  margin: 0px;
+  padding: 5px 10px 5px 10px;
+  box-shadow: none;
+}
+
+.notification-group > box.vertical {
+  /* border: solid 5px red; */
+  margin-top: 3px;
+}
