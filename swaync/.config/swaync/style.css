@@ -31,15 +31,6 @@ label {
 /*   border: solid 5px red; */
 /* } */
 
-.control-center-list {
-  /* background: @base; */
-  background: @crust;
-  min-height: 5px;
-  /* border: 1px solid @surface1; */
-  border-top: none;
-  border-radius: 0px 0px 4px 4px;
-}
-
 .control-center-list > row:last-child {
   padding: 5px 10px 10px 10px;
 }

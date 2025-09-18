@@ -14,11 +14,6 @@
   padding: 0px;
 }
 
-.notification button:hover {
-  /* background: @surface0; */
-  background: @insensitive_bg_color;
-}
-
 .notification-content {
   min-height: 64px;
   margin: 10px;
@@ -90,10 +85,8 @@
 .notification-group > box {
   all: unset;
   background: @mantle;
-  /* background: alpha(currentColor, 0.072); */
   padding: 8px;
   margin: 0px;
-  /* margin: 0px -5px; */
   border: none;
   border-radius: 4px;
   box-shadow: none;
@@ -105,15 +98,16 @@
   transition: all 1s ease;
   background: @base;
   border: 1px solid @crust;
-  margin: 10px 5px 0px 5px;
   border-radius: 8px;
-  /* box-shadow: 0px 0px 4px black; */
-  /* background: alpha(currentColor, 0.05); */
 }
 
 .notification-row:focus,
 .notification-row:hover {
   box-shadow: none;
+}
+
+.control-center-list {
+  background: transparent;
 }
 
 .control-center-list > row,
