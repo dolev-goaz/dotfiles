@@ -1,3 +1,9 @@
+.widget-mpris {
+  margin: 0;
+  --spacing: 20px;
+  margin-top: var(--spacing);
+  margin-bottom: var(--spacing);
+}
 .widget-mpris-album-art {
   all: unset;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);

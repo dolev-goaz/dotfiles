@@ -40,7 +40,6 @@
   border-radius: 0px;
   padding: 2px;
   color: @text;
-  /* color: @theme_text_color; */
 }
 
 /* Notification header */
@@ -112,14 +111,15 @@
 .control-center-list > row,
 .control-center-list > row:focus,
 .control-center-list > row:hover {
-  background: transparent;
+  background: alpha(currentColor, 0.05);
+  border-radius: 8px;
   border: none;
   margin: 0px;
+  margin-top: 8px; /* spacing between messages */
   padding: 5px 10px 5px 10px;
   box-shadow: none;
 }
 
 .notification-group > box.vertical {
-  /* border: solid 5px red; */
   margin-top: 3px;
 }

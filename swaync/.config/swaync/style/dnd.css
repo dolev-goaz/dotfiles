@@ -1,18 +1,20 @@
 .widget-dnd {
-  font-size: 1.1rem;
+  margin: 0;
+  padding: 0;
+  /* margin-top: -5px; */
+  font-size: 1rem;
 }
 .widget-dnd > switch {
   font-size: initial;
-  border-radius: 4px;
-  background: @base;
-}
-.widget-dnd > switch:checked {
-  background: @insensitive_base_color;
+  border-radius: 8px;
+  background: alpha(white, 0.05); /* track */
 }
 .widget-dnd > switch slider {
-  background: @base;
-  /* background: @theme_bg_color; */
+  background: white; /* thumb */
   border-radius: 12px;
+}
+.widget-dnd > switch:checked > slider {
+  background: #f04747;
 }
 
 /* Toggles */
