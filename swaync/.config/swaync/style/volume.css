@@ -8,8 +8,7 @@
 }
 .widget-volume > box {
   background: alpha(currentColor, 0.05);
-  border-radius: 4px;
-  margin: 5px 10px 5px 10px;
+  border-radius: 12px;
   min-height: 50px;
 }
 .widget-volume > box > label {
@@ -17,6 +16,8 @@
   padding: 0px;
 }
 .widget-volume > box > button {
+  /* this is the dropdown activator  */
+  border-radius: inherit;
   min-width: 50px;
   box-shadow: none;
   padding: 0px;
