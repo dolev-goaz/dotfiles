@@ -2,6 +2,7 @@ pragma ComponentBehavior: Bound
 
 import "../common/process"
 import QtQuick
+import Quickshell
 import Quickshell.Io
 
 Item {
@@ -18,6 +19,14 @@ Item {
         textColor: root.isDND? "#f04747": "white"
         implicitWidth: root.implicitWidth
         implicitHeight: 30
+        onClicked: (mouse) => {
+            if (mouse.button == Qt.RightButton) {
+                const dndFlag = isDND? "--dnd-off": "--dnd-on"
+                Quickshell.execDetached({
+                    command: ["swaync-client", dndFlag]
+                })
+            }
+        }
         Rectangle {
             visible: root.messageCount > 0
             color: "red"
