@@ -8,6 +8,7 @@ import "./clipboard"
 import "./wallpapers"
 import "./system_update"
 import "./swaync"
+import "./keyboard"
 import QtQuick.Layouts
 
 Scope {
@@ -74,6 +75,9 @@ Scope {
                         Layout.fillHeight: true
                     }
                     SystemUpdater {
+                        Layout.fillHeight: true
+                    }
+                    CurrentLanguage {
                         Layout.fillHeight: true
                     }
                 }
