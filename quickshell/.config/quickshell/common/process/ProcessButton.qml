@@ -14,6 +14,8 @@ Rectangle {
     property int borderWidth: 3
     property int borderRadius: 17
 
+    signal clicked(var mouse)
+
     color: backgroundColor
     border.width: borderWidth
     border.color: borderColor
@@ -36,8 +38,12 @@ Rectangle {
 
     MouseArea {
         anchors.fill: parent
-        onClicked: function() {
-            processRunner.running = true;
+        acceptedButtons: Qt.AllButtons
+        onClicked: function(mouse) {
+            if (mouse.button == Qt.LeftButton) {
+                processRunner.running = true;
+            }
+            root.clicked(mouse)
         }
         cursorShape: Qt.PointingHandCursor
     }
