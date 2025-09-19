@@ -7,6 +7,7 @@ import "./clock"
 import "./clipboard"
 import "./wallpapers"
 import "./system_update"
+import "./swaync"
 import QtQuick.Layouts
 
 Scope {
@@ -67,6 +68,10 @@ Scope {
                     WallpaperPickerActivator {
                         Layout.fillHeight: true
                         implicitWidth: 40
+                    }
+                    NotificationCenter {
+                        implicitWidth: 40
+                        Layout.fillHeight: true
                     }
                     SystemUpdater {
                         Layout.fillHeight: true
