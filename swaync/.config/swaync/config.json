@@ -28,6 +28,13 @@
   "hide-on-clear": true,
   "hide-on-action": true,
   "script-fail-notify": true,
+  "scripts": {
+    "open-chats": {
+      "run-on": "action",
+      "app-name": "Ferdium",
+      "exec": "~/.local/bin/toggle-chats.sh; wtype -d 120 -M ctrl 1 -m ctrl"
+    }
+  },
   "widgets": [
     "buttons-grid",
     "volume",
