@@ -1,8 +1,6 @@
 .widget-mpris {
   margin: 0;
-  --spacing: 20px;
-  margin-top: var(--spacing);
-  margin-bottom: var(--spacing);
+  margin-top: 20px;
 }
 .widget-mpris-album-art {
   all: unset;
