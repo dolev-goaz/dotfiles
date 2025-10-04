@@ -58,6 +58,10 @@
         {
           "label": "󰏘",
           "command": "nwg-look"
+        },
+        {
+          "label": "",
+          "command": "swaync-client -cp; pavucontrol --tab=3"
         }
       ]
     },
