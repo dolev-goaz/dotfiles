@@ -9,6 +9,7 @@ import "./wallpapers"
 import "./system_update"
 import "./swaync"
 import "./keyboard"
+import "./system_manager"
 import QtQuick.Layouts
 
 Scope {
@@ -78,6 +79,10 @@ Scope {
                         Layout.fillHeight: true
                     }
                     CurrentLanguage {
+                        Layout.fillHeight: true
+                    }
+                    SystemManager {
+                        implicitWidth: 40
                         Layout.fillHeight: true
                     }
                 }
