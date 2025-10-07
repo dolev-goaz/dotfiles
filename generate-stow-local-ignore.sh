@@ -1,7 +1,7 @@
 for dir in */; do
 	file="$dir/.stow-local-ignore"
 	if [ -f "$file" ]; then
-		rm "$file"
+		continue
 	fi
 
 	echo "\.gitignore" >"$file"
