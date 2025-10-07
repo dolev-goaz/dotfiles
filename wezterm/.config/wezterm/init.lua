@@ -24,6 +24,10 @@ config.use_fancy_tab_bar = false
 config.warn_about_missing_glyphs = false
 wezterm.on("format-tab-title", tabs.format_tab_title)
 
+-- keys
+local keys = require("keys")
+config.keys = keys
+
 -- window settings
 config.window_close_confirmation = "NeverPrompt"
 
