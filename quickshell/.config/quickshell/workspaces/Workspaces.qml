@@ -30,6 +30,7 @@ Row {
             required property HyprlandWorkspace modelData
             text: modelData.id
             active: modelData.focused
+            urgent: modelData.urgent
             onWorkspaceClick: modelData.activate()
         }
     }
