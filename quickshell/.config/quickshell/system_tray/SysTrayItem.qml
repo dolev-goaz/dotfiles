@@ -37,10 +37,6 @@ MouseArea {
     //     anchor.rect.y: root.height
     //     anchor.rect.x: (root.width - width) / 2
     // }
-    QsMenuOpener {
-        id: menuOpener
-        menu: root.item.menu
-    }
     LazyLoader {
         active: root.expanded
 
@@ -56,7 +52,7 @@ MouseArea {
 
             SysTrayMenu {
                 id: trayMenu
-                options: menuOpener.children.values
+                handle: root.item.menu
                 onMenuOptionSelected: {
                     root.expanded = false;
                 }
