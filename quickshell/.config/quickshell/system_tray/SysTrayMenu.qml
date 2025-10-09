@@ -55,7 +55,23 @@ StackView {
             Button {
                 id: backButton
                 visible: isSubMenu
-                text: "← Back"
+                contentItem: Text {
+                    text: " Back "
+                    font.family: "JetBrainsMono Nerd Font"
+                    font.pixelSize: 15
+                    color: "#111111"
+                }
+                background: Rectangle {
+                    color: {
+                        if (backButton.pressed) {
+                            return "#cccccc"
+                        } else if (backButton.hovered) {
+                            return "#F2C7BE"
+                        }
+                        return "#ffd9e3"
+                    }
+                    radius: 20
+                }
                 onClicked: {
                     root.pop()
                 }
@@ -76,7 +92,7 @@ StackView {
                             }
                             parts.push(modelData.text)
                             if (modelData.hasChildren) {
-                                parts.push("▶")
+                                parts.push("")
                             }
                             return parts.join(" ")
                         }
