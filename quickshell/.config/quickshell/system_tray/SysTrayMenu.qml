@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import Quickshell
 import Quickshell.Services.SystemTray
+import "./CheckStates.js" as CheckStates
 
 StackView {
     id: root
@@ -97,7 +98,9 @@ StackView {
                             const parts = []
                             // https://quickshell.org/docs/v0.1.0/types/Quickshell/QsMenuButtonType/
                             if (modelData.buttonType === QsMenuButtonType.CheckBox) {
-                                parts.push(modelData.checkState ? " " : " ")
+                                parts.push(CheckStates.states.CheckBox[modelData.checkState])
+                            } else if (modelData.buttonType === QsMenuButtonType.RadioButton) {
+                                parts.push(CheckStates.states.RadioButton[modelData.checkState])
                             }
                             parts.push(modelData.text)
                             if (modelData.hasChildren) {
