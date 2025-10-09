@@ -15,6 +15,17 @@ StackView {
         handle: root.handle
     }
 
+    function clear() {
+        while (depth > 1) {
+            pop()
+        }
+        // Force recalculation of implicit dimensions
+        Qt.callLater(() => {
+            implicitWidth = currentItem.width
+            implicitHeight = currentItem.height
+        })
+    }
+
     pushEnter: NoAnim {}
     pushExit: NoAnim {}
     popEnter: NoAnim {}

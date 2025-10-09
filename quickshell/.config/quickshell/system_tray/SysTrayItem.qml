@@ -40,6 +40,10 @@ MouseArea {
             if (visible) reposition()
             else root.expanded = false
         }
+        onActiveChanged: {
+            if (!active) return;
+            trayMenu.clear()
+        }
         onWidthChanged: if (visible) reposition()
         onHeightChanged: if (visible) reposition()
 
