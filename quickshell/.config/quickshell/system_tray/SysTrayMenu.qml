@@ -46,7 +46,16 @@ StackView {
             x: paddingInline
             y: paddingBlock
             Repeater {
-                model: menuOpener.children.values
+                model: {
+                    const res = [...menuOpener.children.values]
+                    while (res[0]?.isSeparator) {
+                        res.shift()
+                    }
+                    while (res[res.length - 1]?.isSeparator) {
+                        res.pop()
+                    }
+                    return res;
+                }
                 delegate: Loader {
                     required property QsMenuEntry modelData
                     sourceComponent: modelData.isSeparator ? separatorComponent : buttonComponent
