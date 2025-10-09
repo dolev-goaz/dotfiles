@@ -21,42 +21,38 @@ MouseArea {
             break;
         case Qt.RightButton:
             if (item.hasMenu) {
-                // menu.open();
                 expanded = !expanded;
             }
             break;
         }
         event.accepted = true;
     }
+    Window {
+        id: menuWindow
+        visible: root.expanded
+        flags: Qt.Popup
+        color: "transparent"
+        width: trayMenu.implicitWidth
+        height: trayMenu.implicitHeight
 
-    // QsMenuAnchor {
-    //     id: menu
-    //
-    //     menu: root.item.menu
-    //     anchor.item: root
-    //     anchor.rect.y: root.height
-    //     anchor.rect.x: (root.width - width) / 2
-    // }
-    LazyLoader {
-        active: root.expanded
+        Component.onCompleted: reposition()
+        onVisibleChanged: {
+            if (visible) reposition()
+            else root.expanded = false
+        }
+        onWidthChanged: if (visible) reposition()
+        onHeightChanged: if (visible) reposition()
 
-        component: PopupWindow {
-            id: popupWindow
-            visible: true
-            anchor.item: root
-            anchor.rect.y: root.height + 10 // 10 is the gap
-            anchor.rect.x: (root.width - width) / 2
-            color: "transparent"
-            implicitWidth: trayMenu.width
-            implicitHeight: trayMenu.height
+        function reposition() {
+            const pos = root.mapToGlobal((root.width - width) / 2, root.height)
+            x = pos.x
+            y = pos.y + 10
+        }
 
-            SysTrayMenu {
-                id: trayMenu
-                handle: root.item.menu
-                onMenuOptionSelected: {
-                    root.expanded = false;
-                }
-            }
+        SysTrayMenu {
+            id: trayMenu
+            handle: root.item.menu
+            onMenuOptionSelected: root.expanded = false
         }
     }
 
