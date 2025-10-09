@@ -19,10 +19,10 @@ Item {
                                     ? "#f9e2af" // warning - yellow
                                     : "#f38ba8"; // critical - red
 
+    visible: root.updateCounts !== null
     implicitWidth: backgroundRect.implicitWidth
     Rectangle {
         id: backgroundRect
-        visible: root.updateCounts !== null
         color: root.backgroundColor
         border.width: root.borderWidth
         border.color: root.borderColor
