@@ -6,5 +6,12 @@
 import Quickshell
 
 Scope {
-    Bar {}
+    // Global Services instance
+    Services {
+        id: services
+    }
+    
+    Bar {
+        updateService: services.systemUpdate
+    }
 }

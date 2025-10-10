@@ -11,8 +11,9 @@ Item {
     property color borderColor: "#b7bdf8"
     property int borderWidth: 3
     property int borderRadius: 17
-    property var updateCounts: null
-    property int totalUpdates: root.updateCounts ? root.updateCounts.total : 0
+    property var updateService
+    property var updateCounts: updateService ? updateService.updateCounts : null
+    property int totalUpdates: updateService ? updateService.totalUpdates : 0
     property color textColor: totalUpdates < 20
                                 ? "#a6e3a1" // ok - green
                                 : totalUpdates < 50
@@ -55,33 +56,12 @@ Item {
         MouseArea {
             anchors.fill: parent
             onClicked: function() {
-                updateProcess.running = true;
+                if (root.updateService) {
+                    root.updateService.performUpdate();
+                }
             }
             cursorShape: Qt.PointingHandCursor
         }
-    }
-    Timer {
-        id: updateTimer
-        interval: 5 * 60 * 1000 // 5 minutes
-        running: true
-        repeat: true
-        onTriggered: updateCountProcess.running = true
-    }
-    Process {
-        id: updateCountProcess
-        running: true
-        command: ["/bin/sh", "-c", "~/scripts/available-updates-arch.sh"]
-        stdout: StdioCollector {
-            onStreamFinished: {
-                const updateCounts = JSON.parse(this.text);
-                root.updateCounts = updateCounts.total > 0 ? updateCounts : null;
-            }
-        }
-    }
-    Process {
-        id: updateProcess
-        running: false
-        command: ["/bin/sh", "-c", "~/.local/bin/quickshell-update-system.sh"]
     }
 }
 

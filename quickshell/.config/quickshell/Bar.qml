@@ -14,6 +14,8 @@ import QtQuick.Layouts
 
 Scope {
     id: root
+    
+    property var updateService
 
     // for all screens
     Variants {
@@ -77,6 +79,7 @@ Scope {
                     }
                     SystemUpdater {
                         Layout.fillHeight: true
+                        updateService: root.updateService
                     }
                     CurrentLanguage {
                         Layout.fillHeight: true
