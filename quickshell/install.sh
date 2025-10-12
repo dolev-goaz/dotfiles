@@ -1,5 +1,5 @@
 yay -S --needed \
-	quickshell
+	quickshell-git
 
 cd ~/.dotfiles
 stow quickshell
