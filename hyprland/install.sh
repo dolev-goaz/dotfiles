@@ -3,7 +3,9 @@ sudo pacman -S --needed \
 	hyprshot \
 	hyprpicker \
 	xdg-desktop-portal-hyprland \
-	lxqt-policykit
+	lxqt-policykit \
+	gnome-keyring \
+	seahorse
 
 # xdg-desktop-portal-hyprland is needed for screen sharing in browsers and other apps
 
