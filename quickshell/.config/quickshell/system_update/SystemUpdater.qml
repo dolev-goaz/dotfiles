@@ -3,6 +3,7 @@ pragma ComponentBehavior: Bound
 import QtQuick
 import Quickshell.Io // for process
 import Quickshell
+import ".."
 
 Item {
     id: root
@@ -11,9 +12,8 @@ Item {
     property color borderColor: "#b7bdf8"
     property int borderWidth: 3
     property int borderRadius: 17
-    property var updateService
-    property var updateCounts: updateService ? updateService.updateCounts : null
-    property int totalUpdates: updateService ? updateService.totalUpdates : 0
+    property var updateCounts: Services.systemUpdate.updateCounts
+    property int totalUpdates: Services.systemUpdate.totalUpdates
     property color textColor: totalUpdates < 20
                                 ? "#a6e3a1" // ok - green
                                 : totalUpdates < 50
@@ -56,9 +56,7 @@ Item {
         MouseArea {
             anchors.fill: parent
             onClicked: function() {
-                if (root.updateService) {
-                    root.updateService.performUpdate();
-                }
+                Services.systemUpdate.performUpdate();
             }
             cursorShape: Qt.PointingHandCursor
         }
