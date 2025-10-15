@@ -12,7 +12,7 @@ PanelWindow {
     }
     margins {
         // same as hyprland
-        left: 10
+        left: 20
         right: 20
         bottom: 20
     }
