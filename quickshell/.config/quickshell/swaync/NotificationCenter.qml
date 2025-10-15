@@ -1,30 +1,29 @@
 pragma ComponentBehavior: Bound
 
-import "../common/process"
+import "../common"
 import QtQuick
 import Quickshell
 import Quickshell.Io
+import ".."
 
 Item {
     id: root
-    property int messageCount: 0
-    property bool isDND: false
-    property bool isOpen: false
-    property bool isInhibited: false
+    property int messageCount: Services.notifications.messageCount
+    property bool isDND: Services.notifications.isDND
+    property bool isOpen: Services.notifications.isOpen
+    property bool isInhibited: Services.notifications.isInhibited
 
-    ProcessButton {
+    StyledButton {
         id: swayncButton
-        command: ["swaync-client", "-t"]
         text: "󰣇"
         textColor: root.isDND? "#f04747": "white"
         implicitWidth: root.implicitWidth
         implicitHeight: 30
         onClicked: (mouse) => {
             if (mouse.button == Qt.RightButton) {
-                const dndFlag = isDND? "--dnd-off": "--dnd-on"
-                Quickshell.execDetached({
-                    command: ["swaync-client", dndFlag]
-                })
+                Services.notifications.toggleDND()
+            } else {
+                Services.notifications.togglePanel()
             }
         }
         Rectangle {
@@ -47,24 +46,6 @@ Item {
                 font.pixelSize: 10
                 color: "white"
                 anchors.centerIn: parent
-            }
-        }
-    }
-    Process {
-        id: swayncProcess
-        running: true
-        command: ["swaync-client", "-s"]
-        stdout: StdioCollector {
-            waitForEnd: false
-            onTextChanged: {
-                const updatesStr = this.text.split("\n").filter(Boolean)
-                const lastUpdateStr = updatesStr[updatesStr.length - 1]
-                const latestUpdate = JSON.parse(lastUpdateStr)
-
-                root.messageCount = latestUpdate.count
-                root.isDND = latestUpdate.dnd
-                root.isOpen = latestUpdate.visible
-                root.isInhibited = latestUpdate.inhibited
             }
         }
     }

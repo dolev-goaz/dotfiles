@@ -1,0 +1,3 @@
+module qs.keyboard
+CurrentLanguage 1.0 CurrentLanguage.qml
+KeyboardService 1.0 KeyboardService.qml

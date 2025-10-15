@@ -1,0 +1,3 @@
+module qs.swaync
+NotificationCenter 1.0 NotificationCenter.qml
+SwayNCService 1.0 SwayNCService.qml
