@@ -2,7 +2,7 @@ sudo pacman -S --needed \
 	fzf \
 	jq
 
-sudo yay -S --needed \
+yay -S --needed \
 	python-pywal
 
 # chmod +x all scripts under scripts/
