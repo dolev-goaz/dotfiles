@@ -7,9 +7,9 @@
   "layer-shell": "true",
   "control-center-width": 400,
   "control-center-height": 650,
-  "control-center-margin-top": 10,
-  "control-center-margin-bottom": 10,
-  "control-center-margin-right": 10,
+  "control-center-margin-top": 20,
+  "control-center-margin-bottom": 20,
+  "control-center-margin-right": 20,
   "control-center-margin-left": 0,
 
   "notification-window-width": 375,

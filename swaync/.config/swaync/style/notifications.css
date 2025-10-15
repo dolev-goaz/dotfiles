@@ -97,6 +97,10 @@
   background: @base;
   border: 1px solid @crust;
   border-radius: 8px;
+
+  /* The same as hyprland's padding */
+  margin-top: 20px;
+  margin-right: 20px;
 }
 
 .notification-row:focus,
