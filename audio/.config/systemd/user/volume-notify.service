@@ -1,0 +1,10 @@
+[Unit]
+Description=Notify on volume change
+
+[Service]
+ExecStart=%h/.local/bin/volume-notify.sh
+Restart=always
+
+[Install]
+WantedBy=default.target
+
