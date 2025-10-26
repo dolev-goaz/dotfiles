@@ -6,3 +6,4 @@ sudo pacman -S --needed \
 
 cd ~/.dotfiles
 stow audio
+systemctl --user enable --now ~/.config/systemd/user/volume-notify.service
