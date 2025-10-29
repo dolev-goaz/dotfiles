@@ -19,6 +19,16 @@ StyledButton {
     textColor: root.active ? "#ffffff" : "#cccccc"
     textPixelSize: 12
     fontFamily: "Inter, sans-serif"
+
+    tooltipText: getTooltipText()
+    function getTooltipText() {
+        const components = [
+            `Workspace ${root.text}`,
+        ]
+        root.active && components.push("(active)");
+        root.urgent && components.push("- urgent!");
+        return components.join(" ");
+    }
     
     onClicked: root.workspaceClick()
 
