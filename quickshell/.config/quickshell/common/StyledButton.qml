@@ -7,6 +7,7 @@ Rectangle {
     required property string text
     property color textColor: "white"
     property int textPixelSize: 16
+    property string fontFamily: "JetBrainsMono Nerd Font"
     property color backgroundColor: "#494d64"
     property color borderColor: "#b7bdf8"
     property int borderWidth: 3
@@ -22,7 +23,7 @@ Rectangle {
     Text {
         anchors.centerIn: parent
         text: root.text
-        font.family: "JetBrainsMono Nerd Font"
+        font.family: root.fontFamily
         color: root.textColor
         font.pixelSize: root.textPixelSize
     }
