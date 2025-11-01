@@ -15,6 +15,8 @@ yay -S --needed \
 	ferdium \
 	opentabletdriver
 
+systemctl --user enable --now opentabletdriver.service
+
 # For hyprpm
 sudo pacman -S --needed \
 	cmake \
