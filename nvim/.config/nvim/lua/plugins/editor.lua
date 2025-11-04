@@ -39,6 +39,7 @@ return {
 					"typescript",
 					"typescriptreact",
 					"lua",
+					"qml",
 				},
 				user_default_options = {
 					css = true,
