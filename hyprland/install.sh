@@ -5,7 +5,10 @@ sudo pacman -S --needed \
 	xdg-desktop-portal-hyprland \
 	lxqt-policykit \
 	gnome-keyring \
-	seahorse
+	seahorse \
+	network-manager-applet
+
+sudo systemctl disable NetworkManager-wait-online.service
 
 # xdg-desktop-portal-hyprland is needed for screen sharing in browsers and other apps
 
