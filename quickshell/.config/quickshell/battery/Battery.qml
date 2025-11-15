@@ -3,6 +3,7 @@ import "../common"
 import ".."
 
 StyledButton {
+    visible: Services.battery.batteryPresent
     property int percentage: Services.battery.percentage
     property string status: Services.battery.status
 

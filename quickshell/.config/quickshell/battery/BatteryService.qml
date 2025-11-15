@@ -11,6 +11,7 @@ QtObject {
     property string batteryName: ""
     property int percentage: 0
     property string status: "Unknown"
+    property bool batteryPresent: batteryName !== ""
 
     property Process getBatteryName: Process {
         running: true
