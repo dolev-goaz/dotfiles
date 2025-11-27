@@ -17,7 +17,8 @@ Row {
         command: ["/bin/sh", "-c", "~/.local/bin/toggle-chats.sh"] // -c to allow expanding the ~
     }
     WorkspaceTab {
-        text: "💬"
+        text: "󰭻"
+        textSize: 16
         active: false
         onWorkspaceClick: {
             processOpenChats.running = true;

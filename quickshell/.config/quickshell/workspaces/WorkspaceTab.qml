@@ -6,6 +6,7 @@ StyledButton {
     property bool active: false
     property bool urgent: false
     property real flashPhase: 0
+    property int textSize: 12
     signal workspaceClick
     
     width: 32
@@ -17,7 +18,7 @@ StyledButton {
         : "#b7bdf8"
     borderWidth: 2
     textColor: root.active ? "#ffffff" : "#cccccc"
-    textPixelSize: 12
+    textPixelSize: root.textSize
     fontFamily: "Inter, sans-serif"
 
     tooltipText: getTooltipText()
