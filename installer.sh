@@ -1,7 +1,9 @@
 chmod +x ./generate-stow-local-ignore.sh
 
 sudo pacman -S --needed \
-	stow
+	stow \
+    fzf \
+    git
 
 clear
 
