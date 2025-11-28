@@ -39,17 +39,17 @@ Column {
             lockProcess.running = true;
         }
     }
-    // Process {
-    //     id: sleepProcess
-    //     command: ["systemctl", "suspend"]
-    // }
-    // PowerOption {
-    //     text: "󰤄"
-    //     textColorHovered: "#50fa7b"
-    //     onPowerOptionClicked: {
-    //         sleepProcess.running = true;
-    //     }
-    // }
+    Process {
+        id: sleepProcess
+        command: ["systemctl", "sleep"]
+    }
+    PowerOption {
+        text: "󰤄"
+        textColorHovered: "#50fa7b"
+        onPowerOptionClicked: {
+            sleepProcess.running = true;
+        }
+    }
     Process {
         id: exitProcess
         command: ["/bin/sh", "-c", "~/.local/bin/waybar-verify-action.sh 'Exit Hyprland' && hyprctl dispatch exit"]
