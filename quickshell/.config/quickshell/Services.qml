@@ -6,6 +6,7 @@ import "./system_update"
 import "./swaync"
 import "./keyboard"
 import "./battery"
+import "./audio"
 
 QtObject {
     id: root
@@ -14,4 +15,5 @@ QtObject {
     readonly property SwayNCService notifications: SwayNCService {}
     readonly property KeyboardService keyboard: KeyboardService {}
     readonly property BatteryService battery: BatteryService {}
+    readonly property AudioService audio: AudioService {}
 }

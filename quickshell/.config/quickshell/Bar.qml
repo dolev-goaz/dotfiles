@@ -11,6 +11,7 @@ import "./swaync"
 import "./keyboard"
 import "./system_manager"
 import "./battery"
+import "./audio"
 import QtQuick.Layouts
 
 Scope {
@@ -64,6 +65,10 @@ Scope {
                     Battery {
                         Layout.fillHeight: true
                         implicitWidth: 80
+                    }
+                    Audio {
+                        Layout.fillHeight: true
+                        implicitWidth: 90
                     }
                     SysTray {
                         Layout.fillHeight: true
