@@ -1,5 +1,7 @@
 sudo pacman -S --needed \
-	k9s
+	k9s \
+	unzip \
+	curl
 
 # aws- from https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
 cd ~
