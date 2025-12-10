@@ -1,11 +1,15 @@
 pragma ComponentBehavior: Bound
+import QtQuick
+import Quickshell
 import "../common"
 import ".."
 
 StyledButton {
+    id: root
     visible: Services.battery.batteryPresent
     property int percentage: Services.battery.percentage
     property string status: Services.battery.status
+    property bool expanded: false
 
     property var levels: [
         // 0% - 9%
@@ -50,5 +54,40 @@ StyledButton {
 
     text: `${icon} ${percentage}%`
     textColor: fgColor
+    
+    onClicked: function(mouse) {
+        if (mouse.button === Qt.LeftButton) {
+            expanded = !expanded
+        }
+    }
+
+    Window {
+        id: batteryPopupWindow
+        visible: root.expanded
+        flags: Qt.Popup
+        color: "transparent"
+        width: batteryPopup.implicitWidth
+        height: batteryPopup.implicitHeight
+
+        Component.onCompleted: reposition()
+        onVisibleChanged: {
+            if (visible) {
+                reposition()
+            }
+            else root.expanded = false
+        }
+        onWidthChanged: if (visible) reposition()
+        onHeightChanged: if (visible) reposition()
+
+        function reposition() {
+            const pos = root.mapToGlobal((root.width - width) / 2, root.height)
+            x = pos.x
+            y = pos.y + 10
+        }
+
+        BatteryPopup {
+            id: batteryPopup
+        }
+    }
 }
 
