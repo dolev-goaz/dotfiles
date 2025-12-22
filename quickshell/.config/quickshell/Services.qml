@@ -7,6 +7,7 @@ import "./swaync"
 import "./keyboard"
 import "./battery"
 import "./audio"
+import "./vpn"
 
 QtObject {
     id: root
@@ -16,4 +17,5 @@ QtObject {
     readonly property KeyboardService keyboard: KeyboardService {}
     readonly property BatteryService battery: BatteryService {}
     readonly property AudioService audio: AudioService {}
+    readonly property VPNService vpn: VPNService {}
 }

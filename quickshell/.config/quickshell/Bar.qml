@@ -12,6 +12,7 @@ import "./keyboard"
 import "./system_manager"
 import "./battery"
 import "./audio"
+import "./vpn"
 import QtQuick.Layouts
 
 Scope {
@@ -43,8 +44,22 @@ Scope {
                 anchors.fill: parent
                 color: "transparent"
                 radius: 15
-                Workspaces {
-                    monitor: mainWindow.modelData
+                RowLayout {
+                    anchors {
+                        left: parent.left
+                        top: parent.top
+                        bottom: parent.bottom
+                        leftMargin: 10
+                    }
+                    spacing: 30
+                    
+                    Workspaces {
+                        monitor: mainWindow.modelData
+                    }
+                    VPN {
+                        Layout.fillHeight: true
+                        implicitWidth: 100
+                    }
                 }
                 ClockWidget {
                     anchors.centerIn: parent

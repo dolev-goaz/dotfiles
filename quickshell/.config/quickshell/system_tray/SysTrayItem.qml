@@ -56,7 +56,7 @@ MouseArea {
         SysTrayMenu {
             id: trayMenu
             handle: root.item.menu
-            onMenuOptionSelected: root.expanded = false
+            // onMenuOptionSelected: root.expanded = false
         }
     }
 
