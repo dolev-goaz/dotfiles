@@ -20,14 +20,14 @@ QtObject {
             onStreamFinished: {
                 root.isAvailable = this.text.trim() === "true"
                 if (root.isAvailable) {
-                    statusCheckProcess.running = true
-                    monitorProcess.running = true
+                    statusCheckProcess.running = true // initial status
+                    monitorProcess.running = true // on status update
                 }
             }
         }
     }
     
-    // Check current VPN status periodically
+    // Check current VPN status 
     property Process statusCheckProcess: Process {
         id: statusCheckProcess
         running: false
@@ -38,18 +38,6 @@ QtObject {
                 root.isConnected = this.text.trim() === "true"
                 // Check again every 2 seconds
                 statusCheckTimer.restart()
-            }
-        }
-    }
-    
-    // Timer to periodically check status
-    property Timer statusCheckTimer: Timer {
-        id: statusCheckTimer
-        interval: 2000
-        repeat: false
-        onTriggered: {
-            if (root.isAvailable) {
-                statusCheckProcess.running = true
             }
         }
     }
