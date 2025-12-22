@@ -1,37 +1,44 @@
 import { tool } from "@opencode-ai/plugin";
 
-interface ListArgs {
-  limit?: number;
-  repo?: string;
-}
-
-export const list = tool({
-  description: "List issues from a GitHub repository(or current)",
-  args: {
-    limit: tool.schema
-      .number()
-      .describe("Number of issues to list. If not provided, lists all issues.")
-      .optional(),
-    repo: tool.schema
-      .string()
-      .describe(
-        "The GitHub repository in the format owner/repo. If not provided, uses the current repository.",
-      )
-      .optional(),
-  },
-  async execute(args: ListArgs) {
-    const { limit, repo } = args;
-    // Build argument arrays dynamically
-    const repoArgs = repo ? ["--repo", repo] : [];
-    const limitArgs = limit ? ["--limit", limit.toString()] : [];
-    console.log(
-      `gh issue list ${repoArgs} ${limitArgs} --json number,title,state,url | jq "."`,
-    );
-    const result =
-      await Bun.$`gh issue list ${repoArgs} ${limitArgs} --json number,title,state,url | jq "."`.text();
-    return result.trim();
-  },
-});
+// interface ListArgs {
+//   limit?: number;
+//   repo?: string;
+//   assignee?: string;
+// }
+//
+// export const list = tool({
+//   description: "List issues from a GitHub repository(or current)",
+//   args: {
+//     limit: tool.schema
+//       .number()
+//       .describe("Number of issues to list. If not provided, lists all issues.")
+//       .optional(),
+//     repo: tool.schema
+//       .string()
+//       .describe(
+//         "The GitHub repository in the format owner/repo. If not provided, uses the current repository.",
+//       )
+//       .optional(),
+//     assignee: tool.schema
+//       .string()
+//       .describe(
+//         "Filter issues assigned to a specific user. If not provided, lists all issues. use @me for issues assigned to the current user.",
+//       )
+//       .optional(),
+//   },
+//   async execute(args: ListArgs) {
+//     const { limit, repo } = args;
+//     // Build argument arrays dynamically
+//     const repoArgs = repo ? ["--repo", repo] : [];
+//     const limitArgs = limit ? ["--limit", limit.toString()] : [];
+//     console.log(
+//       `gh issue list ${repoArgs} ${limitArgs} --json number,title,state,url | jq "."`,
+//     );
+//     const result =
+//       await Bun.$`gh issue list ${repoArgs} ${limitArgs} --json number,title,state,url | jq "."`.text();
+//     return result.trim();
+//   },
+// });
 
 interface CreateBranchArgs {
   issue: string;
