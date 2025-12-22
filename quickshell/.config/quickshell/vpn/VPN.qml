@@ -12,9 +12,21 @@ StyledButton {
     
     property bool isConnected: Services.vpn.isConnected
     
-    text: isConnected ? "󰌆  VPN" : "VPN"
+    text: "󰌆 VPN"
     textColor: isConnected ? "#50fa7b" : "#ff5555"
-    tooltipText: isConnected ? "VPN Connected (tun0 active)" : "VPN Disconnected"
+    backgroundColor: isConnected ? "#1e1e2e" : "#2a2a3e"
+    borderColor: isConnected ? "#50fa7b" : "#ff5555"
+    tooltipText: isConnected ? "VPN Connected (tun0)" : "VPN Disconnected"
+    
+    Behavior on textColor {
+        ColorAnimation { duration: 200 }
+    }
+    Behavior on backgroundColor {
+        ColorAnimation { duration: 200 }
+    }
+    Behavior on borderColor {
+        ColorAnimation { duration: 200 }
+    }
     
     onClicked: function(mouse) {
         if (mouse.button === Qt.LeftButton) {
