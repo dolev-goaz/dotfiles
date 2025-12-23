@@ -33,11 +33,9 @@ QtObject {
         running: false
         command: ["/bin/sh", "-c", "if ip link show tun0 up > /dev/null 2>&1; then echo 'true'; else echo 'false'; fi"]
         stdout: StdioCollector {
-            waitForEnd: true
+            waitForEnd: false
             onStreamFinished: {
                 root.isConnected = this.text.trim() === "true"
-                // Check again every 2 seconds
-                statusCheckTimer.restart()
             }
         }
     }
