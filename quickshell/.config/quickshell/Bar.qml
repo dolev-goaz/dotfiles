@@ -49,7 +49,6 @@ Scope {
                         left: parent.left
                         top: parent.top
                         bottom: parent.bottom
-                        leftMargin: 10
                     }
                     spacing: 30
                     
@@ -58,7 +57,7 @@ Scope {
                     }
                     VPN {
                         Layout.fillHeight: true
-                        implicitWidth: 100
+                        implicitWidth: 40
                     }
                 }
                 ClockWidget {
