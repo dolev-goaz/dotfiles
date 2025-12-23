@@ -12,7 +12,7 @@ StyledButton {
     
     property bool isConnected: Services.vpn.isConnected
     
-    text: "󰌆 VPN"
+    text: isConnected? "": ""
     textColor: isConnected ? "#50fa7b" : "#ff5555"
     backgroundColor: isConnected ? "#1e1e2e" : "#2a2a3e"
     borderColor: isConnected ? "#50fa7b" : "#ff5555"
