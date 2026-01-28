@@ -85,7 +85,8 @@ return {
 				"vtsls",
 				"vue_ls",
 				"qml_ls",
-				"pyright",
+				"basedpyright",
+				"jsonls",
 			})
 
 			-- keymaps
