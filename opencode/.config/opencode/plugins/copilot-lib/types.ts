@@ -2,7 +2,7 @@ interface Organization {
   login: string;
   name: string;
 }
-interface QuotaSnapshot {
+export interface QuotaSnapshot {
   entitlement: number;
   overage_count: number;
   overage_permitted: boolean;
