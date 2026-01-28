@@ -2,29 +2,24 @@ pragma ComponentBehavior: Bound
 import Quickshell
 import QtQuick
 import "../common/drawer"
+import "../common"
 
-Rectangle {
+StyledButton {
     id: root
     property bool expanded: false
-    color: "#494d64"
-    border.width: 3
-    border.color: "#b7bdf8"
-    radius: 17
-    Text {
-        text: "\uf011"
-        font.family: "JetBrainsMono Nerd Font" // Change if you use a different Nerd Font
-        font.pixelSize: 14
-        color: root.expanded ? "white" : "#888"
-        anchors.centerIn: parent
-        MouseArea {
-            anchors.fill: parent
-            hoverEnabled: true
-            onEntered: {
-                root.expanded = true;
-            }
-            onExited: {
-                root.expanded = false;
-            }
+    
+    text: "\uf011"
+    textPixelSize: 14
+    textColor: root.expanded ? "white" : "#888"
+    
+    MouseArea {
+        anchors.fill: parent
+        hoverEnabled: true
+        onEntered: {
+            root.expanded = true;
+        }
+        onExited: {
+            root.expanded = false;
         }
     }
 
