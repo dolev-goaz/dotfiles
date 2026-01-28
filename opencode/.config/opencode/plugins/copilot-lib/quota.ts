@@ -44,3 +44,15 @@ export async function getCopilotSubscriptionDetails(token: string) {
     return null;
   }
 }
+
+if (require.main === module) {
+  (async () => {
+    const token = getCopilotToken();
+    if (!token) {
+      console.log("No Copilot token found.");
+      return;
+    }
+    const details = await getCopilotSubscriptionDetails(token);
+    console.log(details);
+  })();
+}
