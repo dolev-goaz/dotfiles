@@ -63,7 +63,9 @@ return {
 					{
 						"navic",
 						color_correction = nil,
-						navic_opts = nil,
+						navic_opts = {
+							depth_limit = 4,
+						},
 					},
 				},
 			},
