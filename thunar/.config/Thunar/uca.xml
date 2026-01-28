@@ -25,4 +25,37 @@
 	<other-files/>
 	<text-files/>
 </action>
+<action>
+	<icon>edit-copy</icon>
+	<name>Copy path</name>
+	<submenu></submenu>
+	<unique-id>1756908110339840-1</unique-id>
+	<command>wl-copy %f</command>
+	<description></description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<directories/>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
+</action>
+<action>
+	<icon>application-zip</icon>
+	<name>Send to zip</name>
+	<submenu></submenu>
+	<unique-id>1759849670765155-1</unique-id>
+	<command>ZIP_NAME=$(zenity --entry --text=&quot;Enter ZIP file name&quot; --entry-text=&quot;archive&quot;) &amp;&amp; zip -r &quot;$ZIP_NAME.zip&quot; %F</command>
+	<description>Creates a zip file</description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<directories/>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
+</action>
+
 </actions>
