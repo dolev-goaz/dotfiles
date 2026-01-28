@@ -1,6 +1,6 @@
 import { tool } from "@opencode-ai/plugin";
 
-const dotenvFilePathPattern = /\.env$/;
+const dotenvFilePathPattern = /\.env(\..*)?$/;
 
 interface ReadFileArgs {
   filePath: string;
