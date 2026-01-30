@@ -2,6 +2,18 @@
 
 # NOTE: no git access
 
+# Restart with systemd-run to apply resource limits
+if [[ "$1" != "--inside-scope" ]]; then
+	echo "Starting sandbox with resource limits..."
+	systemd-run --user --scope \
+		-p MemoryMax=2G \
+		-p CPUQuota=80% \
+		-p TasksMax=100 \
+		"$0" --inside-scope "$@"
+	exit $?
+fi
+shift # remove --inside-scope from args
+
 WORKSPACE_DIR=${1:-"$HOME/sandbox-workspace"}
 CONFIG_DIR="$HOME/.dotfiles/opencode/.config/opencode"
 AUTH_DIR="$HOME/.local/share/opencode/auth.json"
