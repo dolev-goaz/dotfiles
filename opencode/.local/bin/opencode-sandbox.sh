@@ -54,8 +54,10 @@ bwrap \
 	--dir /home/agent/project \
 	\
 	--bind "$WORKSPACE_DIR" "/home/agent/project" \
+	--bind-try "$HOME/.local/share/opencode" "/home/agent/.local/share/opencode" \
+	--bind-try "$HOME/.local/state/opencode" "/home/agent/.local/state/opencode" \
 	--ro-bind "$CONFIG_DIR" "/home/agent/.config/opencode" \
-	--ro-bind "$AUTH_DIR" /home/agent/.local/share/opencode/auth.json \
+	--ro-bind "$AUTH_DIR" "/home/agent/.local/share/opencode/auth.json" \
 	\
 	--chdir /home/agent/project \
 	"${MASK_ARGS[@]}" \
