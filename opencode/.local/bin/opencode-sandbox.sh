@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# NOTE: no git access
+
 WORKSPACE_DIR=${1:-"$HOME/sandbox-workspace"}
 CONFIG_DIR="$HOME/.dotfiles/opencode/.config/opencode"
 AUTH_DIR="$HOME/.local/share/opencode/auth.json"
