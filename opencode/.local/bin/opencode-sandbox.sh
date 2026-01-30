@@ -19,7 +19,7 @@ MASK_ARGS=()
 while IFS= read -r env_file; do
 	relative_path="${env_file#$WORKSPACE_DIR/}"
 	MASK_ARGS+=("--bind" "$EMPTY_MASK" "/home/agent/project/$relative_path") # empty tmpfs, masking the .env file
-done < <(find "$WORKSPACE_DIR" -name ".env*")
+done < <(find "$WORKSPACE_DIR" -name ".env*" -not -name ".env.example")
 # ==========================================
 
 bwrap \
