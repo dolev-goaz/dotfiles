@@ -15,10 +15,15 @@ fi
 shift # remove --inside-scope from args
 
 WORKSPACE_DIR=${1:-"$HOME/sandbox-workspace"}
+WORKSPACE_DIR="$(realpath "$WORKSPACE_DIR")"
 CONFIG_DIR="$HOME/.dotfiles/opencode/.config/opencode"
 AUTH_DIR="$HOME/.local/share/opencode/auth.json"
 
-INNER_HOME="/home/agent"
+# INNER_HOME="/home/agent"
+# WORKSPACE_RELATIVE="$(echo "$WORKSPACE_DIR" | sed "s|$HOME/||")" # without $HOME prefix
+# INNER_WORKSPACE_DIR="$INNER_HOME/$WORKSPACE_RELATIVE"
+INNER_HOME="$HOME"
+INNER_WORKSPACE_DIR="$WORKSPACE_DIR" # kinda necessary for python venvs
 
 # check workspace dir exists
 if [ ! -d "$WORKSPACE_DIR" ]; then
@@ -34,17 +39,26 @@ MASK_ARGS=()
 # .env
 while IFS= read -r env_file; do
 	relative_path="${env_file#$WORKSPACE_DIR/}"
-	MASK_ARGS+=("--bind" "$EMPTY_MASK" "$INNER_HOME/project/$relative_path") # empty tmpfs, masking the .env file
+	MASK_ARGS+=("--bind" "$EMPTY_MASK" "$INNER_WORKSPACE_DIR/$relative_path") # empty tmpfs, masking the .env file
 done < <(find "$WORKSPACE_DIR" -name ".env*" -not -name ".env.example")
 # ==========================================
 
 # ============== Add binaries ==============
 BIN_ARGS=()
+# node
 NODE_BIN="$(which node | sed "s|$HOME/||")" # without $HOME prefix
 if [ -n "$NODE_BIN" ]; then
 	BIN_DIR="$(dirname "$NODE_BIN")"
 	NODE_DIR="$(dirname "$BIN_DIR")"
 	BIN_ARGS+=("--ro-bind" "$HOME/$NODE_DIR" "$INNER_HOME/$NODE_DIR")
+	BIN_ARGS+=("--setenv" "PATH" "$INNER_HOME/$BIN_DIR:/usr/bin:/bin") # PATH
+fi
+# python
+PYTHON_BIN="$(which python | sed "s|$HOME/||")" # without $HOME prefix
+if [ -n "$PYTHON_BIN" ]; then
+	BIN_DIR="$(dirname "$PYTHON_BIN")"
+	PYTHON_DIR="$(dirname "$BIN_DIR")"
+	BIN_ARGS+=("--ro-bind" "$HOME/$PYTHON_DIR" "$INNER_HOME/$PYTHON_DIR")
 	BIN_ARGS+=("--setenv" "PATH" "$INNER_HOME/$BIN_DIR:/usr/bin:/bin") # PATH
 fi
 # ==========================================
@@ -78,15 +92,15 @@ bwrap \
 	\
 	--tmpfs "$INNER_HOME" \
 	--dir "$INNER_HOME/.config" \
-	--dir "$INNER_HOME/project" \
+	--dir "$INNER_WORKSPACE_DIR" \
 	\
-	--bind "$WORKSPACE_DIR" "$INNER_HOME/project" \
+	--bind "$WORKSPACE_DIR" "$INNER_WORKSPACE_DIR" \
 	--bind-try "$HOME/.local/share/opencode" "$INNER_HOME/.local/share/opencode" \
 	--bind-try "$HOME/.local/state/opencode" "$INNER_HOME/.local/state/opencode" \
 	--ro-bind "$CONFIG_DIR" "$INNER_HOME/.config/opencode" \
 	--ro-bind "$AUTH_DIR" "/$INNER_HOME/.local/share/opencode/auth.json" \
 	\
-	--chdir "$INNER_HOME/project" \
+	--chdir "$INNER_WORKSPACE_DIR" \
 	"${MASK_ARGS[@]}" \
 	\
 	--setenv HOME "$INNER_HOME" \
