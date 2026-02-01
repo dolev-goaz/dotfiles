@@ -6,8 +6,8 @@
 if [[ "$1" != "--inside-scope" ]]; then
 	echo "Starting sandbox with resource limits..."
 	systemd-run --user --scope \
-		-p MemoryMax=2G \
-		-p CPUQuota=80% \
+		-p MemoryMax=6G \
+		-p CPUWeight=40 \
 		-p TasksMax=100 \
 		"$0" --inside-scope "$@"
 	exit $?
