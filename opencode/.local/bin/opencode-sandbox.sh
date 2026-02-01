@@ -36,6 +36,17 @@ while IFS= read -r env_file; do
 done < <(find "$WORKSPACE_DIR" -name ".env*" -not -name ".env.example")
 # ==========================================
 
+# ============== Add binaries ==============
+BIN_ARGS=()
+NODE_BIN="$(which node | sed "s|$HOME/||")" # without $HOME prefix
+if [ -n "$NODE_BIN" ]; then
+	BIN_DIR="$(dirname "$NODE_BIN")"
+	NODE_DIR="$(dirname "$BIN_DIR")"
+	BIN_ARGS+=("--ro-bind" "$HOME/$NODE_DIR" "/home/agent/$NODE_DIR")
+	BIN_ARGS+=("--setenv" "PATH" "/home/agent/$BIN_DIR:/usr/bin:/bin") # PATH
+fi
+# ==========================================
+
 bwrap \
 	--unshare-all \
 	--share-net \
@@ -79,4 +90,6 @@ bwrap \
 	--setenv HOME /home/agent \
 	--setenv XDG_CONFIG_HOME /home/agent/.config \
 	--setenv PATH /usr/bin:/bin \
+	\
+	"${BIN_ARGS[@]}" \
 	opencode
