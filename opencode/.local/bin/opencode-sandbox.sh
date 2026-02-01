@@ -8,7 +8,7 @@ if [[ "$1" != "--inside-scope" ]]; then
 	systemd-run --user --scope \
 		-p MemoryMax=6G \
 		-p CPUWeight=40 \
-		-p TasksMax=100 \
+		-p TasksMax=1000 \
 		"$0" --inside-scope "$@"
 	exit $?
 fi
