@@ -18,6 +18,8 @@ WORKSPACE_DIR=${1:-"$HOME/sandbox-workspace"}
 CONFIG_DIR="$HOME/.dotfiles/opencode/.config/opencode"
 AUTH_DIR="$HOME/.local/share/opencode/auth.json"
 
+INNER_HOME="/home/agent"
+
 # check workspace dir exists
 if [ ! -d "$WORKSPACE_DIR" ]; then
 	echo "Workspace directory '$WORKSPACE_DIR' does not exist."
@@ -32,7 +34,7 @@ MASK_ARGS=()
 # .env
 while IFS= read -r env_file; do
 	relative_path="${env_file#$WORKSPACE_DIR/}"
-	MASK_ARGS+=("--bind" "$EMPTY_MASK" "/home/agent/project/$relative_path") # empty tmpfs, masking the .env file
+	MASK_ARGS+=("--bind" "$EMPTY_MASK" "$INNER_HOME/project/$relative_path") # empty tmpfs, masking the .env file
 done < <(find "$WORKSPACE_DIR" -name ".env*" -not -name ".env.example")
 # ==========================================
 
@@ -42,8 +44,8 @@ NODE_BIN="$(which node | sed "s|$HOME/||")" # without $HOME prefix
 if [ -n "$NODE_BIN" ]; then
 	BIN_DIR="$(dirname "$NODE_BIN")"
 	NODE_DIR="$(dirname "$BIN_DIR")"
-	BIN_ARGS+=("--ro-bind" "$HOME/$NODE_DIR" "/home/agent/$NODE_DIR")
-	BIN_ARGS+=("--setenv" "PATH" "/home/agent/$BIN_DIR:/usr/bin:/bin") # PATH
+	BIN_ARGS+=("--ro-bind" "$HOME/$NODE_DIR" "$INNER_HOME/$NODE_DIR")
+	BIN_ARGS+=("--setenv" "PATH" "$INNER_HOME/$BIN_DIR:/usr/bin:/bin") # PATH
 fi
 # ==========================================
 
@@ -74,21 +76,21 @@ bwrap \
 	--ro-bind /etc/ssl /etc/ssl \
 	--ro-bind /etc/ca-certificates /etc/ca-certificates \
 	\
-	--tmpfs /home/agent \
-	--dir /home/agent/.config \
-	--dir /home/agent/project \
+	--tmpfs "$INNER_HOME" \
+	--dir "$INNER_HOME/.config" \
+	--dir "$INNER_HOME/project" \
 	\
-	--bind "$WORKSPACE_DIR" "/home/agent/project" \
-	--bind-try "$HOME/.local/share/opencode" "/home/agent/.local/share/opencode" \
-	--bind-try "$HOME/.local/state/opencode" "/home/agent/.local/state/opencode" \
-	--ro-bind "$CONFIG_DIR" "/home/agent/.config/opencode" \
-	--ro-bind "$AUTH_DIR" "/home/agent/.local/share/opencode/auth.json" \
+	--bind "$WORKSPACE_DIR" "$INNER_HOME/project" \
+	--bind-try "$HOME/.local/share/opencode" "$INNER_HOME/.local/share/opencode" \
+	--bind-try "$HOME/.local/state/opencode" "$INNER_HOME/.local/state/opencode" \
+	--ro-bind "$CONFIG_DIR" "$INNER_HOME/.config/opencode" \
+	--ro-bind "$AUTH_DIR" "/$INNER_HOME/.local/share/opencode/auth.json" \
 	\
-	--chdir /home/agent/project \
+	--chdir "$INNER_HOME/project" \
 	"${MASK_ARGS[@]}" \
 	\
-	--setenv HOME /home/agent \
-	--setenv XDG_CONFIG_HOME /home/agent/.config \
+	--setenv HOME "$INNER_HOME" \
+	--setenv XDG_CONFIG_HOME "$INNER_HOME/.config" \
 	--setenv PATH /usr/bin:/bin \
 	\
 	"${BIN_ARGS[@]}" \
