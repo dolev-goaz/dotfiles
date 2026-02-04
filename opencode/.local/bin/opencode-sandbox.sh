@@ -61,6 +61,13 @@ if [ -n "$PYTHON_BIN" ]; then
 	BIN_ARGS+=("--ro-bind" "$HOME/$PYTHON_DIR" "$INNER_HOME/$PYTHON_DIR")
 	BIN_ARGS+=("--setenv" "PATH" "$INNER_HOME/$BIN_DIR:/usr/bin:/bin") # PATH
 fi
+GH_EXISTS=$(which gh)
+if [ -n "$GH_EXISTS" ]; then
+    GH_TOKEN="$(gh auth token 2>/dev/null)"
+    if [ -n "$GH_TOKEN" ]; then
+        BIN_ARGS+=("--setenv" "GH_TOKEN" "$GH_TOKEN")
+    fi
+fi
 # ==========================================
 
 bwrap \
