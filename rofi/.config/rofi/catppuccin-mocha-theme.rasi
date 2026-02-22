@@ -30,6 +30,8 @@ window {
     background-color: @background;
     border-radius: 18px;
     width: 400px;
+    border: 2px solid;
+    border-color: @surface0;
 }
 prompt {
     text-color: @subtext0;
