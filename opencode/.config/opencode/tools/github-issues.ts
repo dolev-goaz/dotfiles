@@ -63,7 +63,7 @@ interface CreateBranchArgs {
 
 export const createBranch = tool({
   description:
-    "Create a new Git branch from a GitHub issue in the current repository",
+    "Create a new Git branch from a GitHub issue in the current repository and check into it",
   args: {
     issue: tool.schema
       .string()
