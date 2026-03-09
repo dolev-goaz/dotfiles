@@ -53,8 +53,8 @@ vim.keymap.set("n", "<A-k>", "<C-w>k", { desc = "Tab up" })
 vim.keymap.set("n", "<A-l>", "<C-w>l", { desc = "Tab right" })
 
 -- scroll while centered
-vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up" })
-vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down" })
+vim.keymap.set({ "n", "v" }, "<C-u>", "<C-u>zz", { desc = "Scroll up" })
+vim.keymap.set({ "n", "v" }, "<C-d>", "<C-d>zz", { desc = "Scroll down" })
 
 -- dragging selected lines
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selected lines down" })

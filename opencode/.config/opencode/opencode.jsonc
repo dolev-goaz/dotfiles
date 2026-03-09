@@ -2,25 +2,21 @@
     "$schema": "https://opencode.ai/config.json",
     "model": "github-copilot/claude-sonnet-4.5",
     "small_model": "github-copilot/claude-haiku-4.5",
-    "theme": "catppuccin",
     "permission": {
         "bash": {
-            "git status": "allow",
-            "git diff": "allow",
-            "git log*": "allow",
-            "git show": "allow",
-            "git branch --list": "allow",
-            "git ls-files": "allow",
-            "git fetch": "allow",
-            "*": "ask",
+            // sandbox config
+            // "git status*": "allow",
+            // "git diff*": "allow",
+            // "git log*": "allow",
+            // "git show": "allow",
+            // "git branch --list": "allow",
+            // "git ls-files": "allow",
+            // "git fetch": "allow",
+            // "ls*": "allow",
+            // "*": "deny",
+            "*": "allow",
+            "gh*": "deny",
         },
-        "read": "deny",
         "grep": "deny",
-    },
-    "tui": {
-        "scroll_speed": 3,
-        "scroll_acceleration": {
-            "enabled": true,
-        },
     },
 }

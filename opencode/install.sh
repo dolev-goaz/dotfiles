@@ -1,3 +1,9 @@
+if ! command -v bun &> /dev/null; then
+    curl -fsSL https://bun.sh/install | bash
+else
+    bun upgrade
+fi
+
 yay -S --needed \
 	opencode
 

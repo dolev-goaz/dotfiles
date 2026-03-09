@@ -87,6 +87,7 @@ return {
 				"qml_ls",
 				"basedpyright",
 				"jsonls",
+				"clangd",
 			})
 
 			-- keymaps
