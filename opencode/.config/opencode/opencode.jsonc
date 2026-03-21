@@ -1,6 +1,6 @@
 {
     "$schema": "https://opencode.ai/config.json",
-    "model": "github-copilot/claude-sonnet-4.5",
+    "model": "github-copilot/claude-sonnet-4.6",
     "small_model": "github-copilot/claude-haiku-4.5",
     "permission": {
         "bash": {
@@ -19,4 +19,9 @@
         },
         "grep": "deny",
     },
+    "plugin": [
+        "@zhafron/opencode-kiro-auth",
+        "@howaboua/opencode-usage-plugin",
+        "@tarquinen/opencode-dcp@latest",
+    ],
 }
