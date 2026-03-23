@@ -2,12 +2,27 @@
 
 set -eu # Exit on error and treat unset variables as errors
 
-# Get branch name as argument
-if [ -z "$1" ]; then
-    echo "Usage: $0 <branch-name>"
+# Parse arguments
+create=false
+branch_name=""
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --create)
+            create=true
+            shift
+            ;;
+        *)
+            branch_name="$1"
+            shift
+            ;;
+    esac
+done
+
+if [ -z "$branch_name" ]; then
+    echo "Usage: $0 [--create] <branch-name>"
     exit 1
 fi
-branch_name="$1"
 
 repo_root=$(git rev-parse --show-toplevel)
 if [ -z "$repo_root" ]; then
@@ -17,7 +32,11 @@ fi
 repo_parent=$(dirname "$repo_root")
 worktree_path="$repo_parent/$branch_name"
 
-git worktree add -b "$branch_name" "$worktree_path"
+if [ "$create" = true ]; then
+    git worktree add -b "$branch_name" "$worktree_path"
+else
+    git worktree add "$worktree_path" "$branch_name"
+fi
 
 # Copy .env files to the new worktree
 find "$repo_root" -name "node_modules" -prune -o -name ".env" -print | while read -r env_file; do
