@@ -1,15 +1,18 @@
 #!/bin/bash
 
-set -eu # Exit on error and treat unset variables as errors
-
 # Parse arguments
 create=false
+checkout=false
 branch_name=""
 
 while [[ $# -gt 0 ]]; do
     case "$1" in
         --create)
             create=true
+            shift
+            ;;
+        --checkout)
+            checkout=true
             shift
             ;;
         *)
@@ -19,23 +22,26 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
+function error_exit {
+    echo "$1"
+    (return 0 2>/dev/null) && return 1 || exit 1
+}
+
 if [ -z "$branch_name" ]; then
-    echo "Usage: $0 [--create] <branch-name>"
-    exit 1
+    error_exit "Usage: $0 <branch-name> [--create] [--checkout]"
 fi
 
 repo_root=$(git rev-parse --show-toplevel)
 if [ -z "$repo_root" ]; then
-    echo "Not inside a git repository."
-    exit 1
+    error_exit "Error: Not inside a git repository."
 fi
 repo_parent=$(dirname "$repo_root")
 worktree_path="$repo_parent/$branch_name"
 
 if [ "$create" = true ]; then
-    git worktree add -b "$branch_name" "$worktree_path"
+    git worktree add --quiet -b "$branch_name" "$worktree_path"
 else
-    git worktree add "$worktree_path" "$branch_name"
+    git worktree add --quiet "$worktree_path" "$branch_name"
 fi
 
 # Copy .env files to the new worktree
@@ -61,3 +67,11 @@ find "$repo_root" -name "dist" -prune -o -name "dist" -type d | while read -r di
     mkdir -p "$(dirname "$target_path")"
     cp -r "$dist_dir" "$target_path"
 done
+
+if [ "$checkout" = true ]; then
+    cd "$worktree_path"
+    echo "Checked out to '$branch_name' in worktree at '$worktree_path'."
+else
+    echo "Worktree for branch '$branch_name' created at '$worktree_path'."
+fi
+

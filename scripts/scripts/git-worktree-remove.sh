@@ -40,6 +40,6 @@ fi
 
 echo "Removing worktree for branch '$branch_name' at path '$worktree_path'..."
 git worktree remove "$worktree_path" --force
-git branch -D "$branch_name"
+git branch -D "$branch_name" --quiet
 echo "Worktree for branch '$branch_name' removed successfully."
 

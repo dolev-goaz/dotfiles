@@ -21,7 +21,7 @@ _git_worktree_branches() {
 setopt COMPLETE_ALIASES
 
 # 3. Define your aliases
-alias gwa="~/scripts/git-worktree-add.sh"
+alias gwa=". ~/scripts/git-worktree-add.sh"
 alias gwr=". ~/scripts/git-worktree-remove.sh"
 alias gwcd=". ~/scripts/git-worktree-cd.sh"
 alias gwls="git worktree list"
