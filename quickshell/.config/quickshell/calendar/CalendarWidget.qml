@@ -11,8 +11,8 @@ Item {
     property int monthShift: 0
     property var viewingDate: CalendarLayout.getDateInXMonthsTime(monthShift)
     property var calendarLayout: CalendarLayout.getCalendarLayout(viewingDate, monthShift === 0)
-    width: calendarColumn.width + 12
-    implicitHeight: calendarColumn.height + 12
+    width: calendarColumn.implicitWidth + 24
+    implicitHeight: calendarColumn.implicitHeight + 24
     Rectangle {
         anchors.fill: parent
         color: "#1e1e2e"
@@ -106,7 +106,7 @@ Item {
             // Real week rows
             Repeater {
                 id: calendarRows
-                model: 6
+                model: root.calendarLayout.length
                 delegate: RowLayout {
                     id: rowLayout
                     required property int modelData

@@ -77,7 +77,7 @@ function getDateInXMonthsTime(x) {
 /**
  * @param {Date} dateObject - The date object to get the calendar layout for.
  * @param {boolean} highlight - Whether to highlight today's date.
- * @return {Array} - A 2D array representing the calendar layout.
+ * @return {Array} - A 2D array representing the calendar layout (only rows needed).
  **/
 function getCalendarLayout(dateObject, highlight) {
   if (!dateObject) dateObject = new Date();
@@ -131,5 +131,12 @@ function getCalendarLayout(dateObject, highlight) {
       }
     }
   }
-  return calendar;
+
+  // Trim trailing rows that contain only next-month days
+  let numRows = 6;
+  while (numRows > 1 && calendar[numRows - 1].every(cell => cell.today === -1)) {
+    numRows--;
+  }
+
+  return calendar.slice(0, numRows);
 }

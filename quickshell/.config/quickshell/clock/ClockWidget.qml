@@ -40,12 +40,11 @@ Rectangle {
             anchor.item: root
             anchor.rect.y: root.height + 10 // 10 is the gap
             anchor.rect.x: (root.width - width) / 2
-            implicitWidth: calendarWidget.width + 20 // +20 padding
-            implicitHeight: calendarWidget.height + 20 // +20 padding
+            implicitWidth: calendarWidget.width
+            implicitHeight: calendarWidget.implicitHeight
             color: "transparent"
             CalendarWidget {
                 id: calendarWidget
-                anchors.fill: parent
             }
         }
     }
