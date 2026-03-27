@@ -6,37 +6,42 @@ import "../common/widgets"
 Button {
     id: root
     property string day
-    property int isToday
+    property int isToday   // 1 = today, 0 = current month, -1 = adjacent month
     property bool bold
     property bool isHeader: false
 
-    property color otherMonthBackgroundColor: "transparent"
-    property color todayBackgroundColor: "#89b4fa"
-    property color baseBackgroundColor: "#313244"
-    property color headerBackgroundColor: "transparent"
-
     Layout.fillWidth: false
     Layout.fillHeight: false
-    implicitWidth: 38
-    implicitHeight: 38
+    implicitWidth: 36
+    implicitHeight: 36
 
-    background: Rectangle {
-        property color currentColor: root.isHeader
-            ? root.headerBackgroundColor
-            : (root.isToday === 1)
-                ? root.todayBackgroundColor
-                : (root.isToday === 0)
-                    ? root.baseBackgroundColor
-                    : root.otherMonthBackgroundColor
-        color: root.pressed
-            ? Qt.darker(currentColor, 1.4)
-            : root.hovered && !root.isHeader
-                ? Qt.lighter(currentColor, 1.3)
-                : currentColor
-        radius: 10
+    background: Item {
+        Rectangle {
+            anchors.centerIn: parent
+            width: 32
+            height: 32
+            radius: 16
+            color: "#313244"
+            opacity: root.hovered && !root.isHeader && root.isToday !== 1 ? (root.pressed ? 1.0 : 0.7) : 0.0
+            Behavior on opacity {
+                NumberAnimation { duration: 100 }
+            }
+        }
 
-        Behavior on color {
-            ColorAnimation { duration: 120 }
+        Rectangle {
+            anchors.centerIn: parent
+            width: 32
+            height: 32
+            radius: 16
+            color: "#89b4fa"
+            opacity: root.isToday === 1 ? 1.0 : 0.0
+            scale: root.isToday === 1 ? 1.0 : 0.7
+            Behavior on opacity {
+                NumberAnimation { duration: 150 }
+            }
+            Behavior on scale {
+                NumberAnimation { duration: 150; easing.type: Easing.OutBack }
+            }
         }
     }
 
@@ -44,22 +49,18 @@ Button {
         anchors.fill: parent
         text: root.day
         horizontalAlignment: Text.AlignHCenter
-        font.pixelSize: root.isHeader ? 12 : 14
-        font.weight: root.bold ? Font.DemiBold : Font.Normal
+        font.pixelSize: root.isHeader ? 11 : 14
+        font.weight: root.isHeader ? Font.Medium : (root.isToday === 1 ? Font.Bold : Font.Normal)
         color: root.isHeader
-            ? "#6c7086"
+            ? "#585b70"
             : (root.isToday === 1)
                 ? "#1e1e2e"
                 : (root.isToday === 0)
                     ? "#cdd6f4"
-                    : "#45475a"
+                    : "#3b3f5c"
 
         Behavior on color {
-            ColorAnimation {
-                duration: 200
-                easing.type: Easing.BezierSpline
-                easing.bezierCurve: [0.34, 0.80, 0.34, 1.00, 1, 1]
-            }
+            ColorAnimation { duration: 150 }
         }
     }
 }
