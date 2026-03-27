@@ -1,7 +1,9 @@
 sudo pacman -S --needed \
 	zsh \
 	zsh-autosuggestions \
-	zsh-syntax-highlighting
+	zsh-syntax-highlighting \
+    zoxide \
+    eza
 
 yay -S --needed \
 	nvm
