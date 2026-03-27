@@ -73,11 +73,11 @@ export const createBranch = tool({
       .describe("The name of the new branch to create."),
   },
   async execute(args: CreateBranchArgs) {
-    const branchName = args.branchName;
+    const { branchName } = args;
     let issue = args.issue;
     issue = issue.startsWith("#") ? issue.slice(1) : issue;
-    const result =
-      await Bun.$`gh issue develop ${issue} --name "${branchName}" --checkout`.text();
-    return result.trim();
+    await Bun.$`gh issue develop ${issue} --name "${branchName}"`.quiet();
+    await Bun.$`~/scripts/git-worktree-add.sh ${branchName}`.quiet();
+    return `Branch ${branchName} created and checked out in a new worktree.`;
   },
 });
