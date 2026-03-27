@@ -11,7 +11,7 @@ Rectangle {
     property string fontFamily: "JetBrainsMono Nerd Font"
     property color backgroundColor: "#494d64"
     property color borderColor: "#b7bdf8"
-    property int borderWidth: 3
+    property int borderWidth: 2
     property int borderRadius: 17
     property bool showTooltip: false
 

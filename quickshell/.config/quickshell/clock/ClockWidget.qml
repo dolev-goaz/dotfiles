@@ -8,7 +8,7 @@ Rectangle {
     id: root
     property bool expanded: false
     color: "#494d64"
-    border.width: 3
+    border.width: 2
     border.color: "#b7bdf8"
     radius: 17
 

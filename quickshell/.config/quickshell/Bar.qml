@@ -35,9 +35,10 @@ Scope {
                 right: true
             }
             margins {
-                left: 10
-                right: 20
-                top: 10
+                left: -5
+                right: 13
+                top: 0 + 5
+                bottom: -10 + 5 // idk why we need the -10 for the offset
             }
             Rectangle {
                 id: bar
