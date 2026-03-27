@@ -51,7 +51,8 @@ Item {
                 Layout.fillWidth: true
                 spacing: 6
                 CalendarHeaderButton {
-                    buttonText: `${root.viewingDate.toLocaleDateString(Qt.locale(), "MMMM yyyy")}${root.monthShift != 0 ? "  ·" : ""}`
+                    buttonText: root.viewingDate.toLocaleDateString(Qt.locale(), "MMMM yyyy")
+                    dimmed: root.monthShift !== 0
                     onClicked: {
                         root.monthShift = 0;
                     }

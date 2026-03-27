@@ -6,6 +6,7 @@ Button {
     id: root
     property string buttonText: ""
     property bool forceCircle: false
+    property bool dimmed: false
 
     implicitHeight: 32
     implicitWidth: forceCircle ? implicitHeight : (contentItem.implicitWidth + 12 * 2)
@@ -35,7 +36,11 @@ Button {
         horizontalAlignment: Text.AlignHCenter
         font.pixelSize: 19
         font.family: "JetBrainsMono Nerd Font"
-        color: "#cdd6f4"
+        color: root.dimmed ? "#585b70" : "#cdd6f4"
         font.weight: Font.Medium
+
+        Behavior on color {
+            ColorAnimation { duration: 200 }
+        }
     }
 }
