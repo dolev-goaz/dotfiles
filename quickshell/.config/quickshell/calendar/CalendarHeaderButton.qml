@@ -9,32 +9,43 @@ Button {
     property bool dimmed: false
 
     implicitHeight: 32
-    implicitWidth: forceCircle ? implicitHeight : (contentItem.implicitWidth + 12 * 2)
+    implicitWidth: forceCircle ? implicitHeight : (contentItem.implicitWidth + 8 * 2)
     Behavior on implicitWidth {
         SmoothedAnimation {
             velocity: 650
         }
     }
 
-    background: Rectangle {
-        anchors.fill: parent
-        property color currentColor: "#313244"
-        color: root.pressed
-            ? Qt.lighter(currentColor, 1.4)
-            : root.hovered
-                ? Qt.lighter(currentColor, 1.2)
-                : currentColor
-        radius: root.forceCircle ? parent.height / 2 : 8
+    background: Item {
+        Rectangle {
+            visible: root.forceCircle
+            anchors.centerIn: parent
+            width: parent.height
+            height: parent.height
+            radius: height / 2
+            color: "#313244"
+            opacity: root.hovered ? (root.pressed ? 1.0 : 0.7) : 0.0
+            Behavior on opacity {
+                NumberAnimation { duration: 100 }
+            }
+        }
 
-        Behavior on color {
-            ColorAnimation { duration: 120 }
+        Rectangle {
+            visible: !root.forceCircle
+            anchors.fill: parent
+            radius: 6
+            color: "#313244"
+            opacity: root.hovered ? (root.pressed ? 0.8 : 0.5) : 0.0
+            Behavior on opacity {
+                NumberAnimation { duration: 100 }
+            }
         }
     }
 
     contentItem: StyledText {
         text: root.buttonText
         horizontalAlignment: Text.AlignHCenter
-        font.pixelSize: 19
+        font.pixelSize: 15
         font.family: "JetBrainsMono Nerd Font"
         color: root.dimmed ? "#585b70" : "#cdd6f4"
         font.weight: Font.Medium
