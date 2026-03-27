@@ -1,11 +1,11 @@
 const weekDays = [
-  { day: "Su", today: 0 },
-  { day: "Mo", today: 0 },
-  { day: "Tu", today: 0 },
-  { day: "We", today: 0 },
-  { day: "Th", today: 0 },
-  { day: "Fr", today: 0 },
-  { day: "Sa", today: 0 },
+  { day: "Sun", today: 0 },
+  { day: "Mon", today: 0 },
+  { day: "Tue", today: 0 },
+  { day: "Wed", today: 0 },
+  { day: "Thu", today: 0 },
+  { day: "Fri", today: 0 },
+  { day: "Sat", today: 0 },
 ];
 
 /**

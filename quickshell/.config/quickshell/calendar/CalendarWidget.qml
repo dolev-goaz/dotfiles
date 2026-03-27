@@ -11,14 +11,14 @@ Item {
     property int monthShift: 0
     property var viewingDate: CalendarLayout.getDateInXMonthsTime(monthShift)
     property var calendarLayout: CalendarLayout.getCalendarLayout(viewingDate, monthShift === 0)
-    width: calendarColumn.width
-    implicitHeight: calendarColumn.height
+    width: calendarColumn.width + 12
+    implicitHeight: calendarColumn.height + 12
     Rectangle {
         anchors.fill: parent
         color: "#1e1e2e"
-        radius: 10
+        radius: 16
         border.width: 2
-        border.color: "#b7bdf8"
+        border.color: "#45475a"
 
         Keys.onPressed: event => {
             if ((event.key === Qt.Key_PageDown || event.key === Qt.Key_PageUp) && event.modifiers === Qt.NoModifier) {
@@ -44,14 +44,14 @@ Item {
         ColumnLayout {
             id: calendarColumn
             anchors.centerIn: parent
-            spacing: 5
+            spacing: 8
 
             // Calendar header
             RowLayout {
                 Layout.fillWidth: true
-                spacing: 5
+                spacing: 6
                 CalendarHeaderButton {
-                    buttonText: `${root.viewingDate.toLocaleDateString(Qt.locale(), "MM/yy")}${root.monthShift != 0 ? " •" : ""}`
+                    buttonText: `${root.viewingDate.toLocaleDateString(Qt.locale(), "MMMM yyyy")}${root.monthShift != 0 ? "  ·" : ""}`
                     onClicked: {
                         root.monthShift = 0;
                     }
@@ -76,12 +76,20 @@ Item {
                 }
             }
 
+            Rectangle {
+                Layout.fillWidth: true
+                height: 1
+                color: "#313244"
+                Layout.topMargin: 2
+                Layout.bottomMargin: 2
+            }
+
             // Week days row
             RowLayout {
                 id: weekDaysRow
                 Layout.alignment: Qt.AlignHCenter
                 Layout.fillHeight: false
-                spacing: 5
+                spacing: 4
                 Repeater {
                     model: CalendarLayout.weekDays
                     delegate: CalendarDayButton {
@@ -90,6 +98,7 @@ Item {
                         isToday: modelData.today
                         bold: true
                         enabled: false
+                        isHeader: true
                     }
                 }
             }
@@ -103,7 +112,7 @@ Item {
                     required property int modelData
                     Layout.alignment: Qt.AlignHCenter
                     Layout.fillHeight: false
-                    spacing: 5
+                    spacing: 4
                     Repeater {
                         model: Array(7).fill(rowLayout.modelData)
                         delegate: CalendarDayButton {

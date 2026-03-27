@@ -7,8 +7,8 @@ Button {
     property string buttonText: ""
     property bool forceCircle: false
 
-    implicitHeight: 30
-    implicitWidth: forceCircle ? implicitHeight : (contentItem.implicitWidth + 10 * 2)
+    implicitHeight: 32
+    implicitWidth: forceCircle ? implicitHeight : (contentItem.implicitWidth + 12 * 2)
     Behavior on implicitWidth {
         SmoothedAnimation {
             velocity: 650
@@ -17,22 +17,25 @@ Button {
 
     background: Rectangle {
         anchors.fill: parent
-        property color currentColor: "#f5a97f"
+        property color currentColor: "#313244"
         color: root.pressed
-            ? Qt.darker(currentColor, 1.3)
+            ? Qt.lighter(currentColor, 1.4)
             : root.hovered
-                ? Qt.darker(currentColor, 1.15)
+                ? Qt.lighter(currentColor, 1.2)
                 : currentColor
-        radius: 8
-    }
+        radius: root.forceCircle ? parent.height / 2 : 8
 
+        Behavior on color {
+            ColorAnimation { duration: 120 }
+        }
+    }
 
     contentItem: StyledText {
         text: root.buttonText
         horizontalAlignment: Text.AlignHCenter
         font.pixelSize: 19
         font.family: "JetBrainsMono Nerd Font"
-        color: "#363a4f"
-        font.weight: Font.DemiBold
+        color: "#cdd6f4"
+        font.weight: Font.Medium
     }
 }
