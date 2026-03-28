@@ -70,7 +70,7 @@ StackView {
                 }
                 delegate: Loader {
                     required property QsMenuEntry modelData
-                    sourceComponent: modelData.isSeparator ? separatorComponent : buttonComponent
+                    sourceComponent: modelData?.isSeparator ? separatorComponent : buttonComponent
                 }
             }
             Button {
@@ -101,11 +101,12 @@ StackView {
                 id: buttonComponent
                 Button {
                     id: control
-                    text: modelData.text
+                    text: modelData?.text ?? ""
                     width: listWidth
-                    enabled: modelData.enabled
+                    enabled: modelData?.enabled ?? false
                     contentItem: Text {
                         text: {
+                            if (!modelData) return ""
                             const parts = []
                             // https://quickshell.org/docs/v0.1.0/types/Quickshell/QsMenuButtonType/
                             if (modelData.buttonType === QsMenuButtonType.CheckBox) {
@@ -121,13 +122,13 @@ StackView {
                         }
                         font.family: "JetBrainsMono Nerd Font"
                         font.pixelSize: 15
-                        color: modelData.enabled ? "#111111" : "#777777"
+                        color: modelData?.enabled ? "#111111" : "#777777"
                         elide: Text.ElideRight
                     }
 
                     background: Rectangle {
                         color: {
-                            if (!modelData.enabled) {
+                            if (!modelData?.enabled) {
                                 return "transparent"
                             }
                             if (control.pressed) {
@@ -140,13 +141,13 @@ StackView {
                         radius: 6
                     }
                     onClicked: {
-                        if (modelData.hasChildren) {
+                        if (modelData?.hasChildren) {
                             root.push(subMenuGenerator.createObject(null, {
                                 handle: modelData,
                             }))
 
                         } else {
-                            modelData.triggered()
+                            modelData?.triggered()
                             root.menuOptionSelected()
                         }
                     }
