@@ -28,6 +28,7 @@ Scope {
             screen: modelData
             color: "transparent"
             implicitHeight: 30
+            readonly property int hyprGapsOut: 10
 
             anchors {
                 top: true
@@ -35,10 +36,10 @@ Scope {
                 right: true
             }
             margins {
-                left: 10 + 3
-                right: 10 + 3
-                top: 0 + 5
-                bottom: -10 + 5 // idk why we need the -10 for the offset
+                left: hyprGapsOut + 3
+                right: hyprGapsOut + 3
+                top: 5
+                bottom: -hyprGapsOut + 5
             }
             Rectangle {
                 id: bar
