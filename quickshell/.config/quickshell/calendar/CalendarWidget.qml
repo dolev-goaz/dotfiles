@@ -119,8 +119,8 @@ Item {
                         delegate: CalendarDayButton {
                             required property var modelData
                             required property int index
-                            day: root.calendarLayout[modelData][index].day
-                            isToday: root.calendarLayout[modelData][index].today
+                            day: root.calendarLayout?.[modelData]?.[index]?.day ?? ""
+                            isToday: root.calendarLayout?.[modelData]?.[index]?.today ?? 0
                         }
                     }
                 }
