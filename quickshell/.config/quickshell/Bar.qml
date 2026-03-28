@@ -35,8 +35,8 @@ Scope {
                 right: true
             }
             margins {
-                left: -5
-                right: 13
+                left: 10 + 3
+                right: 10 + 3
                 top: 0 + 5
                 bottom: -10 + 5 // idk why we need the -10 for the offset
             }

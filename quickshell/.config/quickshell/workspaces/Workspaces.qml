@@ -6,11 +6,6 @@ import Quickshell // for ShellScreen type
 Row {
     id: workspacesRow
     required property ShellScreen monitor
-    anchors {
-        left: parent.left
-        verticalCenter: parent.verticalCenter
-        leftMargin: 16
-    }
     spacing: 8
     Process {
         id: processOpenChats
