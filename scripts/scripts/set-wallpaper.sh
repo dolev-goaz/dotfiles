@@ -1,6 +1,6 @@
 #!/bin/bash
 ~/scripts/extract-wallpaper-colors.sh "$1" &
-swww img "$1" --transition-type grow --transition-duration 1.0 --transition-fps 120
+awww img "$1" --transition-type grow --transition-duration 1.0 --transition-fps 120
 
 magick "$1" ~/Pictures/Wallpapers/.active.png
 # create a blurred version of the wallpaper for hyprlock
