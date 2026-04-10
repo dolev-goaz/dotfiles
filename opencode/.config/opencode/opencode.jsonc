@@ -19,6 +19,337 @@
         },
         "grep": "deny",
     },
+    "provider": {
+        "routussy": {
+            "npm": "@ai-sdk/openai-compatible",
+            "name": "ussyverse Proxy",
+            "options": {
+                "baseURL": "https://api.ussyco.de/v1",
+                "apiKey": "", // get from discord
+                "timeout": 300000,
+            },
+            "models": {
+                "glm-4.5-air": {
+                    "name": "GLM-4.5-Air",
+                    "tool_call": true,
+                    "reasoning": true,
+                    "attachment": false,
+                    "temperature": true,
+                    "cost": {
+                        "input": 0.2,
+                        "output": 1.1,
+                        "cache_read": 0.03,
+                        "cache_write": 0,
+                    },
+                    "limit": {
+                        "context": 131072,
+                        "output": 98304,
+                    },
+                },
+                "glm-4.5-flash": {
+                    "name": "GLM-4.5-Flash",
+                    "tool_call": true,
+                    "reasoning": true,
+                    "attachment": false,
+                    "temperature": true,
+                    "cost": {
+                        "input": 0,
+                        "output": 0,
+                        "cache_read": 0,
+                        "cache_write": 0,
+                    },
+                    "limit": {
+                        "context": 131072,
+                        "output": 98304,
+                    },
+                },
+                "glm-4.5": {
+                    "name": "GLM-4.5",
+                    "tool_call": true,
+                    "reasoning": true,
+                    "attachment": false,
+                    "temperature": true,
+                    "cost": {
+                        "input": 0.6,
+                        "output": 2.2,
+                        "cache_read": 0.11,
+                        "cache_write": 0,
+                    },
+                    "limit": {
+                        "context": 131072,
+                        "output": 98304,
+                    },
+                },
+                "glm-4.5v": {
+                    "name": "GLM-4.5V",
+                    "tool_call": true,
+                    "reasoning": true,
+                    "attachment": true,
+                    "temperature": true,
+                    "cost": {
+                        "input": 0.6,
+                        "output": 1.8,
+                        "cache_read": 0,
+                        "cache_write": 0,
+                    },
+                    "limit": {
+                        "context": 64000,
+                        "output": 16384,
+                    },
+                },
+                "glm-4.6": {
+                    "name": "GLM-4.6",
+                    "tool_call": true,
+                    "reasoning": true,
+                    "attachment": false,
+                    "temperature": true,
+                    "cost": {
+                        "input": 0.6,
+                        "output": 2.2,
+                        "cache_read": 0.11,
+                        "cache_write": 0,
+                    },
+                    "limit": {
+                        "context": 204800,
+                        "output": 131072,
+                    },
+                },
+                "glm-4.6v": {
+                    "name": "GLM-4.6V",
+                    "tool_call": true,
+                    "reasoning": true,
+                    "attachment": true,
+                    "temperature": true,
+                    "cost": {
+                        "input": 0.3,
+                        "output": 0.9,
+                        "cache_read": 0,
+                        "cache_write": 0,
+                    },
+                    "limit": {
+                        "context": 128000,
+                        "output": 32768,
+                    },
+                },
+                "glm-4.7-flash": {
+                    "name": "GLM-4.7-Flash",
+                    "tool_call": true,
+                    "reasoning": true,
+                    "attachment": false,
+                    "temperature": true,
+                    "cost": {
+                        "input": 0,
+                        "output": 0,
+                        "cache_read": 0,
+                        "cache_write": 0,
+                    },
+                    "limit": {
+                        "context": 200000,
+                        "output": 131072,
+                    },
+                },
+                "glm-4.7": {
+                    "name": "GLM-4.7",
+                    "tool_call": true,
+                    "reasoning": true,
+                    "attachment": false,
+                    "temperature": true,
+                    "interleaved": {
+                        "field": "reasoning_content",
+                    },
+                    "cost": {
+                        "input": 0.6,
+                        "output": 2.2,
+                        "cache_read": 0.11,
+                        "cache_write": 0,
+                    },
+                    "limit": {
+                        "context": 204800,
+                        "output": 131072,
+                    },
+                },
+                "glm-5-turbo": {
+                    "name": "GLM-5-Turbo",
+                    "tool_call": true,
+                    "reasoning": true,
+                    "attachment": false,
+                    "temperature": true,
+                    "interleaved": {
+                        "field": "reasoning_content",
+                    },
+                    "cost": {
+                        "input": 1.2,
+                        "output": 4,
+                        "cache_read": 0.24,
+                        "cache_write": 0,
+                    },
+                    "limit": {
+                        "context": 200000,
+                        "output": 131072,
+                    },
+                },
+                "glm-5v-turbo": {
+                    "name": "GLM-5-Turbo Visual",
+                    "tool_call": true,
+                    "reasoning": true,
+                    "attachment": true,
+                    "temperature": true,
+                    "interleaved": {
+                        "field": "reasoning_content",
+                    },
+                    "cost": {
+                        "input": 1.2,
+                        "output": 4,
+                        "cache_read": 0.24,
+                        "cache_write": 0,
+                    },
+                    "limit": {
+                        "context": 200000,
+                        "output": 131072,
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image",
+                            "video",
+                            "pdf"
+                        ],
+                        "output": [
+                            "text"
+                        ],
+                    },
+                },
+                "glm-5.1": {
+                    "name": "GLM-5.1",
+                    "tool_call": true,
+                    "reasoning": true,
+                    "attachment": false,
+                    "temperature": true,
+                    "interleaved": {
+                        "field": "reasoning_content",
+                    },
+                    "cost": {
+                        "input": 1,
+                        "output": 3.2,
+                        "cache_read": 0.2,
+                        "cache_write": 0,
+                    },
+                    "limit": {
+                        "context": 204800,
+                        "output": 131072,
+                    },
+                },
+            },
+        },
+        "llm-proxy": {
+            "npm": "@ai-sdk/openai-compatible",
+            "name": "Proxy",
+            "options": {
+                "baseURL": "http://127.0.0.1:8000/v1",
+                "apiKey": "VerysecretKey",
+                "timeout": 300000,
+            },
+            "models": {
+                "qwen-code-coder-model": {
+                    "id": "qwen_code/coder-model",
+                    "name": "Qwen 3.5 Plus (Qwen Code)",
+                    "limit": {
+                        "context": 1048576,
+                        "output": 65536,
+                    },
+                    "options": {
+                        "thinking": true,
+                    },
+                    "reasoning": false,
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image",
+                            "video"
+                        ],
+                        "output": [
+                            "text"
+                        ],
+                    },
+                },
+            },
+        },
+        "kiro": {
+            "models": {
+                "claude-sonnet-4-6": {
+                    "name": "Claude Sonnet 4.6 (Kiro)",
+                    "limit": {
+                        "context": 200000,
+                        "output": 64000,
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image",
+                            "pdf"
+                        ],
+                        "output": [
+                            "text"
+                        ],
+                    },
+                },
+                "claude-haiku-4-5": {
+                    "name": "Claude Haiku 4.5 (Kiro)",
+                    "limit": {
+                        "context": 200000,
+                        "output": 64000,
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "output": [
+                            "text"
+                        ],
+                    },
+                },
+                "claude-opus-4-6": {
+                    "name": "Claude Opus 4.6 (Kiro)",
+                    "limit": {
+                        "context": 200000,
+                        "output": 64000,
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image",
+                            "pdf"
+                        ],
+                        "output": [
+                            "text"
+                        ],
+                    },
+                },
+            },
+        },
+    },
+    "mcp": {
+        "stitch": {
+            "url": "https://stitch.googleapis.com/mcp",
+            "type": "remote",
+            "headers": {
+                "Accept": "application/json",
+                "X-Goog-Api-Key": "",
+            },
+        },
+        "chrome-devtools": {
+            "type": "local",
+            "command": [
+                "npx",
+                "-y",
+                "chrome-devtools-mcp@latest",
+                "--executablePath",
+                "/usr/bin/chromium",
+                "--headless",
+            ],
+        },
+    },
     "plugin": [
         "@zhafron/opencode-kiro-auth",
         "@howaboua/opencode-usage-plugin",
