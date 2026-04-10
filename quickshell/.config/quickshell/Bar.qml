@@ -52,7 +52,7 @@ Scope {
                         top: parent.top
                         bottom: parent.bottom
                     }
-                    spacing: 30
+                    spacing: 8
                     
                     Workspaces {
                         monitor: mainWindow.modelData
