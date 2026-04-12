@@ -123,3 +123,6 @@ if [ -d ~/.zsh/aliases ]; then
     source "$alias_file"
   done
 fi
+export PATH="$HOME/.local/bin:$PATH"
+
+[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"

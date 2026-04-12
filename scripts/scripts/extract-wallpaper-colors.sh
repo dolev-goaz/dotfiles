@@ -7,3 +7,5 @@ fi
 
 # https://github.com/dylanaraps/pywal/wiki/Getting-Started
 wal -i "$wallpaper_path" -s -t -n
+
+swaync-client --reload-css

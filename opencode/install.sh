@@ -17,3 +17,9 @@ for script in ./opencode/.local/bin/*; do
 		chmod +x "$script"
 	fi
 done
+
+for script in ./opencode/tools/*.sh; do
+	if [[ -f "$script" ]]; then
+		chmod +x "$script"
+	fi
+done

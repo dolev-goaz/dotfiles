@@ -1,14 +1,12 @@
 #!/bin/bash
 
-# NOTE: no git access
-
 # Restart with systemd-run to apply resource limits
 if [[ "$1" != "--inside-scope" ]]; then
 	echo "Starting sandbox with resource limits..."
 	systemd-run --user --scope \
-		-p MemoryMax=6G \
+		-p MemoryMax=12G \
 		-p CPUWeight=40 \
-		-p TasksMax=1000 \
+		-p TasksMax=2000 \
 		"$0" --inside-scope "$@"
 	exit $?
 fi
@@ -52,21 +50,56 @@ if [ -n "$NODE_BIN" ]; then
 	NODE_DIR="$(dirname "$BIN_DIR")"
 	BIN_ARGS+=("--ro-bind" "$HOME/$NODE_DIR" "$INNER_HOME/$NODE_DIR")
 	BIN_ARGS+=("--setenv" "PATH" "$INNER_HOME/$BIN_DIR:/usr/bin:/bin") # PATH
+	BIN_ARGS+=("--bind" "$HOME/.npm" "$INNER_HOME/.npm")               # npm cache and config
 fi
 # python
-PYTHON_BIN="$(which python | sed "s|$HOME/||")" # without $HOME prefix
-if [ -n "$PYTHON_BIN" ]; then
-	BIN_DIR="$(dirname "$PYTHON_BIN")"
-	PYTHON_DIR="$(dirname "$BIN_DIR")"
-	BIN_ARGS+=("--ro-bind" "$HOME/$PYTHON_DIR" "$INNER_HOME/$PYTHON_DIR")
-	BIN_ARGS+=("--setenv" "PATH" "$INNER_HOME/$BIN_DIR:/usr/bin:/bin") # PATH
-fi
+# PYTHON_BIN="$(which python | sed "s|$HOME/||")" # without $HOME prefix
+# if [ -n "$PYTHON_BIN" ]; then
+# 	BIN_DIR="$(dirname "$PYTHON_BIN")"
+# 	PYTHON_DIR="$(dirname "$BIN_DIR")"
+# 	BIN_ARGS+=("--ro-bind" "$HOME/$PYTHON_DIR" "$INNER_HOME/$PYTHON_DIR")
+# 	BIN_ARGS+=("--setenv" "PATH" "$INNER_HOME/$BIN_DIR:/usr/bin:/bin") # PATH
+# fi
 GH_EXISTS=$(which gh)
 if [ -n "$GH_EXISTS" ]; then
-    GH_TOKEN="$(gh auth token 2>/dev/null)"
-    if [ -n "$GH_TOKEN" ]; then
-        BIN_ARGS+=("--setenv" "GH_TOKEN" "$GH_TOKEN")
-    fi
+	GH_TOKEN="$(gh auth token 2>/dev/null)"
+	if [ -n "$GH_TOKEN" ]; then
+		BIN_ARGS+=("--setenv" "GH_TOKEN" "$GH_TOKEN")
+	fi
+fi
+GIT_EXISTS=$(which git)
+if [ -n "$GIT_EXISTS" ]; then
+	BIN_ARGS+=("--ro-bind" "$HOME/.gitconfig" "$INNER_HOME/.gitconfig")
+fi
+# chromium devtools
+CHROMIUM_BIN=$(which chromium)
+if [ -n "$CHROMIUM_BIN" ]; then
+	mkdir -p "$HOME/.config/chromium/opencode-profile"
+	CHROMIUM_DIR="$(dirname "$CHROMIUM_BIN")"
+	BIN_ARGS+=("--bind" "$CHROMIUM_DIR" "$CHROMIUM_DIR")
+	BIN_ARGS+=("--bind" "$HOME/.config/chromium/opencode-profile" "$INNER_HOME/.config/chromium/opencode-profile")
+	BIN_ARGS+=("--dev-bind" "/dev/shm" "/dev/shm")
+	BIN_ARGS+=("--dev-bind" "/dev/dri" "/dev/dri")
+fi
+# allow running graphical apps if inside a Wayland session
+if [ -n "$WAYLAND_DISPLAY" ]; then
+	BIN_ARGS+=("--ro-bind" "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY" "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY")
+	BIN_ARGS+=("--setenv" "WAYLAND_DISPLAY" "$WAYLAND_DISPLAY")
+fi
+
+# include zen browser stuff
+if [ -d "$HOME/.zen" ]; then
+	BIN_ARGS+=("--ro-bind" "$HOME/.zen" "$INNER_HOME/.zen")
+fi
+
+# Docker
+DOCKER_SOCK="/var/run/docker.sock"
+if [ -S "$DOCKER_SOCK" ]; then
+	BIN_ARGS+=("--bind" "$DOCKER_SOCK" "$DOCKER_SOCK")
+
+	if [ -d "$HOME/.docker" ]; then
+		BIN_ARGS+=("--ro-bind" "$HOME/.docker" "$INNER_HOME/.docker")
+	fi
 fi
 # ==========================================
 
@@ -74,7 +107,6 @@ bwrap \
 	--unshare-all \
 	--share-net \
 	--die-with-parent \
-	--new-session \
 	\
 	--ro-bind /usr /usr \
 	--ro-bind /bin /bin \

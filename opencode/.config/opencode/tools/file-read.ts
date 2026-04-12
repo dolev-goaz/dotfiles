@@ -153,3 +153,53 @@ export const grep = tool({
     }
   },
 });
+
+// outline read
+const typescriptPatterns =
+  /^\s*(export\s+)?(async\s+)?(class|interface|type|enum|function|const\s+[a-zA-Z0-9_$]+\s*=\s*(\(.*\)|async\s*\(.*\))\s*=>|const\s+[a-zA-Z0-9_$]+\s*=\s*function)/;
+export const getFileOutline = tool({
+  description:
+    "Get the structure of a file (classes, functions) without reading the whole content.",
+  args: {
+    filePath: tool.schema.string().describe("The path to the file to outline."),
+  },
+  async execute(args) {
+    const { filePath } = args;
+
+    if (!filePath.match(/\.(ts|tsx|js|jsx)$/)) {
+      return "Outline is only supported for TypeScript/JavaScript files.";
+    }
+
+    try {
+      const file = Bun.file(filePath);
+      if (!(await file.exists())) {
+        throw new Error(`File not found: ${filePath}`);
+      }
+
+      const content = await file.text();
+      const lines = content.split(/\r?\n/);
+
+      const outline: string[] = [];
+
+      lines.forEach((line, index) => {
+        // match the pattern (ignoring simple comments if possible, though regex is basic)
+        if (typescriptPatterns.test(line)) {
+          // Add 1 to index because humans/editors use 1-based line numbers
+          outline.push(`${index + 1}: ${line.trim()}`);
+        }
+      });
+
+      if (outline.length === 0) {
+        return "No symbols found. The file might be empty or use a syntax I don't recognize.";
+      }
+
+      return (
+        `Found ${outline.length} symbols in ${filePath}:\n` + outline.join("\n")
+      );
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      throw new Error(`Failed to outline "${filePath}": ${errorMessage}`);
+    }
+  },
+});

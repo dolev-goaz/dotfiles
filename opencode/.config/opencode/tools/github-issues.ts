@@ -1,5 +1,20 @@
 import { tool } from "@opencode-ai/plugin";
 
+async function getGitHubSessionKey() {
+  const output = await Bun.$`${import.meta.dir}/get-github-cookie.sh`.quiet();
+  if (output.exitCode !== 0) {
+    const errorComponents = [
+      "Error retrieving GitHub session cookie:",
+      `Exit code: ${output.exitCode}`,
+      `Stdout: ${output.stdout}`,
+      `Stderr: ${output.stderr}`,
+      `Make sure you are authenticated to GitHub in the browser.`,
+    ];
+    throw new Error(errorComponents.join("\n"));
+  }
+  return output.text().trim();
+}
+
 interface ListArgs {
   limit?: number;
   repo?: string;
@@ -56,6 +71,65 @@ export const getIssue = tool({
   },
 });
 
+interface GetAttachmentsArgs {
+  attachmentURL: string | string[];
+}
+export const getAttachments = tool({
+  description:
+    "Fetch attachments from a GitHub issue given their URLs. Can handle single or multiple URLs.",
+
+  args: {
+    attachmentURL: tool.schema
+      .union([
+        tool.schema.string().describe("A single attachment URL."),
+        tool.schema.array(
+          tool.schema.string().describe("An array of attachment URLs."),
+        ),
+      ])
+      .describe(
+        "The URL(s) of the attachment(s) to retrieve. Can be a single string or an array of strings.",
+      ),
+  },
+  async execute(args: GetAttachmentsArgs): Promise<string> {
+    const urls = Array.isArray(args.attachmentURL)
+      ? args.attachmentURL
+      : [args.attachmentURL];
+    if (urls.length === 0) {
+      throw new Error("No attachment URLs provided.");
+    }
+    const sessionKey = await getGitHubSessionKey();
+    const results = await Promise.all(
+      urls.map(async (url, index) => {
+        const result = await Bun.fetch(url, {
+          headers: {
+            cookie: `user_session=${sessionKey}`,
+          },
+        });
+        if (!result.ok) {
+          throw new Error(`Failed to fetch attachment from URL: ${url}`);
+        }
+        // store the file in .agent with a unique name based on the URL
+        const urlPath = new URL(url).pathname;
+        const fileName = urlPath.substring(urlPath.lastIndexOf("/") + 1);
+        const uniqueSuffix = Date.now();
+
+        const extensionStart = fileName.indexOf(".");
+        const baseName =
+          extensionStart !== -1
+            ? fileName.substring(0, extensionStart)
+            : fileName;
+        const extension =
+          extensionStart !== -1 ? fileName.substring(extensionStart) : "";
+        const filePath = `agent_artifacts/${baseName}-${index}-${uniqueSuffix}${extension}`;
+
+        Bun.write(filePath, await result.arrayBuffer());
+        return { url, filePath };
+      }),
+    );
+    return JSON.stringify(results);
+  },
+});
+
 interface CreateBranchArgs {
   issue: string;
   branchName: string;
@@ -81,3 +155,14 @@ export const createBranch = tool({
     return `Branch ${branchName} created and checked out in a new worktree.`;
   },
 });
+
+if (import.meta.main) {
+  const res = await getAttachments.execute(
+    {
+      attachmentURL:
+        "https://github.com/user-attachments/files/25391857/-.1.xlsx",
+    },
+    {} as any,
+  );
+  console.log(res);
+}
