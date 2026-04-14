@@ -1,6 +1,7 @@
 sudo pacman -S --needed \
 	neovim \
-	ripgrep
+	ripgrep \
+	tree-sitter-cli
 
 cd ~/.dotfiles
 stow nvim
