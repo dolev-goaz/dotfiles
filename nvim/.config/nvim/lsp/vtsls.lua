@@ -13,16 +13,14 @@ local vue_plugin = {
 
 ---@type vim.lsp.Config
 return {
-	vim.lsp.config("vtsls", {
-		settings = {
-			vtsls = {
-				tsserver = {
-					globalPlugins = {
-						vue_plugin,
-					},
+	settings = {
+		vtsls = {
+			tsserver = {
+				globalPlugins = {
+					vue_plugin,
 				},
 			},
 		},
-		filetypes = tsserver_filetypes,
-	}),
+	},
+	filetypes = tsserver_filetypes,
 }
