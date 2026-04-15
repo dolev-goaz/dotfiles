@@ -8,51 +8,38 @@ local function ensure_ripgrep()
 end
 ensure_ripgrep()
 
-return {
-	{
-		"nvim-telescope/telescope.nvim",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		event = "VeryLazy",
-		opts = {
-			pickers = {
-				live_grep = {
-					file_ignore_patterns = {
-						"node_modules",
-						".git/",
-						"dist",
-					},
-					additional_args = function()
-						return { "--hidden" }
-					end,
-				},
+vim.pack.add({
+	"https://github.com/nvim-telescope/telescope.nvim",
+	"https://github.com/nvim-telescope/telescope-ui-select.nvim",
+	"https://github.com/nvim-telescope/telescope-project.nvim",
+})
+
+vim.defer_fn(function()
+	require("telescope").setup({
+		extensions = {
+			["ui-select"] = {
+				require("telescope.themes").get_dropdown({}),
 			},
 		},
-		keys = {
-			{ "<C-p>", "<cmd>Telescope git_files<cr>", desc = "Telescope: Search Git files" },
-			{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "[f]ind [f]iles" },
-			{ "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "[f]ind [g]rep Search" },
-			{ "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "[f]ind [h]elp" },
-		},
-	},
-	{
-		"nvim-telescope/telescope-ui-select.nvim",
-		event = "VeryLazy",
-		config = function()
-			require("telescope").setup({
-				extensions = {
-					["ui-select"] = {
-						require("telescope.themes").get_dropdown({}),
-					},
+		pickers = {
+			live_grep = {
+				file_ignore_patterns = {
+					"node_modules",
+					".git/",
+					"dist",
 				},
-			})
-			require("telescope").load_extension("ui-select")
-		end,
-	},
-	{
-		"nvim-telescope/telescope-project.nvim",
-		event = "VeryLazy",
-		config = function()
-			require("telescope").load_extension("project")
-		end,
-	},
-}
+				additional_args = function()
+					return { "--hidden" }
+				end,
+			},
+		},
+	})
+	require("telescope").load_extension("ui-select")
+	require("telescope").load_extension("project")
+	vim.keymap.set("n", "<C-p>", "<cmd>Telescope git_files<cr>", { desc = "Telescope: Search Git files" })
+	vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "[f]ind [f]iles" })
+	vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { desc = "[f]ind [g]rep Search" })
+	vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", { desc = "[f]ind [h]elp" })
+end, 100)
+
+return {}
