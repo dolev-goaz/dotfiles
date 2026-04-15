@@ -1,21 +1,20 @@
-return {
-	{
-		"williamboman/mason-lspconfig.nvim",
-		event = "VeryLazy",
-		dependencies = { "williamboman/mason.nvim" },
-		config = function()
-			require("mason").setup({})
-			require("mason-lspconfig").setup({
-				ensure_installed = {
-					"lua_ls",
-					"vtsls",
-					"vue_ls",
-					"qmlls",
-				},
-				automatic_enable = false, -- prevent duplicate lsp setup
-			})
-		end,
+-- Mason
+vim.pack.add({
+	"https://github.com/williamboman/mason.nvim",
+	"https://github.com/williamboman/mason-lspconfig.nvim",
+})
+require("mason").setup({})
+require("mason-lspconfig").setup({
+	ensure_installed = {
+		"lua_ls",
+		"vtsls",
+		"vue_ls",
+		"qmlls",
 	},
+	automatic_enable = false, -- prevent duplicate lsp setup
+})
+
+return {
 	{
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" },
