@@ -4,6 +4,10 @@
       "rev": "a62e1083a3cfe8b6b206e7d3d33a51091df25357",
       "src": "https://github.com/L3MON4D3/LuaSnip"
     },
+    "alpha-nvim": {
+      "rev": "7563da4a861ee6b3ed674d0ee5c5c0bd19383a38",
+      "src": "https://github.com/goolord/alpha-nvim"
+    },
     "auto-session": {
       "rev": "62437532b38495551410b3f377bcf4aaac574ebe",
       "src": "https://github.com/rmagatti/auto-session"
@@ -35,6 +39,14 @@
     "indent-blankline.nvim": {
       "rev": "d28a3f70721c79e3c5f6693057ae929f3d9c0a03",
       "src": "https://github.com/lukas-reineke/indent-blankline.nvim"
+    },
+    "lazydev": {
+      "rev": "ff2cbcba459b637ec3fd165a2be59b7bbaeedf0d",
+      "src": "https://github.com/folke/lazydev.nvim"
+    },
+    "lazydev.nvim": {
+      "rev": "ff2cbcba459b637ec3fd165a2be59b7bbaeedf0d",
+      "src": "https://github.com/folke/lazydev.nvim"
     },
     "mason-lspconfig.nvim": {
       "rev": "0a3b42c3e503df87aef6d6513e13148381495c3a",
@@ -75,6 +87,10 @@
     "nvim-eslint": {
       "rev": "3c893af4152a417742e6ce96d9468b3f26359006",
       "src": "https://github.com/esmuellert/nvim-eslint"
+    },
+    "nvim-lspconfig": {
+      "rev": "d10ce09e42bb0ca8600fd610c3bb58676e61208d",
+      "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-navic": {
       "rev": "f5eba192f39b453675d115351808bd51276d9de5",
