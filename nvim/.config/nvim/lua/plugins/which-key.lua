@@ -1,23 +1,8 @@
-return {
-	"folke/which-key.nvim",
-	event = "VeryLazy",
-	opts = {
-		-- your configuration comes here
-		-- or leave it empty to use the default settings
-		-- refer to the configuration section below
-	},
-	keys = {
-		{
-			"<leader>?",
-			function()
-				require("which-key").show({ global = false })
-			end,
-			desc = "Buffer Local Keymaps (which-key)",
-		},
-	},
-	config = function()
-		local wk = require("which-key")
-		wk.add({
+vim.pack.add({ "https://github.com/folke/which-key.nvim" }, {
+	load = function()
+		local which_key = require("which-key")
+		which_key.setup({})
+		which_key.add({
 			{ "<leader>o", group = "Open" },
 			{ "<leader>og", group = "Open Git" },
 			{ "<leader>t", group = "Toggle" },
@@ -29,5 +14,8 @@ return {
 			{ "<leader>cd", group = "Code Diagnostics" },
 			{ "<leader>s", group = "Session" },
 		})
+		vim.keymap.set("n", "<leader>?", ":WhichKey<CR>", { desc = "Buffer Local Keymaps (which-key)" })
 	end,
-}
+})
+
+return {}

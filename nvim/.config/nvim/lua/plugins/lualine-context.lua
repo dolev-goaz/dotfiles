@@ -1,6 +1,7 @@
-return {
-	"SmiteshP/nvim-navic",
-	config = function()
+vim.pack.add({ "https://github.com/SmiteshP/nvim-navic" }, {
+	load = function()
+		local navic = nil
+		require("nvim-navic").setup({})
 		vim.api.nvim_create_autocmd("LspAttach", {
 			callback = function(args)
 				local client = vim.lsp.get_client_by_id(args.data.client_id)
@@ -13,8 +14,14 @@ return {
 				end
 
 				local bufnr = args.buf
-				require("nvim-navic").attach(client, bufnr)
+				if not navic then
+					navic = require("nvim-navic")
+					navic.setup({})
+				end
+				navic.attach(client, bufnr)
 			end,
 		})
 	end,
-}
+})
+
+return {}
