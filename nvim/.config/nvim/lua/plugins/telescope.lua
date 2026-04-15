@@ -9,6 +9,9 @@ end
 ensure_ripgrep()
 
 vim.pack.add({
+	-- dependencies
+	"https://github.com/nvim-lua/plenary.nvim",
+	-- plugins
 	"https://github.com/nvim-telescope/telescope.nvim",
 	"https://github.com/nvim-telescope/telescope-ui-select.nvim",
 	"https://github.com/nvim-telescope/telescope-project.nvim",
