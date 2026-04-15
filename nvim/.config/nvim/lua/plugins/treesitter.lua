@@ -26,12 +26,16 @@ local function ensure_installed_langs(langs)
 	require("nvim-treesitter").install(parsers_to_install)
 end
 
-return {
-	"nvim-treesitter/nvim-treesitter",
-	branch = "main",
-	build = ":TSUpdate",
-	event = { "BufReadPost", "BufNewFile" },
-	init = function()
+-- TODO: figure out how to add
+-- build = ":TSUpdate"
+vim.pack.add({
+	{
+		name = "nvim-treesitter",
+		src = "https://github.com/nvim-treesitter/nvim-treesitter",
+		version = "main",
+	},
+}, {
+	load = function()
 		------------------ Ensure installed parsers -----------------
 		local default_langs = {
 			"lua",
@@ -55,4 +59,6 @@ return {
 			end,
 		})
 	end,
-}
+})
+
+return {}
