@@ -1,3 +1,13 @@
+-- Everything should load on InsertEnter
+vim.pack.add({
+	"https://github.com/github/copilot.vim",
+	"https://github.com/windwp/nvim-autopairs",
+	"https://github.com/windwp/nvim-ts-autotag",
+})
+
+require("nvim-autopairs").setup({})
+require("nvim-ts-autotag").setup()
+
 return {
 	{
 		"saghen/blink.cmp",
@@ -32,28 +42,5 @@ return {
 			-- NOTE: maybe check nvim-cmp for cmdline completion
 		},
 		opts_extend = { "sources.default" },
-	},
-	{
-		-- Setup with :Copilot setup
-		-- Get status with :Copilot status
-		"github/copilot.vim",
-		event = "InsertEnter",
-	},
-	{
-		-- automatically pair ", (, etc
-		"windwp/nvim-autopairs",
-		event = "InsertEnter",
-		config = function()
-			require("nvim-autopairs").setup({})
-		end,
-	},
-	{
-		-- automatically close and rename html tags
-		"windwp/nvim-ts-autotag",
-		event = "InsertEnter",
-		dependencies = { "nvim-treesitter/nvim-treesitter" },
-		config = function()
-			require("nvim-ts-autotag").setup()
-		end,
 	},
 }
