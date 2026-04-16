@@ -28,21 +28,14 @@ return {
 			cmdline = {
 				format = {
 					calculator = false,
+					-- Hide since we use flash.nvim for search
+					search_up = { view = "cmdline" },
+					search_down = { view = "cmdline" },
 				},
 			},
 			views = {
 				popup = {
 					scrollbar = false,
-				},
-				cmdline_popup = {
-					position = {
-						row = 10,
-						col = "50%",
-					},
-					size = {
-						width = 60,
-						height = "auto",
-					},
 				},
 			},
 			lsp = {
@@ -98,6 +91,14 @@ return {
 							{ find = "Toggling hidden files" },
 							{ find = "^Restored session:" },
 							{ find = "%[LSP%]" }, -- escape square brackets
+						},
+					},
+					view = "mini",
+				},
+				{
+					filter = {
+						any = {
+							{ find = "^Autoformatting" },
 						},
 					},
 					view = "mini",
