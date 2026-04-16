@@ -3,6 +3,17 @@ require("language")
 require("clipboard")
 require("floating-terminal")
 
+--- Colorscheme ----------------------------------------------------------------------
+--- defined here to it can be used by other plugins(specifically lualine)
+vim.pack.add({
+	"https://github.com/catppuccin/nvim",
+})
+require("catppuccin").setup({
+	term_colors = true,
+	transparent_background = true,
+})
+vim.cmd.colorscheme("catppuccin")
+
 --- Collect vim.pack plugin paths so lazy preserves them when resetting rtp -------
 local pack_paths = vim.tbl_map(function(p)
 	return p.path
