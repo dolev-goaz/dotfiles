@@ -34,6 +34,16 @@ return {
 				popup = {
 					scrollbar = false,
 				},
+				cmdline_popup = {
+					position = {
+						row = 10,
+						col = "50%",
+					},
+					size = {
+						width = 60,
+						height = "auto",
+					},
+				},
 			},
 			lsp = {
 				hover = {
