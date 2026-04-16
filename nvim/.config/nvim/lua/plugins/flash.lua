@@ -4,6 +4,20 @@ return {
 	---@type Flash.Config
 	opts = {
 		modes = {
+			char = {
+				---- if we want to disable flash in operator-pending mode(motions)
+				-- config = function(opts)
+				-- 	local is_operator_pending_mode = vim.fn.mode(true):find("no")
+				-- 	-- stop bothering in operator-pending mode
+				-- 	opts.autohide = is_operator_pending_mode
+				-- 	opts.jump_labels = not is_operator_pending_mode
+				--
+				-- 	-- remove highlights in operator-pending mode
+				-- 	opts.highlight = opts.highlight or {}
+				-- 	opts.highlight.backdrop = not is_operator_pending_mode
+				-- end,
+				jump_labels = true,
+			},
 			search = {
 				enabled = true,
 				highlight = { backdrop = true },
