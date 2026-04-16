@@ -187,22 +187,19 @@ local lualine_sections = {
 local lualine_inactive_sections = {}
 local lualine_extensions = { "lazy", "mason", "neo-tree", "quickfix" }
 
-vim.defer_fn(function()
-	require("lualine").setup({
-		options = {
-			theme = require("lualine.themes." .. vim.g.colors_name),
-			section_separators = { left = "", right = "" },
+require("lualine").setup({
+	options = {
+		theme = require("lualine.themes." .. vim.g.colors_name),
+		section_separators = { left = "", right = "" },
 
-			disabled_filetypes = { "alpha", "neo-tree" },
-			globalstatus = true,
-		},
-		winbar = lualine_winbar,
-		inactive_winbar = lualine_inactive_winbar,
-		sections = lualine_sections,
-		inactive_sections = lualine_inactive_sections,
-		extensions = lualine_extensions,
-	})
-	-- delay to let other plugins load
-end, 500)
+		disabled_filetypes = { "alpha", "neo-tree" },
+		globalstatus = true,
+	},
+	winbar = lualine_winbar,
+	inactive_winbar = lualine_inactive_winbar,
+	sections = lualine_sections,
+	inactive_sections = lualine_inactive_sections,
+	extensions = lualine_extensions,
+})
 
 return {}
