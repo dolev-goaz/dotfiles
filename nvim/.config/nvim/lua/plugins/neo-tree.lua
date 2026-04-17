@@ -2,6 +2,7 @@
 --       and configuring the terminal (if using fonts for file type)
 
 return {
+	enabled = false,
 	"nvim-neo-tree/neo-tree.nvim",
 	branch = "v3.x",
 	dependencies = {

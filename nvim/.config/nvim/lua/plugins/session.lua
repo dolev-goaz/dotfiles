@@ -14,7 +14,7 @@ return {
 	---@type AutoSession.Config
 	opts = {
 		auto_create = false,
-		disabled_filetypes = { "alpha", "neo-tree" },
+		close_filetypes_on_save = { "alpha", "neo-tree", "oil" },
 		suppressed_dirs = { "~/", "~/Downloads", "/" },
 		session_lens = {
 			session_control = {
