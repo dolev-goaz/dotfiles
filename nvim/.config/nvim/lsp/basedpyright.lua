@@ -16,6 +16,11 @@ return {
 					reportUnusedCallResult = "none",
 					reportUnknownParameterType = "none",
 				},
+				inlayHints = {
+					functionLikeReturnTypes = true,
+					callArgumentNames = true,
+					genericTypes = true,
+				},
 			},
 		},
 	},
