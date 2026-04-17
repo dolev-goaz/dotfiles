@@ -15,6 +15,15 @@ return {
 		event = "VeryLazy",
 		opts = {
 			pickers = {
+				find_files = {
+					hidden = true,
+					no_ignore = true,
+					file_ignore_patterns = {
+						"node_modules",
+						".git/",
+						"dist",
+					},
+				},
 				live_grep = {
 					file_ignore_patterns = {
 						"node_modules",
@@ -22,14 +31,14 @@ return {
 						"dist",
 					},
 					additional_args = function()
-						return { "--hidden" }
+						return { "--hidden", "--no-ignore" }
 					end,
 				},
 			},
 		},
 		keys = {
-			{ "<C-p>", "<cmd>Telescope git_files<cr>", desc = "Telescope: Search Git files" },
-			{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "[f]ind [f]iles" },
+			{ "<C-p>", "<cmd>Telescope find_files<cr>", desc = "Telescope: Search files" },
+			{ "<leader>ff", "<cmd>Telescope git_files<cr>", desc = "Telescope: Search Git files" },
 			{ "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "[f]ind [g]rep Search" },
 			{ "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "[f]ind [h]elp" },
 		},
