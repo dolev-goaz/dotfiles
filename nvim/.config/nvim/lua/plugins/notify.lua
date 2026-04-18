@@ -99,6 +99,7 @@ return {
 					filter = {
 						any = {
 							{ find = "^Autoformatting" },
+							{ find = "^Inlay Hints" },
 						},
 					},
 					view = "mini",

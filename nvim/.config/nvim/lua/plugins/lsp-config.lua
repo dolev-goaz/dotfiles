@@ -43,7 +43,15 @@ return {
 				"clangd",
 			})
 
-			-- keymaps
+			local function toggle_inlay_hints()
+				local should_enable = not vim.lsp.inlay_hint.is_enabled()
+				vim.lsp.inlay_hint.enable(should_enable)
+				if should_enable then
+					vim.notify("Inlay Hints Enabled", vim.log.levels.INFO, { title = "LSP" })
+				else
+					vim.notify("Inlay Hints Disabled", vim.log.levels.INFO, { title = "LSP" })
+				end
+			end
 			local function lsp_hover()
 				vim.lsp.buf.hover({
 					focusable = false,
@@ -52,6 +60,7 @@ return {
 				})
 			end
 			vim.keymap.set("n", "K", lsp_hover, { desc = "Hover" })
+			vim.keymap.set("n", "<leader>th", toggle_inlay_hints, { desc = "[t]oggle lsp inlay [h]ints" })
 			vim.keymap.set("n", "<leader>gd", telescope.lsp_definitions, { desc = "[g]o To [d]efinition" })
 			vim.keymap.set("n", "<leader>gD", telescope.lsp_type_definitions, { desc = "[g]o To Type [D]efinition" })
 			vim.keymap.set("n", "<leader>gi", telescope.lsp_implementations, { desc = "[g]o To [i]mplementation" })
