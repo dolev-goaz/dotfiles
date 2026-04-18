@@ -33,6 +33,10 @@ vim.opt.colorcolumn = "100"
 
 vim.opt.cmdheight = 0 -- references https://www.reddit.com/r/neovim/comments/12lf0ke/does_anyone_have_a_cmdheight0_setup_without/
 
+-- disable auto comment continuation
+vim.cmd("autocmd BufEnter * set formatoptions-=cro")
+vim.cmd("autocmd BufEnter * setlocal formatoptions-=cro")
+
 ---- Code Execution ----
 vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>", { desc = "Execute current file" })
 vim.keymap.set("n", "<space>x", ":.lua<CR>", { desc = "Execute current line" })
@@ -86,3 +90,4 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.highlight.on_yank()
 	end,
 })
+require("lsp-hover-highlight")
