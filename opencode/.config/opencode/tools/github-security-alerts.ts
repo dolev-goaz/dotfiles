@@ -1,10 +1,12 @@
-import { tool } from "@opencode-ai/plugin";
+import { tool, type ToolContext } from "@opencode-ai/plugin";
 
-interface ListArgs {
+interface BaseListArgs {
   repo?: string;
-  limit: number;
   offset?: number;
+  limit: number;
 }
+interface ListDependencyArgs extends BaseListArgs {}
+interface ListCodeScanningArgs extends BaseListArgs {}
 
 async function getCurrentRepository() {
   const repo =
@@ -12,13 +14,14 @@ async function getCurrentRepository() {
   return repo.trim();
 }
 
-async function listSecurityAlerts(
+async function listDependencyAlerts(
   repo: string,
   limit: number,
   offset?: number,
 ) {
+  offset ??= 0;
   const jqFlags = `[
-    .[] | select(.state == "open") | {
+      .[] | {
         number: .number,
         severity: .security_advisory.severity,
         package: .dependency.package.name,
@@ -27,21 +30,55 @@ async function listSecurityAlerts(
         fixed_version: .security_advisory.vulnerabilities[0].first_patched_version.identifier,
         summary: .security_advisory.summary,
         cve: .security_advisory.cve_id,
-        manifest: .dependency.manifest_path
-    }
-]`;
-  const alertsStr =
-    await Bun.$`gh api repos/${repo}/dependabot/alerts | jq -r ${jqFlags}`.text();
-  const alerts = JSON.parse(alertsStr) as any[];
-  offset ??= 0;
-
+        manifest_path: .dependency.manifest_path
+      }
+  ]`;
+  const ghArgs = {
+    state: "open",
+  };
+  const ghArgsStr = Object.entries(ghArgs)
+    .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
+    .join("&");
+  const ghPath = `repos/${repo}/dependabot/alerts?${ghArgsStr}`;
+  const alerts: any[] =
+    await Bun.$`gh api "${ghPath}" | jq -r ${jqFlags}`.json();
+  alerts.sort((a, b) => b.number - a.number);
   return alerts.slice(offset, offset + limit);
 }
 
-export const list = tool({
-  description: "List security alerts from a GitHub repository (or current)",
+async function listCodeScanningAlerts(
+  repo: string,
+  limit: number,
+  offset?: number,
+) {
+  offset ??= 0;
+  const jqFlags = `[
+      .[] | {
+        number: .number,
+        severity: .rule.severity,
+        tool: .tool.name,
+        summary: .rule.description,
+        location: .most_recent_instance.location,
+        message: .most_recent_instance.message.text,
+      }
+  ]`;
+  const ghArgs = {
+    state: "open",
+  };
+  const ghArgsStr = Object.entries(ghArgs)
+    .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
+    .join("&");
+  const ghPath = `repos/${repo}/code-scanning/alerts?${ghArgsStr}`;
+  const alerts: any[] =
+    await Bun.$`gh api "${ghPath}" | jq -r ${jqFlags}`.json();
+  alerts.sort((a, b) => b.number - a.number);
+  return alerts.slice(offset, offset + limit);
+}
+
+export const list_code_scanning = tool({
+  description:
+    "List code scanning alerts from a GitHub repository (or current)",
   args: {
-    limit: tool.schema.number().describe("Number of security alerts to list."),
     repo: tool.schema
       .string()
       .describe(
@@ -50,15 +87,44 @@ export const list = tool({
       .optional(),
     offset: tool.schema
       .number()
-      .describe(
-        "The number of security alerts to skip before starting to list. Useful for pagination.",
-      )
+      .describe("Number of results to skip (default: 0)")
       .optional(),
+    limit: tool.schema.number().describe("Number of results to return"),
   },
-  async execute(args: ListArgs) {
-    const { repo, limit, offset } = args;
+  async execute(args: ListCodeScanningArgs) {
+    const { repo, offset, limit } = args;
     const repository = repo || (await getCurrentRepository());
-    const alerts = await listSecurityAlerts(repository, limit, offset);
+    const alerts = await listCodeScanningAlerts(repository, limit, offset);
     return JSON.stringify(alerts, null, 2);
   },
 });
+
+export const list_dependency_alerts = tool({
+  description: "List dependency alerts from a GitHub repository (or current)",
+  args: {
+    repo: tool.schema
+      .string()
+      .describe(
+        "The GitHub repository in the format owner/repo. If not provided, uses the current repository.",
+      )
+      .optional(),
+    offset: tool.schema
+      .number()
+      .describe("Number of results to skip (default: 0)")
+      .optional(),
+    limit: tool.schema.number().describe("Number of results to return"),
+  },
+  async execute(args: ListDependencyArgs) {
+    const { repo, offset, limit } = args;
+    const repository = repo || (await getCurrentRepository());
+    const alerts = await listDependencyAlerts(repository, limit, offset);
+    return JSON.stringify(alerts, null, 2);
+  },
+});
+
+if (module === require.main) {
+  list_code_scanning
+    .execute({ limit: 50 }, null as any as ToolContext)
+    .then((result) => console.log(result))
+    .catch((error) => console.error(error));
+}
