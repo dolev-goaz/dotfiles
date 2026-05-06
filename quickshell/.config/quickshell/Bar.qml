@@ -13,6 +13,7 @@ import "./system_manager"
 import "./battery"
 import "./audio"
 import "./vpn"
+import "./monitor"
 import QtQuick.Layouts
 
 Scope {
@@ -60,6 +61,10 @@ Scope {
                     VPN {
                         Layout.fillHeight: true
                         implicitWidth: 40
+                    }
+                    MonitorInfo {
+                        screen: mainWindow.modelData
+                        Layout.fillHeight: true
                     }
                 }
                 ClockWidget {
