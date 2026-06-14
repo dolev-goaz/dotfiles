@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Tablet Display
+GenericName=Weylus Display
+Comment=Additional Display Setup
+Exec=bash -c "~/.local/bin/weylus-launch.sh"
+Terminal=false
+Type=Application
+Icon=monitor
+Categories=Utility;
+MimeType=text/plain;
+Keywords=Monitor;Tablet;Display;
