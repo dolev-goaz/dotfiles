@@ -15,10 +15,23 @@ async function getGitHubSessionKey() {
   return output.text().trim();
 }
 
+async function getCurrentRepo() {
+  const output =
+    await Bun.$`gh repo view --json=name,owner -q '[.owner.login, .name] | join("/")'`
+      .quiet()
+      .text();
+  return output.trim();
+}
+
 interface ListArgs {
   limit?: number;
   repo?: string;
   assignee?: string;
+}
+
+interface GetIssueArgs {
+  issue: string;
+  repo?: string;
 }
 
 export const list = tool({
@@ -42,13 +55,11 @@ export const list = tool({
       .optional(),
   },
   async execute(args: ListArgs) {
-    const { limit, repo } = args;
+    const { limit, repo: repoArg } = args;
+    const repo = repoArg || (await getCurrentRepo());
     // Build argument arrays dynamically
     const repoArgs = repo ? ["--repo", repo] : [];
     const limitArgs = limit ? ["--limit", limit.toString()] : [];
-    console.log(
-      `gh issue list ${repoArgs} ${limitArgs} --json number,title,state,url | jq "."`,
-    );
     const result =
       await Bun.$`gh issue list ${repoArgs} ${limitArgs} --json number,title,state,url | jq "."`.text();
     return result.trim();
@@ -61,12 +72,20 @@ export const getIssue = tool({
     issue: tool.schema
       .string()
       .describe("The issue number in the format #issue_number"),
+    repo: tool.schema
+      .string()
+      .describe(
+        "The GitHub repository in the format owner/repo. If not provided, uses the current repository.",
+      )
+      .optional(),
   },
-  async execute(args: { issue: string }) {
+  async execute(args: GetIssueArgs) {
     let issue = args.issue;
     issue = issue.startsWith("#") ? issue.slice(1) : issue;
+    const repo = args.repo || (await getCurrentRepo());
+    const repoArgs = args.repo ? ["--repo", repo] : [];
     const result =
-      await Bun.$`gh issue view ${issue} --json number,title,body,state,assignees,labels,comments | jq "."`.text();
+      await Bun.$`gh issue view ${issue} ${repoArgs} --json number,title,body,state,assignees,labels,comments | jq "."`.text();
     return result.trim();
   },
 });
@@ -133,6 +152,7 @@ export const getAttachments = tool({
 interface CreateBranchArgs {
   issue: string;
   branchName: string;
+  repo?: string;
 }
 
 export const createBranch = tool({
@@ -142,25 +162,32 @@ export const createBranch = tool({
     issue: tool.schema
       .string()
       .describe("The issue number in the format #issue_number"),
+    repo: tool.schema
+      .string()
+      .describe(
+        "The GitHub repository in the format owner/repo. If not provided, uses the current repository.",
+      )
+      .optional(),
     branchName: tool.schema
       .string()
       .describe("The name of the new branch to create."),
   },
   async execute(args: CreateBranchArgs) {
     const { branchName } = args;
+    let repo = args.repo || (await getCurrentRepo());
+    const repoArgs = ["--repo", repo];
     let issue = args.issue;
     issue = issue.startsWith("#") ? issue.slice(1) : issue;
-    await Bun.$`gh issue develop ${issue} --name "${branchName}"`.quiet();
+    await Bun.$`gh issue develop ${issue} ${repoArgs} --name "${branchName}"`.quiet();
     await Bun.$`~/scripts/git-worktree-add.sh ${branchName}`.quiet();
     return `Branch ${branchName} created and checked out in a new worktree.`;
   },
 });
 
 if (import.meta.main) {
-  const res = await getAttachments.execute(
+  const res = await list.execute(
     {
-      attachmentURL:
-        "https://github.com/user-attachments/files/25391857/-.1.xlsx",
+      limit: 5,
     },
     {} as any,
   );
