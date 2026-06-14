@@ -30,6 +30,8 @@ Scope {
             color: "transparent"
             implicitHeight: 30
             readonly property int hyprGapsOut: 10
+            readonly property bool isVirtual: modelData.name.toLowerCase().startsWith("virtual")
+            readonly property bool isSimplified: isVirtual
 
             anchors {
                 top: true
@@ -59,6 +61,7 @@ Scope {
                         monitor: mainWindow.modelData
                     }
                     VPN {
+                        visible: !isSimplified
                         Layout.fillHeight: true
                         implicitWidth: 40
                     }
@@ -92,13 +95,16 @@ Scope {
                         implicitWidth: 90
                     }
                     SysTray {
+                        visible: !isSimplified
                         Layout.fillHeight: true
                     }
                     ClipboardHistory {
+                        visible: !isSimplified
                         Layout.fillHeight: true
                         implicitWidth: 40
                     }
                     WallpaperPickerActivator {
+                        visible: !isSimplified
                         Layout.fillHeight: true
                         implicitWidth: 40
                     }
@@ -113,6 +119,7 @@ Scope {
                         Layout.fillHeight: true
                     }
                     SystemManager {
+                        visible: !isSimplified
                         implicitWidth: 40
                         Layout.fillHeight: true
                     }
