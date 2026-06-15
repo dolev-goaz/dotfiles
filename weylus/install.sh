@@ -2,6 +2,7 @@ yay -S --needed \
 	weylus-community-bin
 
 sudo pacman -S --needed \
+	android-tools \
 	gst-plugin-pipewire \
 	gst-plugins-good \
 	gst-plugins-bad \
