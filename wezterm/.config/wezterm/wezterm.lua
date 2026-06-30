@@ -1,6 +1,13 @@
 -- Remember to set $WEZTERM_CONFIG_FILE before launching wezterm(from desktop/terminal)
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
+-- https://github.com/wez/wezterm/issues/3299#issuecomment-2145712082
+wezterm.on("gui-startup", function(cmd)
+	local active = wezterm.gui.screens().active
+	local tab, pane, window = wezterm.mux.spawn_window(cmd or {})
+	window:gui_window():set_position(active.x, active.y)
+	window:gui_window():set_inner_size(active.width, active.height)
+end)
 
 config.font = wezterm.font_with_fallback({
 	"FiraCode Nerd Font",
