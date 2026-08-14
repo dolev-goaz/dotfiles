@@ -1,13 +1,45 @@
 -- Remember to set $WEZTERM_CONFIG_FILE before launching wezterm(from desktop/terminal)
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
+
+-- source: https://wezterm.org/config/lua/wezterm/target_triple.html
+local macos_targets = { "x86_64-apple-darwin", "aarch64-apple-darwin" }
+local linux_targets = { "x86_64-unknown-linux-gnu" }
+local windows_targets = { "x86_64-pc-windows-msvc" }
+local function in_array(array, value)
+	for _, v in ipairs(array) do
+		if v == value then
+			return true
+		end
+	end
+	return false
+end
+local get_os_target = function()
+	local target = wezterm.target_triple
+	if in_array(macos_targets, target) then
+		return "macos"
+	elseif in_array(linux_targets, target) then
+		return "linux"
+	elseif in_array(windows_targets, target) then
+		return "windows"
+	else
+		return "unknown"
+	end
+end
+
+local os = get_os_target()
+
 -- https://github.com/wez/wezterm/issues/3299#issuecomment-2145712082
-wezterm.on("gui-startup", function(cmd)
-	local active = wezterm.gui.screens().active
-	local tab, pane, window = wezterm.mux.spawn_window(cmd or {})
-	window:gui_window():set_position(active.x, active.y)
-	window:gui_window():set_inner_size(active.width, active.height)
-end)
+if os == "macos" then
+	wezterm.on("gui-startup", function(cmd)
+		local active = wezterm.gui.screens().active
+		local tab, pane, window = wezterm.mux.spawn_window(cmd or {})
+		window:gui_window():set_position(active.x, active.y)
+		window:gui_window():set_inner_size(active.width, active.height)
+	end)
+elseif os == "linux" then
+	config.enable_wayland = false
+end
 
 config.font = wezterm.font_with_fallback({
 	"FiraCode Nerd Font",
