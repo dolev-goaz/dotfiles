@@ -1,2 +1,3 @@
 \.gitignore
 install.sh
+.config/hypr/.luarc.json

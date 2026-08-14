@@ -1,6 +1,6 @@
-hyprctl dispatch togglespecialworkspace chats
+hyprctl dispatch 'hl.dsp.workspace.toggle_special("chats")'
 
 if ! pgrep -f ferdium >/dev/null; then
-	hyprctl dispatch exec "[workspace special:chats] ferdium"
-	sleep 0.5 # Give it a moment to start before toggling
+	hyprctl dispatch 'hl.dsp.exec_cmd("ferdium", { workspace = "special:chats" })'
+	sleep 0.5
 fi
