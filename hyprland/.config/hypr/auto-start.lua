@@ -1,3 +1,4 @@
+local machine = require("machine")
 hl.on("hyprland.start", function()
 	-- activate graphical-session.target so xdg-desktop-portal and screen sharing work
 	-- (required since xdg-desktop-portal 1.22)
@@ -7,6 +8,15 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("swaync")
 	hl.exec_cmd("awww-daemon")
 	hl.exec_cmd("quickshell")
+
+	if machine.is_desktop then
+		-- tablet support
+		hl.exec_cmd("~/.local/bin/run-if-exists.sh otd-daemon")
+	end
+
+	if machine.is_laptop then
+		hl.exec_cmd("~/.local/bin/run-if-exists.sh hypridle")
+	end
 
 	-- auto mounting and file management
 	hl.exec_cmd("lxqt-policykit-agent")

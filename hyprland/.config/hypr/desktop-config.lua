@@ -7,10 +7,6 @@ for i = 1, 10 do
 	})
 end
 
-hl.on("hyprland.start", function()
-	hl.exec_cmd("~/.local/bin/run-if-exists.sh otd-daemon")
-	hl.exec_cmd("~/.local/bin/run-if-exists.sh udiskie")
-end)
 hl.monitor({ output = "DP-2", mode = "1920x1080@165", position = "1920x0", scale = 1 })
 hl.monitor({ output = "DP-3", mode = "1920x1080@165", position = "0x0", scale = 1 })
 hl.monitor({ output = "Virtual-1", mode = "2560x1600@120", position = "1300x1080", scale = 2.13 })

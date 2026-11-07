@@ -43,8 +43,8 @@ hl.bind(M.mainMod .. " + 0", hl.dsp.focus({ workspace = "10" }))
 hl.bind(M.mainMod .. " + SHIFT + 0", hl.dsp.window.move({ workspace = "10" }))
 
 -- Move active window to next/previous monitor
-hl.bind(M.mainMod .. " + SHIFT + h", hl.dsp.window.move({ monitor = "mon:-1" }))
-hl.bind(M.mainMod .. " + SHIFT + l", hl.dsp.window.move({ monitor = "mon:+1" }))
+hl.bind(M.mainMod .. " + SHIFT + h", hl.dsp.window.move({ monitor = "-1" }))
+hl.bind(M.mainMod .. " + SHIFT + l", hl.dsp.window.move({ monitor = "+1" }))
 
 -- Clipboard manager
 hl.bind(M.mainMod .. " + V", hl.dsp.exec_cmd("clipse-gui"))
